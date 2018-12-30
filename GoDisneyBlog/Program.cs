@@ -19,6 +19,15 @@ namespace GoDisneyBlog
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(SetUpConfiguration)
                 .UseStartup<Startup>();
+
+        private static void SetUpConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)
+        {
+            builder.Sources.Clear();
+
+            builder.AddJsonFile("config.json", false, true)
+                .AddEnvironmentVariables();
+        }
     }
 }
