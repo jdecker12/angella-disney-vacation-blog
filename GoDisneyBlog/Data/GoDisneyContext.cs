@@ -14,6 +14,6 @@ namespace GoDisneyBlog.Data
         public GoDisneyContext(DbContextOptions<GoDisneyContext>options): base(options)
         {}
 
-        DbSet<Card> Cards { get; set; }
+       public DbSet<Card> Cards { get; set; }
     }
 }
