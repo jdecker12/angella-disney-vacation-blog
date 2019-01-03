@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using GoDisneyBlog.Data.Entities;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace GoDisneyBlog.Data
 {
     public interface IGoDisneyRepository
     {
-        IEnumerable GetCardData();
+        IEnumerable<Card> GetCardData();
     }
 }

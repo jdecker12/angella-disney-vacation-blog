@@ -8,18 +8,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { DataService } from '../../services/data.service';
 var CardComponent = /** @class */ (function () {
-    function CardComponent() {
+    function CardComponent(data) {
+        this.data = data;
+        this.cards = [];
     }
     CardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.data.loadCards()
+            .subscribe(function (success) {
+            if (success) {
+                _this.cards = _this.data.cards;
+                return true;
+            }
+        });
     };
     CardComponent = __decorate([
         Component({
             selector: 'app-card',
-            template: "\n    <p>\n      card works!\n    </p>\n  ",
+            templateUrl: 'card.component.html',
             styles: []
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [DataService])
     ], CardComponent);
     return CardComponent;
 }());

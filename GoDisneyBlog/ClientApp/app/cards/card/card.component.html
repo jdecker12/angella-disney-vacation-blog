@@ -1,0 +1,27 @@
+﻿
+
+<div *ngFor="let c of cards">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{c.cardTitle}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="/img/{{c.cardImg}}.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <p>
+              {{c.cardBody}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <div mat-button><a href="http://{{c.cardLink}}">{{c.cardLink}}</a></div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<!--<div>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+</div>-->
