@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
@@ -17,7 +17,7 @@ var DataService = /** @class */ (function () {
     }
     DataService.prototype.loadCards = function () {
         var _this = this;
-        return this.http.get('/api/cards')
+        return this.http.get("/api/cards")
             .pipe(map(function (data) {
             _this.cards = data;
             return true;

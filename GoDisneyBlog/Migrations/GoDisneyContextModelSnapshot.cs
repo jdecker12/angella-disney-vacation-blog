@@ -25,17 +25,79 @@ namespace GoDisneyBlog.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CardBody");
+                    b.Property<string>("CardIcon");
 
                     b.Property<string>("CardImg");
 
                     b.Property<string>("CardLink");
 
+                    b.Property<string>("CardLinkName");
+
                     b.Property<string>("CardTitle");
+
+                    b.Property<string>("Category");
 
                     b.HasKey("Id");
 
                     b.ToTable("Cards");
+                });
+
+            modelBuilder.Entity("GoDisneyBlog.Data.Entities.CardContent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CardId");
+
+                    b.Property<string>("Category");
+
+                    b.Property<string>("ParaFour");
+
+                    b.Property<string>("ParaOne");
+
+                    b.Property<string>("ParaThree");
+
+                    b.Property<string>("ParaTwo");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CardId");
+
+                    b.ToTable("CardContent");
+                });
+
+            modelBuilder.Entity("GoDisneyBlog.Data.Entities.CardList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Category");
+
+                    b.Property<string>("ItemEight");
+
+                    b.Property<string>("ItemFive");
+
+                    b.Property<string>("ItemFour");
+
+                    b.Property<string>("ItemNine");
+
+                    b.Property<string>("ItemOne");
+
+                    b.Property<string>("ItemSeven");
+
+                    b.Property<string>("ItemSix");
+
+                    b.Property<string>("ItemTen");
+
+                    b.Property<string>("ItemThree");
+
+                    b.Property<string>("ItemTwo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CardLists");
                 });
 
             modelBuilder.Entity("GoDisneyBlog.Data.Entities.StoreUser", b =>
@@ -201,6 +263,13 @@ namespace GoDisneyBlog.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("GoDisneyBlog.Data.Entities.CardContent", b =>
+                {
+                    b.HasOne("GoDisneyBlog.Data.Entities.Card", "Card")
+                        .WithMany("CardContents")
+                        .HasForeignKey("CardId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

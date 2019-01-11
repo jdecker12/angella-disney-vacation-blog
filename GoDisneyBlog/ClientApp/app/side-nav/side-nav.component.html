@@ -1,0 +1,33 @@
+<!--<app-toolbar></app-toolbar>
+<app-gdb-hero></app-gdb-hero>
+<router-outlet></router-outlet>
+
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>Drawer content</mat-drawer>
+    <mat-drawer-content>Main content</mat-drawer-content>
+</mat-drawer-container>
+<app-footer></app-footer>-->
+
+
+
+<mat-sidenav-container class="example-container">
+    <mat-sidenav class="example-sidenav mat-elevation-z10" #sidenav mode="side" [opened]="!isScreenSmall()" 
+                                                                                [mode]="isScreenSmall() ? 'over': 'side'">
+       <app-sidenav-toolbar></app-sidenav-toolbar>
+        <mat-list role="list">
+            <mat-list-item role="listitem"> <a routerLink="/main" routerLinkActive="active">Main</a></mat-list-item>
+            <mat-list-item role="listitem"><a routerLink="/about" routerLinkActive="active">About</a></mat-list-item>
+            <mat-list-item role="listitem"><a routerLink="/contact" routerLinkActive="active">Contact</a></mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+        <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+        <app-gdb-hero></app-gdb-hero>
+       
+        <div id="main-content">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

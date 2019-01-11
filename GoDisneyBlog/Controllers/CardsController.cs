@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GoDisneyBlog.Data;
+using GoDisneyBlog.Data.Entities;
 using Microsoft.Extensions.Logging;
 
 namespace GoDisneyBlog.Controllers
@@ -12,10 +13,10 @@ namespace GoDisneyBlog.Controllers
     [Route("api/[Controller]")]
     public class CardsController: Controller
     {
-        private GoDisneyRepository _repository;
+        private IGoDisneyRepository _repository;
         private ILogger<CardsController> _logger;
 
-        public CardsController(GoDisneyRepository repository,  ILogger<CardsController> logger)
+        public CardsController(IGoDisneyRepository repository,  ILogger<CardsController> logger)
         {
             _logger = logger;
             _repository = repository;

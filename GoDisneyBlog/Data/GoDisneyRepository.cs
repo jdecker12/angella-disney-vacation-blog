@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GoDisneyBlog.Data;
+using GoDisneyBlog.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoDisneyBlog.Data
 {
@@ -17,9 +18,10 @@ namespace GoDisneyBlog.Data
             _context = context;
         }
 
-        public IEnumerable GetCardData()
+        public IEnumerable<Card> GetCardData()
         {
             return _context.Cards
+                .Include(c => c.CardContents)
                 .ToList();
         }
         
