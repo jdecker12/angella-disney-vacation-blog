@@ -1,0 +1,19 @@
+@import'../_variables.scss';
+
+#gdb-footer {
+    height: 250px;
+    width: 100%;
+    background-color: $primary;
+    box-shadow: $shadow-footer;
+    z-index: 5;
+    position:relative;
+    .gdb-stripe {
+        z-index:0;
+        background-color:$p-dark;
+        width:100%;
+        box-shadow: $shadow-footer;
+        position: relative;
+        top: -9px;
+        height: 10px;
+    }
+}

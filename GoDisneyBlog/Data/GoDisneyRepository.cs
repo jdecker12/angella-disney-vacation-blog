@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GoDisneyBlog.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoDisneyBlog.Data
 {
@@ -20,6 +21,7 @@ namespace GoDisneyBlog.Data
         public IEnumerable<Card> GetCardData()
         {
             return _context.Cards
+                .Include(c => c.CardContents)
                 .ToList();
         }
         

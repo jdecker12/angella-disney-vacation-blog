@@ -4,5 +4,6 @@
     body: string;
     image: string;
     link: string;
+    icon: string;
     
 }

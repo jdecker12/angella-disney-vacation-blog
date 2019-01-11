@@ -6,6 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20181231160415_initial.cs" />
+    <Compile Remove="Migrations\20181231160415_initial.Designer.cs" />
+    <Compile Remove="Migrations\20190106214311_addIcon.cs" />
+    <Compile Remove="Migrations\20190106214311_addIcon.Designer.cs" />
+    <Compile Remove="Migrations\20190108224648_newclasses.cs" />
+    <Compile Remove="Migrations\20190108224648_newclasses.Designer.cs" />
+    <Compile Remove="Migrations\20190108225153_lists.cs" />
+    <Compile Remove="Migrations\20190108225153_lists.Designer.cs" />
+    <Compile Remove="Migrations\20190109015210_collection.cs" />
+    <Compile Remove="Migrations\20190109015210_collection.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -19,10 +32,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="OdeToCode.UseNodeModules" Version="1.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
 </Project>

@@ -4,9 +4,9 @@ import { DataService } from '../../services/data.service';
 import { Card } from '../../models/card';
 
 @Component({
-  selector: 'app-card',
+  selector: 'gdb-card',
     templateUrl:'card.component.html' ,
-  styles: []
+  styleUrls: ['card.component.scss']
 })
 export class CardComponent implements OnInit {
 

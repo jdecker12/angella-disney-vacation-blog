@@ -10,9 +10,9 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "inlineTemplate": true,
-          "inlineStyle": true,
-          "styleext": "css"
+          "inlineTemplate": false,
+          "inlineStyle": false,
+          "styleext": "scss"
         }
       },
       "architect": {
@@ -29,7 +29,7 @@
               "ClientApp/assets"
             ],
             "styles": [
-              "ClientApp/styles.css"
+              "ClientApp/styles.scss"
             ],
             "scripts": []
           },
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dutch-app:build"
+            "browserTarget": "go-disney-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dutch-app:build:production"
+              "browserTarget": "go-disney-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dutch-app:build"
+            "browserTarget": "go-disney-app:build"
           }
         },
         "test": {
@@ -85,7 +85,7 @@
             "tsConfig": "ClientApp/tsconfig.spec.json",
             "karmaConfig": "ClientApp/karma.conf.js",
             "styles": [
-              "ClientApp/styles.css"
+              "ClientApp/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -108,7 +108,7 @@
         }
       }
     },
-    "dutch-app-e2e": {
+    "go-disney-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -117,11 +117,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "dutch-app:serve"
+            "devServerTarget": "go-disney-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "dutch-app:serve:production"
+              "devServerTarget": "go-disney-app:serve:production"
             }
           }
         },
@@ -137,5 +137,10 @@
       }
     }
   },
-  "defaultProject": "dutch-app"
+  "defaultProject": "go-disney-app",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

@@ -26,9 +26,9 @@ var CardComponent = /** @class */ (function () {
     };
     CardComponent = __decorate([
         Component({
-            selector: 'app-card',
+            selector: 'gdb-card',
             templateUrl: 'card.component.html',
-            styles: []
+            styleUrls: ['card.component.scss']
         }),
         __metadata("design:paramtypes", [DataService])
     ], CardComponent);
