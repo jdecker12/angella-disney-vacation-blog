@@ -1,5 +1,13 @@
 @import'../_variables.scss';
 
 #main-content {
-    margin: $gutters-main;
+   // margin: $gutters-main;
+    float: right;
+}
+
+#aside-container {
+    width: 350px;
+    background-color: #4caf50;
+    padding: 0 1rem;
+    z-index: -1;
 }

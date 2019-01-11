@@ -2,13 +2,10 @@
 
 .go-dis-card {
     margin-top: 2rem;
+    max-width: 710px;
     .mat-card-header {
         color: $p-dark;
     }
-    /*img {
-        height: 250px;
-        width:350px;
-    }*/
     .mat-fab {
         float: right;
         top: -59px;
