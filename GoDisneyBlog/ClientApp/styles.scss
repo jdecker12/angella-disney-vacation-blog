@@ -1,14 +1,25 @@
 ﻿@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/cdk/overlay-prebuilt.css';
 
 html, body {
     height: 100%;
     font-size: 17px;
+    font-family: 'Roboto', sans-serif;
 
     .flex-container {
         display: flex;
-        flex-flow:row wrap;
-        justify-content:space-around;
+        flex-flow: row wrap;
+        justify-content: space-around;
     }
 
-  }
+    .flex-container-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .half-spacer {
+        flex: .25 1 auto;
+    }
+}
 

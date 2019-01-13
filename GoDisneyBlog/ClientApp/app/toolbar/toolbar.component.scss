@@ -23,7 +23,9 @@
             font-weight: bold;
         }
     }
-
+    .gdb-hambuger {
+        display: none;
+    }
     .example-icon {
         padding: 0 14px;
     }
@@ -44,5 +46,8 @@
         .sidebar-toggle {
             display: flex;
         } 
-        };
+        .gdb-hamburger {
+            display: flex;
+        }
+    }
 }

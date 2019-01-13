@@ -1,14 +1,14 @@
 ﻿<div *ngFor="let c of cards">
     <mat-card class="go-dis-card">
+
+        <img mat-card-image src="/img/{{c.cardImg}}.jpg" alt="Photo of a Shiba Inu">
         <mat-card-header class="card-header" color="Secondary">
             <mat-icon>{{c.cardIcon}}</mat-icon>
-            <mat-card-title>{{c.cardTitle}}</mat-card-title>
-            <!--<div mat-card-avatar class="example-header-image"></div>-->
+            <mat-card-title>Booking {{c.cardTitle}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image src="/img/{{c.cardImg}}.jpg" alt="Photo of a Shiba Inu">
         <mat-card-content>
             <p>
-             
+
             </p>
             <a href="https://{{c.cardLink}}.com">{{c.cardLinkName}}</a>
         </mat-card-content>

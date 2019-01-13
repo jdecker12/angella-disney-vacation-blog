@@ -2,18 +2,17 @@
 
 .go-dis-card {
     margin-top: 2rem;
-    .mat-card-header {
-        color: $p-dark;
-    }
-    /*img {
-        height: 250px;
-        width:350px;
-    }*/
-    .mat-fab {
-        float: right;
-        top: -59px;
-        right: 3rem;
-        background-color: $p-dark;
-        color: #fff;
-    }
+    max-width: 710px;
+    border-radius: 0 !important;
+        .mat-card-header {
+            color: $p-dark;
+        }
+        .mat-fab {
+            float: right;
+            top: -59px;
+            right: 3rem;
+            background-color: $p-dark;
+            color: #fff;
+        }
+    
 }

@@ -36,6 +36,7 @@ import {
     MatStepperModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
     imports: [

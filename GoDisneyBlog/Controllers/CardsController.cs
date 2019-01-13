@@ -27,7 +27,7 @@ namespace GoDisneyBlog.Controllers
         {
             try
             {
-                return Ok(_repository.GetCardData());
+                return Ok(_repository.GetCard());
             }
             catch(Exception ex)
             {
@@ -35,6 +35,20 @@ namespace GoDisneyBlog.Controllers
                 return BadRequest($"Failed to get card data {ex}");
             }
         }
-        
+
+        [HttpGet("{id:int}")]
+        public IActionResult Get(int id)
+        {
+            try
+            {
+                return Ok(_repository.GetCardById(id));
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Failed to get card data by id");
+                return BadRequest($"Failed to get card data by id {ex}");
+            }
+        }
+
     }
 }

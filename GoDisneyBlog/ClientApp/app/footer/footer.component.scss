@@ -1,19 +1,36 @@
 @import'../_variables.scss';
 
 #gdb-footer {
-    height: 250px;
+    min-height: 250px;
     width: 100%;
     background-color: $primary;
     box-shadow: $shadow-footer;
     z-index: 5;
-    position:relative;
+    position: relative;
+    padding: 2rem 0;
+
     .gdb-stripe {
-        z-index:0;
-        background-color:$p-dark;
-        width:100%;
+        z-index: 0;
+        background-color: $p-dark;
+        width: 100%;
         box-shadow: $shadow-footer;
         position: relative;
         top: -9px;
         height: 10px;
+    }
+
+    .div1 {
+        min-width: 200px;
+        min-height: 200px;
+        color: #fff;
+        text-align: center;
+
+        .mat-list-item {
+            color: #fff;
+        }
+    }
+
+    .gdb-copyright > p {
+        color: #fff;
     }
 }
