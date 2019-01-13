@@ -1,0 +1,23 @@
+@import'../_variables.scss';
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 375px;
+}
+
+.example-container > * {
+    width: 100%;
+}
+
+h1 {
+   color: $p-dark;
+}
+
+.mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    width: 375px;
+}

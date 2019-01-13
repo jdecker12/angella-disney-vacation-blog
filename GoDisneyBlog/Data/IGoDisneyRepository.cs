@@ -6,6 +6,7 @@ namespace GoDisneyBlog.Data
 {
     public interface IGoDisneyRepository
     {
-        IEnumerable<Card> GetCardData();
+        IEnumerable<Card> GetCard();
+        Card GetCardById(int id);
     }
 }

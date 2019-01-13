@@ -1,6 +1,6 @@
 @import'../_variables.scss';
 
-#gdb-hero {
+div#gdb-hero {
     height: 340px;
     background-color: $p-dark;
     box-shadow: $shadow;
@@ -11,4 +11,19 @@
     line-height: 300px;
     font-size: 2em;
     font-family: Roboto;
+    background-image: url('/img/Hero_img.jpg');
+    background-repeat: no-repeat;
+    position: relative;
+    background-size:contain;
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 340px;
+        background-color: $p-dark;
+        opacity:0.75;
+        display: block;
+        content: " ";
+    }
 }

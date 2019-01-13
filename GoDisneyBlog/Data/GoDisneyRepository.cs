@@ -6,23 +6,50 @@ using System.Text;
 using System.Threading.Tasks;
 using GoDisneyBlog.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace GoDisneyBlog.Data
 {
     public class GoDisneyRepository : IGoDisneyRepository
     {
         private GoDisneyContext _context;
+        private ILogger<GoDisneyRepository> _logger;
 
-        public GoDisneyRepository(GoDisneyContext context)
+        public GoDisneyRepository(GoDisneyContext context, ILogger<GoDisneyRepository> logger )
         {
             _context = context;
+            _logger = logger;
         }
 
-        public IEnumerable<Card> GetCardData()
+        public IEnumerable<Card> GetCard()
         {
-            return _context.Cards
-                .Include(c => c.CardContents)
-                .ToList();
+            try
+            {
+                return _context.Cards
+                    .Include(c => c.CardContents)
+                    .ToList();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Failed to get all Cards {ex}");
+                return null;
+            }
+        }
+
+        public Card GetCardById(int id)
+        {
+            try
+            {
+                return _context.Cards
+                        .Include(c => c.CardContents)
+                        .Where(i => i.Id == id)
+                        .FirstOrDefault();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Failed to get card data by id {ex}");
+                return null;
+            }
         }
         
     }
