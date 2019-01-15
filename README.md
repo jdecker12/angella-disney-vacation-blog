@@ -1,2 +1,2 @@
 # angella-disney-vacation-blog
-creating a fun and informative Disney vacation blog
+creating disney travel blog for Angella
