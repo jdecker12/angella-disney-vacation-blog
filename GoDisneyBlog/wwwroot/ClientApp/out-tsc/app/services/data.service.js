@@ -23,6 +23,10 @@ var DataService = /** @class */ (function () {
             return true;
         }));
     };
+    DataService.prototype.getCardById = function (id) {
+        return this.cards.find(function (x) { return x.id == id; });
+    };
+    ;
     DataService = __decorate([
         Injectable(),
         __metadata("design:paramtypes", [HttpClient])

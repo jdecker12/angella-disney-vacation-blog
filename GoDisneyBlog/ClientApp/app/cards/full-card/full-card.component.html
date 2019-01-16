@@ -1,0 +1,26 @@
+<div class="flex-container">
+    <div class="flex-container-col">
+        <mat-card class="go-dis-card">
+            <img mat-card-image src="/img/{{card.cardImg}}.jpg" alt="">
+            <mat-card-header class="card-header" color="Secondary">
+                <mat-icon>{{card.cardIcon}}</mat-icon>
+                <mat-card-title>{{card.cardTitle}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div *ngFor="let p of card.cardContents">
+                    <p>{{p.paraOne}}</p>
+                    <p>{{p.paraTwo}}</p>
+                    <p>{{p.paraThree}}</p>
+                    <p>{{p.paraFour}}</p>
+                </div>
+                <a href="https://{{card.cardLink}}">{{card.cardLinkName}}</a>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-fab [routerLink]="['/', card.id]"><mat-icon>add</mat-icon></button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <aside id="aside-container" class="flex-container-col">
+        <app-side-bar></app-side-bar>
+    </aside>
+</div>
