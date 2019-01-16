@@ -20,8 +20,7 @@ export class CardComponent implements OnInit {
                     this.cards = this.data.cards;
                     return true;
                 }
-                
-            })
-  }
 
+            });
+    }
 }

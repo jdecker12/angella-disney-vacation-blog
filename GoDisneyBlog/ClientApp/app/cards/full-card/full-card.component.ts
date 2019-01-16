@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../services/data.service'; 
+import { ActivatedRoute } from '@angular/router';
+import { Card } from 'ClientApp/app/models/card';
+
+@Component({
+  selector: 'app-full-card',
+  templateUrl: './full-card.component.html',
+  styleUrls: ['./full-card.component.scss']
+})
+export class FullCardComponent implements OnInit {
+
+    constructor(private data: DataService, private route: ActivatedRoute) { }
+
+    public card: Card;
+
+    ngOnInit() {
+        //this.data.loadCards()
+        //    .subscribe(success => {
+        //        if (success) {
+        //            this.cards = this.data.cards;
+        //            return true;
+        //        }
+
+        //    });
+
+        this.route.params.subscribe(params => {
+            let id = params['id'];
+            this.card = this.data.getCardById(id);
+
+        });
+  }
+
+}

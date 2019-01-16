@@ -15,11 +15,36 @@ html, body {
     .flex-container-col {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
     }
 
     .half-spacer {
         flex: .25 1 auto;
+    }
+
+    #sidebar-card {
+        margin-bottom: 60px;
+
+        .mat-card-header-text {
+            z-index: 10 !important;
+            color: #fff !important;
+            text-align: center !important;
+            position: relative !important;
+            top: 2rem;
+            margin: 0 0;
+
+            .mat-card-subtitle {
+                color: #fff;
+            }
+
+            .mat-card-content p {
+                margin-top: 16px;
+            }
+        }
+    }
+
+    .gdb-copyright {
+        color: #fff;
     }
 }
 

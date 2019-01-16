@@ -11,6 +11,9 @@ import { Component } from '@angular/core';
 var FooterComponent = /** @class */ (function () {
     function FooterComponent() {
     }
+    FooterComponent.prototype.sayHello = function () {
+        alert('Hello');
+    };
     FooterComponent.prototype.ngOnInit = function () {
     };
     FooterComponent = __decorate([
