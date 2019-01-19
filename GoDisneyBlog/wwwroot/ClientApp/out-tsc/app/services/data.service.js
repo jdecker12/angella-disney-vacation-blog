@@ -24,7 +24,7 @@ var DataService = /** @class */ (function () {
         }));
     };
     DataService.prototype.getCardById = function (id) {
-        return this.cards.find(function (x) { return x.id == id; });
+        return this.cards.find(function (x) { return x.thisCardId == id; });
     };
     ;
     DataService = __decorate([

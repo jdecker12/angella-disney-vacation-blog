@@ -1,5 +1,5 @@
 ﻿export class Card {
-    id: number;
+    thisCardId: number;
     category: string;
     cardTitle: string;
     cardImg: string;

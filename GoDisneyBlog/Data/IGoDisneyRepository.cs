@@ -8,5 +8,7 @@ namespace GoDisneyBlog.Data
     {
         IEnumerable<Card> GetCard();
         Card GetCardById(int id);
+        bool SaveAll();
+        void AddEntity(object model);
     }
 }
