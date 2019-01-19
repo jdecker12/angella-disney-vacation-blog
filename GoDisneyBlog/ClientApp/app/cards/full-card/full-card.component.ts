@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service'; 
 import { ActivatedRoute } from '@angular/router';
-import { Card } from 'ClientApp/app/models/card';
+import { Card } from '../../models/card';
 
 @Component({
   selector: 'app-full-card',

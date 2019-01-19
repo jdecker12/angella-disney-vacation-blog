@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Card, CardContent } from '../models/card';
+import { Card } from '../models/card';
 
 @Injectable()
 export class DataService {
@@ -15,14 +15,14 @@ export class DataService {
     loadCards(): Observable<boolean> {
         return this.http.get("/api/cards")
             .pipe(
-            map((data: any[]) => {
+            map((data:any[]) => {
                 this.cards = data;
                 return true;
             }));
     }
 
     getCardById(id: number) {
-        return this.cards.find(x => x.id == id);
+        return this.cards.find(x => x.thisCardId == id);
             };
     
 

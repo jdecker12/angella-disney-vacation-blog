@@ -21,6 +21,11 @@ namespace GoDisneyBlog.Data
             _logger = logger;
         }
 
+        public void AddEntity(object model)
+        {
+            _context.Add(model);
+        }
+
         public IEnumerable<Card> GetCard()
         {
             try
@@ -51,6 +56,18 @@ namespace GoDisneyBlog.Data
                 return null;
             }
         }
-        
+
+        public bool SaveAll()
+        {
+          try
+            {
+                return _context.SaveChanges() > 0;
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Failed to save all cahnges {ex}");
+                return false;
+            }
+        }
     }
 }

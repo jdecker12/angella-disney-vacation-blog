@@ -253,7 +253,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor=\"let c of cards\">\r\n    <mat-card class=\"go-dis-card\">\r\n        <img mat-card-image src=\"/img/{{c.cardImg}}.jpg\" alt=\"Photo of a Shiba Inu\">\r\n        <mat-card-header class=\"card-header\" color=\"Secondary\">\r\n            <mat-icon>{{c.cardIcon}}</mat-icon>\r\n            <mat-card-title>{{c.cardTitle}}</mat-card-title>\r\n        </mat-card-header>\r\n        <mat-card-content *ngFor=\"let p of c.cardContents\">\r\n            <div>\r\n                <p>{{p.paraOne}}</p>\r\n                <p>{{p.paraTwo}}</p>\r\n            </div>\r\n            <a href=\"https://{{c.cardLink}}\">{{c.cardLinkName}}</a>\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n            <button mat-fab [routerLink]=\"['/', c.id]\"><mat-icon>add</mat-icon><span></span></button>\r\n        </mat-card-actions>\r\n    </mat-card>\r\n</div>\r\n"
+module.exports = "<div *ngFor=\"let c of cards\">\r\n    <mat-card class=\"go-dis-card\">\r\n        <img mat-card-image src=\"/img/{{c.cardImg}}.jpg\" alt=\"Photo of a Shiba Inu\">\r\n        <mat-card-header class=\"card-header\" color=\"Secondary\">\r\n            <mat-icon>{{c.cardIcon}}</mat-icon>\r\n            <mat-card-title>{{c.cardTitle}}</mat-card-title>\r\n        </mat-card-header>\r\n        <mat-card-content *ngFor=\"let p of c.cardContents\">\r\n            <div>\r\n                <p>{{p.paraOne}}</p>\r\n                <p>{{p.paraTwo}}</p>\r\n            </div>\r\n            <a href=\"https://{{c.cardLink}}\">{{c.cardLinkName}}</a>\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n            <button mat-fab [routerLink]=\"['/', c.thisCardId]\"><mat-icon>add</mat-icon><span></span></button>\r\n        </mat-card-actions>\r\n    </mat-card>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -759,7 +759,7 @@ var DataService = /** @class */ (function () {
         }));
     };
     DataService.prototype.getCardById = function (id) {
-        return this.cards.find(function (x) { return x.id == id; });
+        return this.cards.find(function (x) { return x.thisCardId == id; });
     };
     ;
     DataService = __decorate([
