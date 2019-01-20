@@ -20,8 +20,8 @@ namespace GoDisneyBlog.Controllers
         private IMapper _mapper;
 
         public CardsController(IGoDisneyRepository repository,  
-                                ILogger<CardsController> logger,
-                                 IMapper mapper)
+                               ILogger<CardsController> logger,
+                               IMapper mapper)
         {
             _logger = logger;
             _repository = repository;
@@ -86,10 +86,36 @@ namespace GoDisneyBlog.Controllers
             catch(Exception ex)
             {
                 _logger.LogError($"Failed to save card info. {ex}");
-                
+               
+            }
+            return BadRequest("Failed to save card info.");
+
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Put(int id, [FromBody]CardViewModel model)
+        {
+            try
+            {
+                // if(ModelState.IsValid)
+                // {
+                 var oldCard = _repository.GetCardById(id);
+                    if (oldCard == null) return NotFound($"Could not find a card with an id of {id}");
+                    _mapper.Map(model, oldCard);
+
+                    if (await _repository.SaveAllAsync())
+                    {
+                        return Ok(_mapper.Map<CardViewModel>(oldCard));
+                    }
+                //}
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Failed to update card. {ex}");
+               
             }
 
-            return BadRequest("Failed to save card info.");
+            return BadRequest($"Failed to update card.");
         }
 
         [HttpDelete("{id}")]
