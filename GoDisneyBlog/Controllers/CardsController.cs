@@ -67,7 +67,7 @@ namespace GoDisneyBlog.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]CardViewModel model)
+        public async Task<IActionResult> Post([FromBody]CardViewModel model)
         {
 
             var newCard = _mapper.Map<CardViewModel, Card>(model);
@@ -76,7 +76,7 @@ namespace GoDisneyBlog.Controllers
                 if (ModelState.IsValid)
                 {
                     _repository.AddEntity(newCard);
-                    if (_repository.SaveAll())
+                    if (await _repository.SaveAllAsync())
                     {
 
                         return Created($"/api/cards/{newCard.Id}", _mapper.Map<Card, CardViewModel>(newCard));
@@ -90,6 +90,29 @@ namespace GoDisneyBlog.Controllers
             }
 
             return BadRequest("Failed to save card info.");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var oldCard = _repository.GetCardById(id);
+                if (oldCard == null) return NotFound($"Could not find Card with an id of {id}");
+
+                _repository.DeleteEntity(oldCard);
+
+                if (await _repository.SaveAllAsync())
+                {
+                    return Ok();
+                }
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Could not delete old card {ex}");
+            }
+            return BadRequest($"Failed to update old card"); 
         }
 
     }

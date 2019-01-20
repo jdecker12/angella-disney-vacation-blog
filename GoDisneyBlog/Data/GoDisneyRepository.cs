@@ -26,6 +26,11 @@ namespace GoDisneyBlog.Data
             _context.Add(model);
         }
 
+        public void DeleteEntity(object model)
+        {
+            _context.Remove(model);
+        }
+
         public IEnumerable<Card> GetCard()
         {
             try
@@ -57,11 +62,11 @@ namespace GoDisneyBlog.Data
             }
         }
 
-        public bool SaveAll()
+        public async Task<bool> SaveAllAsync()
         {
           try
             {
-                return _context.SaveChanges() > 0;
+                return (await _context.SaveChangesAsync()) > 0;
             }
             catch(Exception ex)
             {
