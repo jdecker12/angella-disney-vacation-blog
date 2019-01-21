@@ -1,2 +1,2 @@
-# angella-disney-vacation-blog
-creating a fun and informative Disney vacation blog
+# disney-vacation-blog
+an informative Disney vacation travel blog  for booking and scheduling tips to maximize your fun and your dollar.
