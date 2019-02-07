@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoDisneyBlog.Migrations
 {
     [DbContext(typeof(GoDisneyContext))]
-    [Migration("20190108225153_lists")]
-    partial class lists
+    [Migration("20190125140855_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,6 @@ namespace GoDisneyBlog.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CardBodyId");
-
                     b.Property<string>("CardIcon");
 
                     b.Property<string>("CardImg");
@@ -41,18 +39,22 @@ namespace GoDisneyBlog.Migrations
 
                     b.Property<string>("Category");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CardBodyId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Cards");
                 });
 
-            modelBuilder.Entity("GoDisneyBlog.Data.Entities.CardBody", b =>
+            modelBuilder.Entity("GoDisneyBlog.Data.Entities.CardContent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CardId");
 
                     b.Property<string>("Category");
 
@@ -66,7 +68,9 @@ namespace GoDisneyBlog.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CardBodies");
+                    b.HasIndex("CardId");
+
+                    b.ToTable("CardContent");
                 });
 
             modelBuilder.Entity("GoDisneyBlog.Data.Entities.CardList", b =>
@@ -269,9 +273,16 @@ namespace GoDisneyBlog.Migrations
 
             modelBuilder.Entity("GoDisneyBlog.Data.Entities.Card", b =>
                 {
-                    b.HasOne("GoDisneyBlog.Data.Entities.CardBody", "CardBody")
+                    b.HasOne("GoDisneyBlog.Data.Entities.StoreUser", "User")
                         .WithMany()
-                        .HasForeignKey("CardBodyId");
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("GoDisneyBlog.Data.Entities.CardContent", b =>
+                {
+                    b.HasOne("GoDisneyBlog.Data.Entities.Card", "Card")
+                        .WithMany("CardContents")
+                        .HasForeignKey("CardId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

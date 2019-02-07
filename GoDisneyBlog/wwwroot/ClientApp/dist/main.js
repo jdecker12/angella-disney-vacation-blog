@@ -86,6 +86,69 @@ var AboutComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./app/admin/admin.component.html":
+/*!****************************************!*\
+  !*** ./app/admin/admin.component.html ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  admin works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./app/admin/admin.component.scss":
+/*!****************************************!*\
+  !*** ./app/admin/admin.component.scss ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYWRtaW4vYWRtaW4uY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./app/admin/admin.component.ts":
+/*!**************************************!*\
+  !*** ./app/admin/admin.component.ts ***!
+  \**************************************/
+/*! exports provided: AdminComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminComponent", function() { return AdminComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminComponent = /** @class */ (function () {
+    function AdminComponent() {
+    }
+    AdminComponent.prototype.ngOnInit = function () {
+    };
+    AdminComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-admin',
+            template: __webpack_require__(/*! ./admin.component.html */ "./app/admin/admin.component.html"),
+            styles: [__webpack_require__(/*! ./admin.component.scss */ "./app/admin/admin.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdminComponent);
+    return AdminComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./app/app.component.html":
 /*!********************************!*\
   !*** ./app/app.component.html ***!
@@ -173,6 +236,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./about/about.component */ "./app/about/about.component.ts");
 /* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./contact/contact.component */ "./app/contact/contact.component.ts");
 /* harmony import */ var _cards_full_card_full_card_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./cards/full-card/full-card.component */ "./app/cards/full-card/full-card.component.ts");
+/* harmony import */ var _admin_admin_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./admin/admin.component */ "./app/admin/admin.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -200,10 +264,12 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     { path: 'main', component: _main_content_main_content_component__WEBPACK_IMPORTED_MODULE_16__["MainContentComponent"] },
     { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_18__["AboutComponent"] },
     { path: 'contact', component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_19__["ContactComponent"] },
+    { path: 'admin', component: _admin_admin_component__WEBPACK_IMPORTED_MODULE_21__["AdminComponent"] },
     { path: ':id', component: _cards_full_card_full_card_component__WEBPACK_IMPORTED_MODULE_20__["FullCardComponent"] },
     { path: '**', redirectTo: 'main' }
 ];
@@ -225,7 +291,8 @@ var AppModule = /** @class */ (function () {
                 _sidenav_toolbar_sidenav_toolbar_component__WEBPACK_IMPORTED_MODULE_17__["SidenavToolbarComponent"],
                 _about_about_component__WEBPACK_IMPORTED_MODULE_18__["AboutComponent"],
                 _contact_contact_component__WEBPACK_IMPORTED_MODULE_19__["ContactComponent"],
-                _cards_full_card_full_card_component__WEBPACK_IMPORTED_MODULE_20__["FullCardComponent"]
+                _cards_full_card_full_card_component__WEBPACK_IMPORTED_MODULE_20__["FullCardComponent"],
+                _admin_admin_component__WEBPACK_IMPORTED_MODULE_21__["AdminComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -948,7 +1015,7 @@ var SideBarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--<app-toolbar></app-toolbar>\r\n<app-gdb-hero></app-gdb-hero>\r\n<router-outlet></router-outlet>\r\n\r\n<mat-drawer-container class=\"example-container\">\r\n    <mat-drawer mode=\"side\" opened>Drawer content</mat-drawer>\r\n    <mat-drawer-content>Main content</mat-drawer-content>\r\n</mat-drawer-container>\r\n<app-footer></app-footer>-->\r\n\r\n\r\n\r\n<mat-sidenav-container class=\"example-container\">\r\n    <mat-sidenav class=\"example-sidenav mat-elevation-z10\" #sidenav mode=\"side\" [opened]=\"!isScreenSmall()\" \r\n                                                                                [mode]=\"isScreenSmall() ? 'over': 'side'\">\r\n       <app-sidenav-toolbar></app-sidenav-toolbar>\r\n        <mat-list role=\"list\">\r\n            <mat-list-item role=\"listitem\"> <a routerLink=\"/main\" routerLinkActive=\"active\">Home</a></mat-list-item>\r\n            <mat-list-item role=\"listitem\"><a routerLink=\"/about\" routerLinkActive=\"active\">About Us</a></mat-list-item>\r\n            <mat-list-item role=\"listitem\"><a routerLink=\"/contact\" routerLinkActive=\"active\">Contact Us</a></mat-list-item>\r\n        </mat-list>\r\n    </mat-sidenav>\r\n    \r\n    <mat-sidenav-content>\r\n        <app-toolbar (toggleSidenav)=\"sidenav.toggle()\"></app-toolbar>\r\n        <app-gdb-hero></app-gdb-hero>\r\n       \r\n        <div id=\"main-content\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n        <app-footer></app-footer>\r\n    </mat-sidenav-content>\r\n</mat-sidenav-container>"
+module.exports = "<!--<app-toolbar></app-toolbar>\r\n<app-gdb-hero></app-gdb-hero>\r\n<router-outlet></router-outlet>\r\n\r\n<mat-drawer-container class=\"example-container\">\r\n    <mat-drawer mode=\"side\" opened>Drawer content</mat-drawer>\r\n    <mat-drawer-content>Main content</mat-drawer-content>\r\n</mat-drawer-container>\r\n<app-footer></app-footer>-->\r\n\r\n\r\n\r\n<mat-sidenav-container class=\"example-container\">\r\n    <mat-sidenav class=\"example-sidenav mat-elevation-z10\" #sidenav mode=\"side\" [opened]=\"!isScreenSmall()\" \r\n                                                                                [mode]=\"isScreenSmall() ? 'over': 'side'\">\r\n       <app-sidenav-toolbar></app-sidenav-toolbar>\r\n       <mat-list role=\"list\">\r\n           <mat-list-item role=\"listitem\"> <a routerLink=\"/main\" routerLinkActive=\"active\">Home</a></mat-list-item>\r\n           <mat-list-item role=\"listitem\"><a routerLink=\"/about\" routerLinkActive=\"active\">About Us</a></mat-list-item>\r\n           <mat-list-item role=\"listitem\"><a routerLink=\"/contact\" routerLinkActive=\"active\">Contact Us</a></mat-list-item>\r\n           <mat-list-item role=\"listitem\"><a routerLink=\"/admin\" routerLinkActive=\"active\">Admin</a></mat-list-item>\r\n       </mat-list>\r\n    </mat-sidenav>\r\n    \r\n    <mat-sidenav-content>\r\n        <app-toolbar (toggleSidenav)=\"sidenav.toggle()\"></app-toolbar>\r\n        <app-gdb-hero></app-gdb-hero>\r\n       \r\n        <div id=\"main-content\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n        <app-footer></app-footer>\r\n    </mat-sidenav-content>\r\n</mat-sidenav-container>"
 
 /***/ }),
 

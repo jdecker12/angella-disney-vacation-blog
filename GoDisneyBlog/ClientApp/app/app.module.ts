@@ -21,12 +21,14 @@ import { SidenavToolbarComponent } from './sidenav-toolbar/sidenav-toolbar.compo
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { FullCardComponent } from './cards/full-card/full-card.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
         
     { path: 'main', component: MainContentComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
+    { path: 'admin', component: AdminComponent },
     { path: ':id', component: FullCardComponent },
         
     {path:'**', redirectTo: 'main'}
@@ -46,7 +48,8 @@ const routes: Routes = [
       SidenavToolbarComponent,
       AboutComponent,
       ContactComponent,
-      FullCardComponent
+      FullCardComponent,
+      AdminComponent
   ],
   imports: [
       BrowserModule,

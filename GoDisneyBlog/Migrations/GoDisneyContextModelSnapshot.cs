@@ -37,7 +37,11 @@ namespace GoDisneyBlog.Migrations
 
                     b.Property<string>("Category");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Cards");
                 });
@@ -263,6 +267,13 @@ namespace GoDisneyBlog.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("GoDisneyBlog.Data.Entities.Card", b =>
+                {
+                    b.HasOne("GoDisneyBlog.Data.Entities.StoreUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("GoDisneyBlog.Data.Entities.CardContent", b =>

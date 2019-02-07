@@ -62,6 +62,22 @@ namespace GoDisneyBlog.Data
             }
         }
 
+        public Card GetCardByName(string name)
+        {
+            try
+            {
+                return _context.Cards
+                        .Include(c => c.CardContents)
+                        .Where(n => n.CardTitle == name)
+                        .FirstOrDefault();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Failed to get card by name {ex}");
+                return null;
+            }
+        }
+
         public async Task<bool> SaveAllAsync()
         {
           try
