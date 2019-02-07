@@ -31,6 +31,23 @@ namespace GoDisneyBlog
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<StoreUser, IdentityRole>(cfg =>
+            {
+                cfg.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<GoDisneyContext>();
+
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidIssuer = _config["Tokens:Issuer"],
+                        ValidAudience = _config["Tokens:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
+                    };
+
+                });
 
             services.AddAutoMapper();
             services.AddMvc()
@@ -41,7 +58,7 @@ namespace GoDisneyBlog
             {
                 cfg.UseSqlServer(_config.GetConnectionString("GoDisneyConnectionString"));
             });
-
+            services.AddTransient<GoDisneySeeder>();
             services.AddScoped<IGoDisneyRepository, GoDisneyRepository>();
         }
 
@@ -49,6 +66,7 @@ namespace GoDisneyBlog
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseNodeModules(env);
             app.UseMvc(cfg =>
             {

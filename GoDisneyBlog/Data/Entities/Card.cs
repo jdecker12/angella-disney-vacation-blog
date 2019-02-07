@@ -16,5 +16,6 @@ namespace GoDisneyBlog.Data.Entities
         public string CardLinkName { get; set; }
         public string CardIcon { get; set; }
         public ICollection<CardContent> CardContents { get; set; }
+        public StoreUser User { get; set; }
     }
 }

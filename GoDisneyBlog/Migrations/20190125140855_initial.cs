@@ -50,19 +50,26 @@ namespace GoDisneyBlog.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cards",
+                name: "CardLists",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CardTitle = table.Column<string>(nullable: true),
-                    CardBody = table.Column<string>(nullable: true),
-                    CardImg = table.Column<string>(nullable: true),
-                    CardLink = table.Column<string>(nullable: true)
+                    Category = table.Column<string>(nullable: true),
+                    ItemOne = table.Column<string>(nullable: true),
+                    ItemTwo = table.Column<string>(nullable: true),
+                    ItemThree = table.Column<string>(nullable: true),
+                    ItemFour = table.Column<string>(nullable: true),
+                    ItemFive = table.Column<string>(nullable: true),
+                    ItemSix = table.Column<string>(nullable: true),
+                    ItemSeven = table.Column<string>(nullable: true),
+                    ItemEight = table.Column<string>(nullable: true),
+                    ItemNine = table.Column<string>(nullable: true),
+                    ItemTen = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cards", x => x.Id);
+                    table.PrimaryKey("PK_CardLists", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -171,6 +178,55 @@ namespace GoDisneyBlog.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Cards",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Category = table.Column<string>(nullable: true),
+                    CardTitle = table.Column<string>(nullable: true),
+                    CardImg = table.Column<string>(nullable: true),
+                    CardLink = table.Column<string>(nullable: true),
+                    CardLinkName = table.Column<string>(nullable: true),
+                    CardIcon = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cards", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cards_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CardContent",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Category = table.Column<string>(nullable: true),
+                    ParaOne = table.Column<string>(nullable: true),
+                    ParaTwo = table.Column<string>(nullable: true),
+                    ParaThree = table.Column<string>(nullable: true),
+                    ParaFour = table.Column<string>(nullable: true),
+                    CardId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CardContent", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CardContent_Cards_CardId",
+                        column: x => x.CardId,
+                        principalTable: "Cards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -209,6 +265,16 @@ namespace GoDisneyBlog.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CardContent_CardId",
+                table: "CardContent",
+                column: "CardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cards_UserId",
+                table: "Cards",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -229,10 +295,16 @@ namespace GoDisneyBlog.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Cards");
+                name: "CardContent");
+
+            migrationBuilder.DropTable(
+                name: "CardLists");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Cards");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
