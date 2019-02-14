@@ -43,8 +43,24 @@ html, body {
         }
     }
 
-    .gdb-copyright {
-        color: #fff;
+    .mat-form-field.mat-focused .mat-form-field-ripple {
+        background-color: #007ac1;
+    }
+
+    a:link {
+        text-decoration: none;
+    }
+
+    .admin.mat-list-base .mat-list-item .mat-list-item-content, .admin.mat-list-base .mat-list-option .mat-list-item-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 0 16px;
+        position: relative;
+        height: inherit;
+        display: inline;
+        color: #007ac1;
     }
 }
 

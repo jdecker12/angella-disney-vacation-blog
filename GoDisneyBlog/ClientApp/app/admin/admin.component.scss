@@ -1,0 +1,111 @@
+@import'../_variables.scss';
+
+.go-dis-card {
+    margin-bottom: 2rem;
+    min-width: 75%;
+    border-radius: 0 !important;
+
+    .mat-card-header, .mat-card-subtitle, .mat-list-item-content {
+        color: $p-dark;
+    }
+
+    .mat-fab {
+        float: right;
+        top: -59px;
+        right: 3rem;
+        background-color: $p-dark;
+        color: #fff;
+    }
+
+    .example-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .example-container > * {
+        width: 100%;
+    }
+
+    .example-right-align {
+        text-align: right;
+    }
+
+    input.example-right-align::-webkit-outer-spin-button,
+    input.example-right-align::-webkit-inner-spin-button {
+        display: none;
+    }
+
+    input.example-right-align {
+        -moz-appearance: textfield;
+    }
+
+    input {
+        -webkit-transition: width 2s; /* Safari */
+        transition: width 2s;
+    }
+
+    .primary {
+        background-color: $primary;
+        color: #fff;
+    }
+
+    em {
+        float: right;
+        color: #E05C65;
+        padding-left: 1rem;
+    }
+
+    .error input {
+        background-color: #E3C3C5;
+    }
+
+    .error ::-webkit-input-placeholder {
+        color: #999;
+    }
+
+    .error ::-moz-placeholder {
+        color: #999;
+    }
+
+    .error :-moz-placeholder {
+        color: #999;
+    }
+
+    .error :-ms-input-placeholder {
+        color: #999;
+    }
+
+    .form-image img {
+        position: relative;
+        right: 0;
+        float: left;
+        max-width: 100px;
+        padding: 0;
+        margin: 10px 0;
+        display: inline-block;
+    }
+
+    .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+        display: inline !important;
+        height: 48px;
+        -webkit-tap-highlight-color: transparent;
+        width: 20px;
+        padding: 0;
+    }
+
+    .mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 0 16px;
+        position: relative;
+        height: inherit;
+        display: inline;
+
+        &:after {
+            content: ", "
+        }
+    }
+}

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DataService } from './services/data.service';
 import { AppComponent } from './app.component';
@@ -22,12 +23,14 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { FullCardComponent } from './cards/full-card/full-card.component';
 import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
         
     { path: 'main', component: MainContentComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
+    { path: 'login', component: LoginComponent },
     { path: 'admin', component: AdminComponent },
     { path: ':id', component: FullCardComponent },
         
@@ -49,7 +52,8 @@ const routes: Routes = [
       AboutComponent,
       ContactComponent,
       FullCardComponent,
-      AdminComponent
+      AdminComponent,
+      LoginComponent
   ],
   imports: [
       BrowserModule,
@@ -57,6 +61,8 @@ const routes: Routes = [
       MaterialModule,
       FlexLayoutModule,
       HttpClientModule,
+      FormsModule,
+      ReactiveFormsModule,
       RouterModule.forRoot(routes, {useHash: true})
   ],
   providers: [DataService],

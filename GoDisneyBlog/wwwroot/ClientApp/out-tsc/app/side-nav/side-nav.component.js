@@ -8,10 +8,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, NgZone } from '@angular/core';
+import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 var SMALL_WIDTH_BREAKPOINT = 720;
 var SideNavComponent = /** @class */ (function () {
-    function SideNavComponent(zone) {
+    function SideNavComponent(zone, data, router) {
         var _this = this;
+        this.data = data;
+        this.router = router;
         this.mediaMatcher = matchMedia("(max-width: " + SMALL_WIDTH_BREAKPOINT + "px");
         this.events = [];
         this.mediaMatcher.addListener(function (mql) {
@@ -21,13 +25,21 @@ var SideNavComponent = /** @class */ (function () {
     SideNavComponent.prototype.isScreenSmall = function () {
         return this.mediaMatcher.matches;
     };
+    SideNavComponent.prototype.onAdmin = function () {
+        if (this.data.loginRequired) {
+            this.router.navigate(["login"]);
+        }
+        else {
+            this.router.navigate(["admin"]);
+        }
+    };
     SideNavComponent = __decorate([
         Component({
             selector: 'app-side-nav',
             templateUrl: './side-nav.component.html',
             styleUrls: ['./side-nav.component.scss']
         }),
-        __metadata("design:paramtypes", [NgZone])
+        __metadata("design:paramtypes", [NgZone, DataService, Router])
     ], SideNavComponent);
     return SideNavComponent;
 }());

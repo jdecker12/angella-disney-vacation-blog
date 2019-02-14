@@ -15,7 +15,7 @@ namespace GoDisneyBlog.Data
         private GoDisneyContext _context;
         private ILogger<GoDisneyRepository> _logger;
 
-        public GoDisneyRepository(GoDisneyContext context, ILogger<GoDisneyRepository> logger )
+        public GoDisneyRepository(GoDisneyContext context, ILogger<GoDisneyRepository> logger)
         {
             _context = context;
             _logger = logger;
@@ -39,7 +39,7 @@ namespace GoDisneyBlog.Data
                     .Include(c => c.CardContents)
                     .ToList();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError($"Failed to get all Cards {ex}");
                 return null;
@@ -55,7 +55,7 @@ namespace GoDisneyBlog.Data
                         .Where(i => i.Id == id)
                         .FirstOrDefault();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError($"Failed to get card data by id {ex}");
                 return null;
@@ -71,7 +71,7 @@ namespace GoDisneyBlog.Data
                         .Where(n => n.CardTitle == name)
                         .FirstOrDefault();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError($"Failed to get card by name {ex}");
                 return null;
@@ -80,11 +80,11 @@ namespace GoDisneyBlog.Data
 
         public async Task<bool> SaveAllAsync()
         {
-          try
+            try
             {
                 return (await _context.SaveChangesAsync()) > 0;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError($"Failed to save all cahnges {ex}");
                 return false;

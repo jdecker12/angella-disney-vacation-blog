@@ -14,7 +14,7 @@ namespace GoDisneyBlog.Data
         public GoDisneyMappingProfile()
         {
             CreateMap<Card, CardViewModel>()
-                //.ForMember(c => c.thisCardId, ex => ex.MapFrom(c => c.Id))
+                .ForMember(c => c.thisCardId, ex => ex.MapFrom(c => c.Id))
                 .ForMember(c => c.cardTitle, ex => ex.MapFrom(c => c.CardTitle))
                 .ForMember(c => c.cardImg, ex => ex.MapFrom(c => c.CardImg))
                 .ForMember(c => c.cardContents, ex => ex.MapFrom(c => c.CardContents))
