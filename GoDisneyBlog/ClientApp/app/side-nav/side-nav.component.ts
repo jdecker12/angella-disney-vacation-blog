@@ -1,4 +1,6 @@
 import { Component, NgZone } from '@angular/core';
+import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -10,7 +12,7 @@ const SMALL_WIDTH_BREAKPOINT = 720;
 export class SideNavComponent {
     private mediaMatcher: MediaQueryList = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px`);
 
-    constructor(zone: NgZone) {
+    constructor(zone: NgZone, private data: DataService, private router: Router) {
         this.mediaMatcher.addListener(mql => 
             zone.run(() => this.mediaMatcher = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)));
     }
@@ -19,5 +21,13 @@ export class SideNavComponent {
 
     isScreenSmall(): boolean {
         return this.mediaMatcher.matches;
+    }
+
+    onAdmin(): void {
+        if (this.data.loginRequired) {
+            this.router.navigate(["login"])
+        } else {
+            this.router.navigate(["admin"]);
+        }
     }
 }

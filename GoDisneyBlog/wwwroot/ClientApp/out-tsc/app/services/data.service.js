@@ -9,11 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Card } from '../models/card';
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
+        this.token = "";
+        this.card = new Card();
         this.cards = [];
+        this.httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer' + this.token
+            })
+        };
     }
     DataService.prototype.loadCards = function () {
         var _this = this;
@@ -26,7 +35,49 @@ var DataService = /** @class */ (function () {
     DataService.prototype.getCardById = function (id) {
         return this.cards.find(function (x) { return x.thisCardId == id; });
     };
-    ;
+    DataService.prototype.getMyCardById = function (id) {
+        var _this = this;
+        return this.http.get("/api/cards/" + id)
+            .pipe(map(function (data) {
+            _this.card = data;
+            return true;
+        }));
+    };
+    Object.defineProperty(DataService.prototype, "loginRequired", {
+        get: function () {
+            return this.token.length == 0 || this.tokenExpiration > new Date();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DataService.prototype.login = function (creds) {
+        var _this = this;
+        return this.http.post("/auth/createToken", creds)
+            .pipe(map(function (data) {
+            _this.token = data.token;
+            _this.tokenExpiration = data.expiration;
+            return true;
+        }));
+    };
+    DataService.prototype.updateCard = function (id) {
+        var _this = this;
+        return this.http.put("/api/cards/" + id, this.card, {
+            headers: new HttpHeaders().set("Authorization", "Bearer" + this.token)
+        }).pipe(map(function (data) {
+            _this.card = new Card();
+            return true;
+        }));
+    };
+    DataService.prototype.admin = function () {
+        var _this = this;
+        return this.http.post("/api/cards", this.card, {
+            headers: new HttpHeaders().set("Authorization", "Bearer" + this.token)
+        })
+            .pipe(map(function (data) {
+            _this.card = new Card();
+            return true;
+        }));
+    };
     DataService = __decorate([
         Injectable(),
         __metadata("design:paramtypes", [HttpClient])

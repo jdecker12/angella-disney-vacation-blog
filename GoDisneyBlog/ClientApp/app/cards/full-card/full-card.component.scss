@@ -16,7 +16,22 @@
     z-index: -1;
 }
 
+
 .go-dis-card {
-    max-width:710px;
-    align-items: flex-start;
-}
+    margin-bottom: 2rem;
+    max-width: 710px;
+    border-radius: 0 !important;
+
+    .mat-card-header {
+        color: $p-dark;
+    }
+
+    .mat-fab {
+        float: right;
+        top: -59px;
+        right: 3rem;
+        background-color: $p-dark;
+        color: #fff;
+    }
+ }
+

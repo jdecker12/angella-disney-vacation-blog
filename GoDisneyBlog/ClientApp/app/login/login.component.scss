@@ -1,0 +1,46 @@
+@import'../_variables.scss';
+.go-dis-card {
+    margin-bottom: 2rem;
+   min-width: 75%;
+    border-radius: 0 !important;
+
+    .mat-card-header {
+        color: $p-dark;
+    }
+
+    .mat-fab {
+        float: right;
+        top: -59px;
+        right: 3rem;
+        background-color: $p-dark;
+        color: #fff;
+    }
+
+    .example-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .example-container > * {
+        width: 100%;
+    }
+
+    .example-right-align {
+        text-align: right;
+    }
+
+    input.example-right-align::-webkit-outer-spin-button,
+    input.example-right-align::-webkit-inner-spin-button {
+        display: none;
+    }
+
+    input.example-right-align {
+        -moz-appearance: textfield;
+    }
+
+    .primary {
+        background-color: $primary;
+        color: #fff;
+    }
+}
