@@ -27,7 +27,7 @@ export class SideNavComponent {
         if (this.data.loginRequired) {
             this.router.navigate(["login"])
         } else {
-            this.router.navigate(["admin"]);
+            this.router.navigate(["select-card"]);
         }
     }
 }

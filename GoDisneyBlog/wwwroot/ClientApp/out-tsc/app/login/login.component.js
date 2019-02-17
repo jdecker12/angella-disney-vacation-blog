@@ -29,7 +29,7 @@ var LoginComponent = /** @class */ (function () {
         this.data.login(this.creds)
             .subscribe(function (success) {
             if (success) {
-                _this.route.navigate(["admin"]);
+                _this.route.navigate(["select-card"]);
             }
             else {
                 _this.route.navigate(["login"]);

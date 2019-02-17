@@ -22,8 +22,9 @@ import { SidenavToolbarComponent } from './sidenav-toolbar/sidenav-toolbar.compo
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { FullCardComponent } from './cards/full-card/full-card.component';
-import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+import { SelectCardComponent } from './admin/select-card/select-card.component';
+
 
 const routes: Routes = [
         
@@ -31,10 +32,10 @@ const routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'admin', component: AdminComponent },
-    { path: ':id', component: FullCardComponent },
-        
-    {path:'**', redirectTo: 'main'}
+    { path: 'select-card', component: SelectCardComponent },
+    { path: ':id', component: FullCardComponent }, 
+    
+    { path: '**', redirectTo: 'main' }
 ]
 
 @NgModule({
@@ -52,8 +53,8 @@ const routes: Routes = [
       AboutComponent,
       ContactComponent,
       FullCardComponent,
-      AdminComponent,
-      LoginComponent
+      LoginComponent,
+      SelectCardComponent
   ],
   imports: [
       BrowserModule,

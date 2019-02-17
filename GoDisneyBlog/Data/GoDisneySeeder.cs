@@ -57,7 +57,7 @@ namespace GoDisneyBlog.Data
             if(_ctx.Cards.Any())
             {
                 var card = _ctx.Cards
-                       .Where(c => c.Id == 1)
+                       .Where(c => c.Id == 4)
                        .FirstOrDefault();
 
                 card.User = user;

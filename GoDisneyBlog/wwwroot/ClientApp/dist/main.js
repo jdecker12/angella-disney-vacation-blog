@@ -86,43 +86,43 @@ var AboutComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./app/admin/admin.component.html":
-/*!****************************************!*\
-  !*** ./app/admin/admin.component.html ***!
-  \****************************************/
+/***/ "./app/admin/select-card/select-card.component.html":
+/*!**********************************************************!*\
+  !*** ./app/admin/select-card/select-card.component.html ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"flex-container\">\r\n    <mat-card class=\"go-dis-card\">\r\n        <mat-card-header>\r\n            <mat-card-title><h1>Update an existing Card <mat-icon>edit</mat-icon></h1></mat-card-title>\r\n            <mat-card-subtitle>\r\n                <h2> Available ID's </h2>\r\n                <mat-list class=\"admin\">\r\n                    <mat-list-item *ngFor=\"let c of cards\"><mat-icon>folder</mat-icon> <i>#:  {{c.thisCardId}}</i> </mat-list-item>\r\n                    <hr />\r\n                </mat-list>\r\n            </mat-card-subtitle>\r\n            <span *ngIf=\"errMessage\">{{errMessage}}</span>\r\n        </mat-card-header>\r\n            <mat-card-content>\r\n                <div class=\"example-container\">  \r\n                    <mat-form-field>\r\n                        <input matInput type=\"number\" (keyup)=\"setCardId(thisCardId.value)\" placeholder=\"Enter card ID\" [formControl]=\"thisCardId\">\r\n                        <mat-error *ngIf=\"thisCardId.invalid\">{{getErrorMessage()}}</mat-error>\r\n                    </mat-form-field>\r\n                </div>\r\n                <div class=\"example-container\" *ngIf=\"thisCardId.valid\">\r\n                    <mat-form-field>\r\n                        <input matInput placeholder=\"Card Title\" [formControl]=\"cardTitle\" name=\"cardTitle\" required>\r\n                        <mat-error *ngIf=\"cardTitle.invalid\">{{getErrorMessage2()}}</mat-error>\r\n                    </mat-form-field>\r\n\r\n                    <div class=\"form-image\"><img mat-card-image src=\"/img/{{card.cardImg}}.jpg\" alt=\"card.Title\"></div>\r\n                    <mat-form-field>\r\n                        <input matInput placeholder=\"Card Image\" [formControl]=\"cardImg\" name=\"name\" required>\r\n                        <mat-error *ngIf=\"cardImg.invalid\">{{getErrorMessage2()}}</mat-error>\r\n                    </mat-form-field>\r\n\r\n\r\n                    <div class=\"form-image\"><mat-icon>{{card.cardIcon}}</mat-icon></div>\r\n                    <mat-form-field>\r\n                        <input matInput placeholder=\"Card Icon\" [formControl]=\"cardIcon\" name=\"name\" required>\r\n                        <mat-error *ngIf=\"cardIcon.invalid\">{{getErrorMessage2()}}</mat-error>\r\n                    </mat-form-field>\r\n\r\n\r\n                    <mat-form-field>\r\n                        <input matInput placeholder=\"Card Link\" [formControl]=\"cardLink\" name=\"name\" required>\r\n                        <mat-error *ngIf=\"cardLink.invalid\">{{getErrorMessage2()}}</mat-error>\r\n                    </mat-form-field>\r\n\r\n\r\n                    <mat-form-field>\r\n                        <input matInput placeholder=\"Card Link Name\" [formControl]=\"cardLinkName\" name=\"name\" required>\r\n                        <mat-error *ngIf=\"cardLinkName.invalid\">{{getErrorMessage2()}}</mat-error>\r\n                    </mat-form-field>\r\n\r\n                    <!--  paragraphs -->\r\n                    <mat-form-field>\r\n                        <input matInput placeholder=\"Paragraph 1\" [formControl]=\"paraOne\" name=\"name\" required>\r\n                        <mat-error *ngIf=\"paraOne.invalid\">{{getErrorMessage2()}}</mat-error>\r\n                    </mat-form-field>\r\n\r\n                    <mat-form-field>\r\n                        <input matInput placeholder=\"Paragraph 2\" [formControl]=\"paraTwo\" name=\"name\">\r\n                    </mat-form-field>\r\n\r\n                    <mat-form-field>\r\n                        <input matInput placeholder=\"Paragraph 3\" [formControl]=\"paraThree\" name=\"name\">\r\n                    </mat-form-field>\r\n\r\n                    <mat-form-field>\r\n                        <input matInput placeholder=\"Paragraph 4\" [formControl]=\"paraFour\" name=\"name\">\r\n                    </mat-form-field>\r\n\r\n                </div>\r\n                    \r\n            </mat-card-content>\r\n            <mat-card-actions>\r\n                <button mat-button mat-raised-button (click)=\"submitCard(thisCardId.value)\" type=\"submit\" class=\"primary\">Submit</button>\r\n                <button mat-button mat-raised-button (click)=\"cancel()\">Cancel</button>\r\n            </mat-card-actions>\r\n    </mat-card>\r\n</div>\r\n "
+module.exports = "\n<mat-card class=\"go-dis-card\">\r\n    <mat-card-header>\r\n        <mat-card-title>Select Card</mat-card-title>\r\n    </mat-card-header>\r\n    <mat-list role=\"list\">\r\n        <mat-list-item *ngFor=\"let card of cards\" role=\"listitem\">\r\n            <button mat-button mat-raised-button (click)=\"selectName(card.cardTitle)\" class=\"primary\">{{card.cardTitle}}</button>\r\n        </mat-list-item>\r\n    </mat-list>\r\n\r\n    <form [formGroup]=\"updateCardForm\" (submit)=\"saveFormData(updateCardForm.value)\">\r\n\r\n        <mat-card-content>\r\n\r\n            <div class=\"example-container\">\r\n                <mat-form-field>\r\n                    <input matInput placeholder=\"Enter new card title\" name=\"cardTitle\" formControlName=\"cardTitle\" id=\"cardTitle\" required>\r\n                    <!--<mat-error *ngIf=\"cardTitle.invalid\">{{getErrorMessage()}}</mat-error>-->\r\n                </mat-form-field>\r\n            </div>\r\n\r\n            <div class=\"example-container\">\r\n                <div *ngIf=\"selected\" class=\"form-image\"><img mat-card-image src=\"/img/{{card.cardImg}}.jpg\" alt=\"card.Title\"></div>\r\n                <mat-form-field>\r\n                    <input matInput placeholder=\"Enter new card image\" name=\"cardImg\" formControlName=\"cardImg\" id=\"cardImg\" required>\r\n                    <!--<mat-error *ngIf=\"cardTitle.invalid\">{{getErrorMessage()}}</mat-error>-->\r\n                </mat-form-field>\r\n            </div>\r\n\r\n            <div class=\"example-container\">\r\n                <div *ngIf=\"selected\" class=\"form-image\"><mat-icon>{{card.cardIcon}}</mat-icon></div>\r\n                <mat-form-field>\r\n                    <input matInput placeholder=\"Enter new card link\" name=\"cardIcon\" formControlName=\"cardIcon\" id=\"cardIcon\" required>\r\n\r\n                    <!--<mat-error *ngIf=\"cardTitle.invalid\">{{getErrorMessage()}}</mat-error>-->\r\n                </mat-form-field>\r\n            </div>\r\n            <div class=\"example-container\">\r\n                <mat-form-field>\r\n                    <input matInput placeholder=\"Enter new card link\" name=\"cardLink\" formControlName=\"cardLink\" id=\"cardLink\" required>\r\n\r\n                    <!--<mat-error *ngIf=\"cardTitle.invalid\">{{getErrorMessage()}}</mat-error>-->\r\n                </mat-form-field>\r\n            </div>\r\n\r\n            <div class=\"example-container\">\r\n                <mat-form-field>\r\n                    <input matInput placeholder=\"Enter new card link name\" name=\"cardLinkName\" formControlName=\"cardLinkName\" id=\"cardLinkName\" required>\r\n\r\n                    <!--<mat-error *ngIf=\"cardTitle.invalid\">{{getErrorMessage()}}</mat-error>-->\r\n                </mat-form-field>\r\n            </div>\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n            <button mat-button mat-raised-button type=\"submit\" class=\"primary\">Submit</button>\r\n            <button mat-button mat-raised-button (click)=\"cancel()\">Cancel</button>\r\n        </mat-card-actions>\r\n    </form>\r\n\r\n\r\n</mat-card>"
 
 /***/ }),
 
-/***/ "./app/admin/admin.component.scss":
-/*!****************************************!*\
-  !*** ./app/admin/admin.component.scss ***!
-  \****************************************/
+/***/ "./app/admin/select-card/select-card.component.scss":
+/*!**********************************************************!*\
+  !*** ./app/admin/select-card/select-card.component.scss ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".go-dis-card {\n  margin-bottom: 2rem;\n  min-width: 75%;\n  border-radius: 0 !important; }\n  .go-dis-card .mat-card-header, .go-dis-card .mat-card-subtitle, .go-dis-card .mat-list-item-content {\n    color: #007ac1; }\n  .go-dis-card .mat-fab {\n    float: right;\n    top: -59px;\n    right: 3rem;\n    background-color: #007ac1;\n    color: #fff; }\n  .go-dis-card .example-container {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-around; }\n  .go-dis-card .example-container > * {\n    width: 100%; }\n  .go-dis-card .example-right-align {\n    text-align: right; }\n  .go-dis-card input.example-right-align::-webkit-outer-spin-button,\n  .go-dis-card input.example-right-align::-webkit-inner-spin-button {\n    display: none; }\n  .go-dis-card input.example-right-align {\n    -moz-appearance: textfield; }\n  .go-dis-card input {\n    /* Safari */\n    transition: width 2s; }\n  .go-dis-card .primary {\n    background-color: #03a9f4;\n    color: #fff; }\n  .go-dis-card em {\n    float: right;\n    color: #E05C65;\n    padding-left: 1rem; }\n  .go-dis-card .error input {\n    background-color: #E3C3C5; }\n  .go-dis-card .error ::-webkit-input-placeholder {\n    color: #999; }\n  .go-dis-card .error ::-moz-placeholder {\n    color: #999; }\n  .go-dis-card .error :-moz-placeholder {\n    color: #999; }\n  .go-dis-card .error :-ms-input-placeholder {\n    color: #999; }\n  .go-dis-card .form-image img {\n    position: relative;\n    right: 0;\n    float: left;\n    max-width: 100px;\n    padding: 0;\n    margin: 10px 0;\n    display: inline-block; }\n  .go-dis-card .mat-list-base .mat-list-item, .go-dis-card .mat-list-base .mat-list-option {\n    display: inline !important;\n    height: 48px;\n    -webkit-tap-highlight-color: transparent;\n    width: 20px;\n    padding: 0; }\n  .go-dis-card .mat-list-base .mat-list-item .mat-list-item-content, .go-dis-card .mat-list-base .mat-list-option .mat-list-item-content {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    box-sizing: border-box;\n    padding: 0 16px;\n    position: relative;\n    height: inherit;\n    display: inline; }\n  .go-dis-card .mat-list-base .mat-list-item .mat-list-item-content:after, .go-dis-card .mat-list-base .mat-list-option .mat-list-item-content:after {\n      content: \", \"; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9hZG1pbi9DOlxcVXNlcnNcXGpkZWNrXFxTb3VyY2VcXFJlcG9zXFxHb0Rpc25leUJsb2dcXEdvRGlzbmV5QmxvZ1xcQ2xpZW50QXBwL2FwcFxcYWRtaW5cXGFkbWluLmNvbXBvbmVudC5zY3NzIiwiYXBwL2FkbWluL0M6XFxVc2Vyc1xcamRlY2tcXFNvdXJjZVxcUmVwb3NcXEdvRGlzbmV5QmxvZ1xcR29EaXNuZXlCbG9nXFxDbGllbnRBcHAvYXBwXFxfdmFyaWFibGVzLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDSSxvQkFBbUI7RUFDbkIsZUFBYztFQUNkLDRCQUEyQixFQXlHOUI7RUE1R0Q7SUFNUSxlQ0xRLEVETVg7RUFQTDtJQVVRLGFBQVk7SUFDWixXQUFVO0lBQ1YsWUFBVztJQUNYLDBCQ1pRO0lEYVIsWUFBVyxFQUNkO0VBZkw7SUFrQlEsY0FBYTtJQUNiLHVCQUFzQjtJQUN0Qiw4QkFBNkIsRUFDaEM7RUFyQkw7SUF3QlEsWUFBVyxFQUNkO0VBekJMO0lBNEJRLGtCQUFpQixFQUNwQjtFQTdCTDs7SUFpQ1EsY0FBYSxFQUNoQjtFQWxDTDtJQXFDUSwyQkFBMEIsRUFDN0I7RUF0Q0w7SUF5Q3NDLFlBQVk7SUFDMUMscUJBQW9CLEVBQ3ZCO0VBM0NMO0lBOENRLDBCQy9DUztJRGdEVCxZQUFXLEVBQ2Q7RUFoREw7SUFtRFEsYUFBWTtJQUNaLGVBQWM7SUFDZCxtQkFBa0IsRUFDckI7RUF0REw7SUF5RFEsMEJBQXlCLEVBQzVCO0VBMURMO0lBNkRRLFlBQVcsRUFDZDtFQTlETDtJQWlFUSxZQUFXLEVBQ2Q7RUFsRUw7SUFxRVEsWUFBVyxFQUNkO0VBdEVMO0lBeUVRLFlBQVcsRUFDZDtFQTFFTDtJQTZFUSxtQkFBa0I7SUFDbEIsU0FBUTtJQUNSLFlBQVc7SUFDWCxpQkFBZ0I7SUFDaEIsV0FBVTtJQUNWLGVBQWM7SUFDZCxzQkFBcUIsRUFDeEI7RUFwRkw7SUF1RlEsMkJBQTBCO0lBQzFCLGFBQVk7SUFDWix5Q0FBd0M7SUFDeEMsWUFBVztJQUNYLFdBQVUsRUFDYjtFQTVGTDtJQStGUSxjQUFhO0lBQ2Isb0JBQW1CO0lBQ25CLG9CQUFtQjtJQUNuQix1QkFBc0I7SUFDdEIsZ0JBQWU7SUFDZixtQkFBa0I7SUFDbEIsZ0JBQWU7SUFDZixnQkFBZSxFQUtsQjtFQTNHTDtNQXlHWSxjQUNKLEVBQUMiLCJmaWxlIjoiYXBwL2FkbWluL2FkbWluLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCcuLi9fdmFyaWFibGVzLnNjc3MnO1xyXG5cclxuLmdvLWRpcy1jYXJkIHtcclxuICAgIG1hcmdpbi1ib3R0b206IDJyZW07XHJcbiAgICBtaW4td2lkdGg6IDc1JTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDAgIWltcG9ydGFudDtcclxuXHJcbiAgICAubWF0LWNhcmQtaGVhZGVyLCAubWF0LWNhcmQtc3VidGl0bGUsIC5tYXQtbGlzdC1pdGVtLWNvbnRlbnQge1xyXG4gICAgICAgIGNvbG9yOiAkcC1kYXJrO1xyXG4gICAgfVxyXG5cclxuICAgIC5tYXQtZmFiIHtcclxuICAgICAgICBmbG9hdDogcmlnaHQ7XHJcbiAgICAgICAgdG9wOiAtNTlweDtcclxuICAgICAgICByaWdodDogM3JlbTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkcC1kYXJrO1xyXG4gICAgICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgfVxyXG5cclxuICAgIC5leGFtcGxlLWNvbnRhaW5lciB7XHJcbiAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG4gICAgfVxyXG5cclxuICAgIC5leGFtcGxlLWNvbnRhaW5lciA+ICoge1xyXG4gICAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgfVxyXG5cclxuICAgIC5leGFtcGxlLXJpZ2h0LWFsaWduIHtcclxuICAgICAgICB0ZXh0LWFsaWduOiByaWdodDtcclxuICAgIH1cclxuXHJcbiAgICBpbnB1dC5leGFtcGxlLXJpZ2h0LWFsaWduOjotd2Via2l0LW91dGVyLXNwaW4tYnV0dG9uLFxyXG4gICAgaW5wdXQuZXhhbXBsZS1yaWdodC1hbGlnbjo6LXdlYmtpdC1pbm5lci1zcGluLWJ1dHRvbiB7XHJcbiAgICAgICAgZGlzcGxheTogbm9uZTtcclxuICAgIH1cclxuXHJcbiAgICBpbnB1dC5leGFtcGxlLXJpZ2h0LWFsaWduIHtcclxuICAgICAgICAtbW96LWFwcGVhcmFuY2U6IHRleHRmaWVsZDtcclxuICAgIH1cclxuXHJcbiAgICBpbnB1dCB7XHJcbiAgICAgICAgLXdlYmtpdC10cmFuc2l0aW9uOiB3aWR0aCAyczsgLyogU2FmYXJpICovXHJcbiAgICAgICAgdHJhbnNpdGlvbjogd2lkdGggMnM7XHJcbiAgICB9XHJcblxyXG4gICAgLnByaW1hcnkge1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6ICRwcmltYXJ5O1xyXG4gICAgICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgfVxyXG5cclxuICAgIGVtIHtcclxuICAgICAgICBmbG9hdDogcmlnaHQ7XHJcbiAgICAgICAgY29sb3I6ICNFMDVDNjU7XHJcbiAgICAgICAgcGFkZGluZy1sZWZ0OiAxcmVtO1xyXG4gICAgfVxyXG5cclxuICAgIC5lcnJvciBpbnB1dCB7XHJcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI0UzQzNDNTtcclxuICAgIH1cclxuXHJcbiAgICAuZXJyb3IgOjotd2Via2l0LWlucHV0LXBsYWNlaG9sZGVyIHtcclxuICAgICAgICBjb2xvcjogIzk5OTtcclxuICAgIH1cclxuXHJcbiAgICAuZXJyb3IgOjotbW96LXBsYWNlaG9sZGVyIHtcclxuICAgICAgICBjb2xvcjogIzk5OTtcclxuICAgIH1cclxuXHJcbiAgICAuZXJyb3IgOi1tb3otcGxhY2Vob2xkZXIge1xyXG4gICAgICAgIGNvbG9yOiAjOTk5O1xyXG4gICAgfVxyXG5cclxuICAgIC5lcnJvciA6LW1zLWlucHV0LXBsYWNlaG9sZGVyIHtcclxuICAgICAgICBjb2xvcjogIzk5OTtcclxuICAgIH1cclxuXHJcbiAgICAuZm9ybS1pbWFnZSBpbWcge1xyXG4gICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgICAgICByaWdodDogMDtcclxuICAgICAgICBmbG9hdDogbGVmdDtcclxuICAgICAgICBtYXgtd2lkdGg6IDEwMHB4O1xyXG4gICAgICAgIHBhZGRpbmc6IDA7XHJcbiAgICAgICAgbWFyZ2luOiAxMHB4IDA7XHJcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgfVxyXG5cclxuICAgIC5tYXQtbGlzdC1iYXNlIC5tYXQtbGlzdC1pdGVtLCAubWF0LWxpc3QtYmFzZSAubWF0LWxpc3Qtb3B0aW9uIHtcclxuICAgICAgICBkaXNwbGF5OiBpbmxpbmUgIWltcG9ydGFudDtcclxuICAgICAgICBoZWlnaHQ6IDQ4cHg7XHJcbiAgICAgICAgLXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNvbG9yOiB0cmFuc3BhcmVudDtcclxuICAgICAgICB3aWR0aDogMjBweDtcclxuICAgICAgICBwYWRkaW5nOiAwO1xyXG4gICAgfVxyXG5cclxuICAgIC5tYXQtbGlzdC1iYXNlIC5tYXQtbGlzdC1pdGVtIC5tYXQtbGlzdC1pdGVtLWNvbnRlbnQsIC5tYXQtbGlzdC1iYXNlIC5tYXQtbGlzdC1vcHRpb24gLm1hdC1saXN0LWl0ZW0tY29udGVudCB7XHJcbiAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICAgICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuICAgICAgICBwYWRkaW5nOiAwIDE2cHg7XHJcbiAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgICAgIGhlaWdodDogaW5oZXJpdDtcclxuICAgICAgICBkaXNwbGF5OiBpbmxpbmU7XHJcblxyXG4gICAgICAgICY6YWZ0ZXIge1xyXG4gICAgICAgICAgICBjb250ZW50OiBcIiwgXCJcclxuICAgICAgICB9XHJcbiAgICB9XHJcbn1cclxuIiwi77u/Ly8gdmFyaWFibGVzLnNjc3NcclxuJHByaW1hcnk6ICMwM2E5ZjQ7XHJcbiRwLWxpZ2h0OiAjNjdkYWZmO1xyXG4kcC1kYXJrOiAjMDA3YWMxO1xyXG5cclxuJHB1cnBsZTogIzY3M2FiNztcclxuXHJcbiR5LXllbGxvdzogI2ZmZDc0MDtcclxuXHJcbiRzZWNvbmRhcnk6ICM0Y2FmNTA7XHJcblxyXG4kYnV0dG9uLWZvbnQ6ICNmZmY7XHJcblxyXG4kZ3V0dGVycy1tYWluOiAxcmVtIDdyZW07XHJcblxyXG4kc2hhZG93OiAwIDJweCAxcHggLTFweCByZ2JhKDAsMCwwLC4yKSwgMCAxcHggMXB4IDAgcmdiYSgwLDAsMCwuMTQpLCAwIDFweCAzcHggMCByZ2JhKDAsMCwwLC4xMik7XHJcblxyXG4kc2hhZG93LWZvb3RlcjogMCAxcHggM3B4IDAgcmdiYSgwLDAsMCwuMTQpLCAwIDFweCAxcHggMCByZ2JhKDAsMCwwLC4xNCksIDAgMnB4IDFweCAtMXB4IHJnYmEoMCwwLDAsLjIpOyJdfQ== */"
+module.exports = ".go-dis-card {\n  margin-bottom: 2rem;\n  min-width: 75%;\n  border-radius: 0 !important; }\n  .go-dis-card .mat-card-header, .go-dis-card .mat-card-subtitle, .go-dis-card .mat-list-item-content {\n    color: #007ac1; }\n  .go-dis-card .mat-fab {\n    float: right;\n    top: -59px;\n    right: 3rem;\n    background-color: #007ac1;\n    color: #fff; }\n  .go-dis-card .example-container {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-around; }\n  .go-dis-card .example-container > * {\n    width: 100%; }\n  .go-dis-card .example-right-align {\n    text-align: right; }\n  .go-dis-card input.example-right-align::-webkit-outer-spin-button,\n  .go-dis-card input.example-right-align::-webkit-inner-spin-button {\n    display: none; }\n  .go-dis-card input.example-right-align {\n    -moz-appearance: textfield; }\n  .go-dis-card input {\n    /* Safari */\n    transition: width 2s; }\n  .go-dis-card .primary {\n    background-color: #03a9f4;\n    color: #fff; }\n  .go-dis-card em {\n    float: right;\n    color: #E05C65;\n    padding-left: 1rem; }\n  .go-dis-card .error input {\n    background-color: #E3C3C5; }\n  .go-dis-card .error ::-webkit-input-placeholder {\n    color: #999; }\n  .go-dis-card .error ::-moz-placeholder {\n    color: #999; }\n  .go-dis-card .error :-moz-placeholder {\n    color: #999; }\n  .go-dis-card .error :-ms-input-placeholder {\n    color: #999; }\n  .go-dis-card .form-image img {\n    position: relative;\n    right: 0;\n    max-width: 100px;\n    padding: 0;\n    margin: 10px 0;\n    display: inline-block; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9hZG1pbi9zZWxlY3QtY2FyZC9DOlxcVXNlcnNcXGpkZWNrXFxTb3VyY2VcXFJlcG9zXFxHb0Rpc25leUJsb2dcXEdvRGlzbmV5QmxvZ1xcQ2xpZW50QXBwL2FwcFxcYWRtaW5cXHNlbGVjdC1jYXJkXFxzZWxlY3QtY2FyZC5jb21wb25lbnQuc2NzcyIsImFwcC9hZG1pbi9zZWxlY3QtY2FyZC9DOlxcVXNlcnNcXGpkZWNrXFxTb3VyY2VcXFJlcG9zXFxHb0Rpc25leUJsb2dcXEdvRGlzbmV5QmxvZ1xcQ2xpZW50QXBwL2FwcFxcX3ZhcmlhYmxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0ksb0JBQW1CO0VBQ25CLGVBQWM7RUFDZCw0QkFBMkIsRUFxRjlCO0VBeEZEO0lBTVEsZUNMUSxFRE1YO0VBUEw7SUFVUSxhQUFZO0lBQ1osV0FBVTtJQUNWLFlBQVc7SUFDWCwwQkNaUTtJRGFSLFlBQVcsRUFDZDtFQWZMO0lBa0JRLGNBQWE7SUFDYix1QkFBc0I7SUFDdEIsOEJBQTZCLEVBQ2hDO0VBckJMO0lBd0JRLFlBQVcsRUFDZDtFQXpCTDtJQTRCUSxrQkFBaUIsRUFDcEI7RUE3Qkw7O0lBaUNRLGNBQWEsRUFDaEI7RUFsQ0w7SUFxQ1EsMkJBQTBCLEVBQzdCO0VBdENMO0lBeUNzQyxZQUFZO0lBQzFDLHFCQUFvQixFQUN2QjtFQTNDTDtJQThDUSwwQkMvQ1M7SURnRFQsWUFBVyxFQUNkO0VBaERMO0lBbURRLGFBQVk7SUFDWixlQUFjO0lBQ2QsbUJBQWtCLEVBQ3JCO0VBdERMO0lBeURRLDBCQUF5QixFQUM1QjtFQTFETDtJQTZEUSxZQUFXLEVBQ2Q7RUE5REw7SUFpRVEsWUFBVyxFQUNkO0VBbEVMO0lBcUVRLFlBQVcsRUFDZDtFQXRFTDtJQXlFUSxZQUFXLEVBQ2Q7RUExRUw7SUE2RVEsbUJBQWtCO0lBQ2xCLFNBQVE7SUFDUixpQkFBZ0I7SUFDaEIsV0FBVTtJQUNWLGVBQWM7SUFDZCxzQkFBcUIsRUFDeEIiLCJmaWxlIjoiYXBwL2FkbWluL3NlbGVjdC1jYXJkL3NlbGVjdC1jYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCcuLi8uLi9fdmFyaWFibGVzLnNjc3MnO1xyXG5cclxuLmdvLWRpcy1jYXJkIHtcclxuICAgIG1hcmdpbi1ib3R0b206IDJyZW07XHJcbiAgICBtaW4td2lkdGg6IDc1JTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDAgIWltcG9ydGFudDtcclxuXHJcbiAgICAubWF0LWNhcmQtaGVhZGVyLCAubWF0LWNhcmQtc3VidGl0bGUsIC5tYXQtbGlzdC1pdGVtLWNvbnRlbnQge1xyXG4gICAgICAgIGNvbG9yOiAkcC1kYXJrO1xyXG4gICAgfVxyXG5cclxuICAgIC5tYXQtZmFiIHtcclxuICAgICAgICBmbG9hdDogcmlnaHQ7XHJcbiAgICAgICAgdG9wOiAtNTlweDtcclxuICAgICAgICByaWdodDogM3JlbTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkcC1kYXJrO1xyXG4gICAgICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgfVxyXG5cclxuICAgIC5leGFtcGxlLWNvbnRhaW5lciB7XHJcbiAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG4gICAgfVxyXG5cclxuICAgIC5leGFtcGxlLWNvbnRhaW5lciA+ICoge1xyXG4gICAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgfVxyXG5cclxuICAgIC5leGFtcGxlLXJpZ2h0LWFsaWduIHtcclxuICAgICAgICB0ZXh0LWFsaWduOiByaWdodDtcclxuICAgIH1cclxuXHJcbiAgICBpbnB1dC5leGFtcGxlLXJpZ2h0LWFsaWduOjotd2Via2l0LW91dGVyLXNwaW4tYnV0dG9uLFxyXG4gICAgaW5wdXQuZXhhbXBsZS1yaWdodC1hbGlnbjo6LXdlYmtpdC1pbm5lci1zcGluLWJ1dHRvbiB7XHJcbiAgICAgICAgZGlzcGxheTogbm9uZTtcclxuICAgIH1cclxuXHJcbiAgICBpbnB1dC5leGFtcGxlLXJpZ2h0LWFsaWduIHtcclxuICAgICAgICAtbW96LWFwcGVhcmFuY2U6IHRleHRmaWVsZDtcclxuICAgIH1cclxuXHJcbiAgICBpbnB1dCB7XHJcbiAgICAgICAgLXdlYmtpdC10cmFuc2l0aW9uOiB3aWR0aCAyczsgLyogU2FmYXJpICovXHJcbiAgICAgICAgdHJhbnNpdGlvbjogd2lkdGggMnM7XHJcbiAgICB9XHJcblxyXG4gICAgLnByaW1hcnkge1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6ICRwcmltYXJ5O1xyXG4gICAgICAgIGNvbG9yOiAjZmZmO1xyXG4gICAgfVxyXG5cclxuICAgIGVtIHtcclxuICAgICAgICBmbG9hdDogcmlnaHQ7XHJcbiAgICAgICAgY29sb3I6ICNFMDVDNjU7XHJcbiAgICAgICAgcGFkZGluZy1sZWZ0OiAxcmVtO1xyXG4gICAgfVxyXG5cclxuICAgIC5lcnJvciBpbnB1dCB7XHJcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI0UzQzNDNTtcclxuICAgIH1cclxuXHJcbiAgICAuZXJyb3IgOjotd2Via2l0LWlucHV0LXBsYWNlaG9sZGVyIHtcclxuICAgICAgICBjb2xvcjogIzk5OTtcclxuICAgIH1cclxuXHJcbiAgICAuZXJyb3IgOjotbW96LXBsYWNlaG9sZGVyIHtcclxuICAgICAgICBjb2xvcjogIzk5OTtcclxuICAgIH1cclxuXHJcbiAgICAuZXJyb3IgOi1tb3otcGxhY2Vob2xkZXIge1xyXG4gICAgICAgIGNvbG9yOiAjOTk5O1xyXG4gICAgfVxyXG5cclxuICAgIC5lcnJvciA6LW1zLWlucHV0LXBsYWNlaG9sZGVyIHtcclxuICAgICAgICBjb2xvcjogIzk5OTtcclxuICAgIH1cclxuXHJcbiAgICAuZm9ybS1pbWFnZSBpbWcge1xyXG4gICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgICAgICByaWdodDogMDtcclxuICAgICAgICBtYXgtd2lkdGg6IDEwMHB4O1xyXG4gICAgICAgIHBhZGRpbmc6IDA7XHJcbiAgICAgICAgbWFyZ2luOiAxMHB4IDA7XHJcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgfVxyXG5cclxuIFxyXG5cclxuICAgXHJcbn1cclxuIiwi77u/Ly8gdmFyaWFibGVzLnNjc3NcclxuJHByaW1hcnk6ICMwM2E5ZjQ7XHJcbiRwLWxpZ2h0OiAjNjdkYWZmO1xyXG4kcC1kYXJrOiAjMDA3YWMxO1xyXG5cclxuJHB1cnBsZTogIzY3M2FiNztcclxuXHJcbiR5LXllbGxvdzogI2ZmZDc0MDtcclxuXHJcbiRzZWNvbmRhcnk6ICM0Y2FmNTA7XHJcblxyXG4kYnV0dG9uLWZvbnQ6ICNmZmY7XHJcblxyXG4kZ3V0dGVycy1tYWluOiAxcmVtIDdyZW07XHJcblxyXG4kc2hhZG93OiAwIDJweCAxcHggLTFweCByZ2JhKDAsMCwwLC4yKSwgMCAxcHggMXB4IDAgcmdiYSgwLDAsMCwuMTQpLCAwIDFweCAzcHggMCByZ2JhKDAsMCwwLC4xMik7XHJcblxyXG4kc2hhZG93LWZvb3RlcjogMCAxcHggM3B4IDAgcmdiYSgwLDAsMCwuMTQpLCAwIDFweCAxcHggMCByZ2JhKDAsMCwwLC4xNCksIDAgMnB4IDFweCAtMXB4IHJnYmEoMCwwLDAsLjIpOyJdfQ== */"
 
 /***/ }),
 
-/***/ "./app/admin/admin.component.ts":
-/*!**************************************!*\
-  !*** ./app/admin/admin.component.ts ***!
-  \**************************************/
-/*! exports provided: AdminComponent */
+/***/ "./app/admin/select-card/select-card.component.ts":
+/*!********************************************************!*\
+  !*** ./app/admin/select-card/select-card.component.ts ***!
+  \********************************************************/
+/*! exports provided: SelectCardComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminComponent", function() { return AdminComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectCardComponent", function() { return SelectCardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/data.service */ "./app/services/data.service.ts");
-/* harmony import */ var _models_card__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../models/card */ "./app/models/card.ts");
+/* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/data.service */ "./app/services/data.service.ts");
+/* harmony import */ var ClientApp_app_models_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ClientApp/app/models/card */ "./app/models/card.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -137,90 +137,97 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var AdminComponent = /** @class */ (function () {
-    function AdminComponent(data, route, actRoute) {
+var SelectCardComponent = /** @class */ (function () {
+    function SelectCardComponent(data, router) {
         this.data = data;
-        this.route = route;
-        this.actRoute = actRoute;
+        this.router = router;
         this.cards = [];
-        this.thisCardId = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.cardTitle = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.cardImg = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.cardIcon = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.cardLink = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.cardLinkName = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.paraOne = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-        this.paraTwo = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
-        this.paraThree = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
-        this.paraFour = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.selected = false;
     }
-    AdminComponent.prototype.ngOnInit = function () {
+    //paraOne: FormControl;
+    //paraTwo: FormControl;
+    //paraThree: FormControl;
+    //paraFour: FormControl;
+    SelectCardComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.card = new ClientApp_app_models_card__WEBPACK_IMPORTED_MODULE_2__["Card"]();
         this.data.loadCards()
             .subscribe(function (success) {
             if (success) {
                 _this.cards = _this.data.cards;
             }
-            else {
-                console.log('Something went wrong');
-                return false;
-            }
         });
-    };
-    AdminComponent.prototype.getErrorMessage = function () {
-        return this.thisCardId.hasError('required') ? 'You must enter a value' : '';
-    };
-    AdminComponent.prototype.getErrorMessage2 = function () {
+        var cardTitle = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]);
+        var cardIcon = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('');
+        var cardImg = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('');
+        var cardLink = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('');
+        var cardLinkName = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('');
+        //let paraOne = new FormControl('');
+        //let paraTwo = new FormControl('');
+        //let paraThree = new FormControl('');
+        //let paraFour = new FormControl('');
+        this.updateCardForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
+            cardTitle: cardTitle,
+            cardIcon: cardIcon,
+            cardImg: cardImg,
+            cardLink: cardLink,
+            cardLinkName: cardLinkName,
+        });
+    }; /////end of onInit
+    SelectCardComponent.prototype.getErrorMessage = function () {
         return this.cardTitle.hasError('required') ? 'You must enter a value' : '';
     };
-    AdminComponent.prototype.setCardId = function (formValue) {
+    SelectCardComponent.prototype.saveFormData = function (formValue) {
         var _this = this;
-        this.data.getMyCardById(formValue)
+        this.data.updateCard(this.card.cardTitle, formValue)
             .subscribe(function (success) {
             if (success) {
-                _this.card = _this.data.card;
-                _this.cardTitle = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.card.cardTitle, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-                _this.cardImg = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.card.cardImg, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-                _this.cardIcon = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.card.cardIcon, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-                _this.cardLink = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.card.cardLink, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-                _this.cardLinkName = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.card.cardLinkName, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-                _this.paraOne = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.card.cardContents.map(function (p) { return p.paraOne; }), [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-                _this.paraTwo = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.card.cardContents.map(function (p) { return p.paraTwo; }), [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-                _this.paraThree = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.card.cardContents.map(function (p) { return p.paraThree; }), [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
-                _this.paraFour = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this.card.cardContents.map(function (p) { return p.paraFour; }), [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]);
+                _this.card = new ClientApp_app_models_card__WEBPACK_IMPORTED_MODULE_2__["Card"]();
+                console.log(_this.card);
+                _this.router.navigate(['/']);
                 return true;
-            }
-            else {
-                console.log('Something went wrong');
-                return false;
             }
         });
         console.log(formValue);
     };
-    AdminComponent.prototype.submitCard = function (formValue) {
+    SelectCardComponent.prototype.selectName = function (formValue) {
         var _this = this;
-        this.data.updateCard(formValue)
+        this.data.getCardByName(formValue)
             .subscribe(function (success) {
             if (success) {
-                _this.card = new _models_card__WEBPACK_IMPORTED_MODULE_4__["Card"]();
-            }
-            else {
-                console.log('You didn\'t do something right but head');
+                _this.card = _this.data.card;
+                _this.selected = true;
+                _this.cardTitle = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](_this.card.cardTitle);
+                _this.cardIcon = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](_this.card.cardIcon);
+                _this.cardImg = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](_this.card.cardImg);
+                _this.cardLink = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](_this.card.cardLink);
+                _this.cardLinkName = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](_this.card.cardLinkName);
+                //this.paraOne = new FormControl('');
+                //this.paraOne = new FormControl('');
+                //this.paraOne = new FormControl('');
+                //this.paraOne = new FormControl('');
+                _this.updateCardForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
+                    cardTitle: _this.cardTitle,
+                    cardIcon: _this.cardIcon,
+                    cardImg: _this.cardImg,
+                    cardLink: _this.cardLink,
+                    cardLinkName: _this.cardLinkName,
+                });
             }
         });
     };
-    AdminComponent.prototype.cancel = function () {
-        this.route.navigate(['/']);
+    SelectCardComponent.prototype.cancel = function () {
+        this.router.navigate(["/"]);
     };
-    AdminComponent = __decorate([
+    SelectCardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-admin',
-            template: __webpack_require__(/*! ./admin.component.html */ "./app/admin/admin.component.html"),
-            styles: [__webpack_require__(/*! ./admin.component.scss */ "./app/admin/admin.component.scss")]
+            selector: 'app-select-card',
+            template: __webpack_require__(/*! ./select-card.component.html */ "./app/admin/select-card/select-card.component.html"),
+            styles: [__webpack_require__(/*! ./select-card.component.scss */ "./app/admin/select-card/select-card.component.scss")]
         }),
-        __metadata("design:paramtypes", [_services_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
-    ], AdminComponent);
-    return AdminComponent;
+        __metadata("design:paramtypes", [_services_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+    ], SelectCardComponent);
+    return SelectCardComponent;
 }());
 
 
@@ -315,8 +322,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./about/about.component */ "./app/about/about.component.ts");
 /* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./contact/contact.component */ "./app/contact/contact.component.ts");
 /* harmony import */ var _cards_full_card_full_card_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./cards/full-card/full-card.component */ "./app/cards/full-card/full-card.component.ts");
-/* harmony import */ var _admin_admin_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./admin/admin.component */ "./app/admin/admin.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./login/login.component */ "./app/login/login.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./login/login.component */ "./app/login/login.component.ts");
+/* harmony import */ var _admin_select_card_select_card_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./admin/select-card/select-card.component */ "./app/admin/select-card/select-card.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -351,8 +358,8 @@ var routes = [
     { path: 'main', component: _main_content_main_content_component__WEBPACK_IMPORTED_MODULE_17__["MainContentComponent"] },
     { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_19__["AboutComponent"] },
     { path: 'contact', component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_20__["ContactComponent"] },
-    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_23__["LoginComponent"] },
-    { path: 'admin', component: _admin_admin_component__WEBPACK_IMPORTED_MODULE_22__["AdminComponent"] },
+    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_22__["LoginComponent"] },
+    { path: 'select-card', component: _admin_select_card_select_card_component__WEBPACK_IMPORTED_MODULE_23__["SelectCardComponent"] },
     { path: ':id', component: _cards_full_card_full_card_component__WEBPACK_IMPORTED_MODULE_21__["FullCardComponent"] },
     { path: '**', redirectTo: 'main' }
 ];
@@ -375,8 +382,8 @@ var AppModule = /** @class */ (function () {
                 _about_about_component__WEBPACK_IMPORTED_MODULE_19__["AboutComponent"],
                 _contact_contact_component__WEBPACK_IMPORTED_MODULE_20__["ContactComponent"],
                 _cards_full_card_full_card_component__WEBPACK_IMPORTED_MODULE_21__["FullCardComponent"],
-                _admin_admin_component__WEBPACK_IMPORTED_MODULE_22__["AdminComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_23__["LoginComponent"]
+                _login_login_component__WEBPACK_IMPORTED_MODULE_22__["LoginComponent"],
+                _admin_select_card_select_card_component__WEBPACK_IMPORTED_MODULE_23__["SelectCardComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -876,7 +883,7 @@ var LoginComponent = /** @class */ (function () {
         this.data.login(this.creds)
             .subscribe(function (success) {
             if (success) {
-                _this.route.navigate(["admin"]);
+                _this.route.navigate(["select-card"]);
             }
             else {
                 _this.route.navigate(["login"]);
@@ -1050,6 +1057,14 @@ var DataService = /** @class */ (function () {
             return true;
         }));
     };
+    DataService.prototype.getCardByName = function (name) {
+        var _this = this;
+        return this.http.get("/api/cards/" + name)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
+            _this.card = data;
+            return true;
+        }));
+    };
     Object.defineProperty(DataService.prototype, "loginRequired", {
         get: function () {
             return this.token.length == 0 || this.tokenExpiration > new Date();
@@ -1059,18 +1074,28 @@ var DataService = /** @class */ (function () {
     });
     DataService.prototype.login = function (creds) {
         var _this = this;
-        return this.http.post("/auth/createToken", creds)
+        return this.http.post("/Auth/CreateToken", creds)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
             _this.token = data.token;
             _this.tokenExpiration = data.expiration;
             return true;
         }));
     };
-    DataService.prototype.updateCard = function (id) {
+    DataService.prototype.updateCard = function (name, data) {
         var _this = this;
-        return this.http.put("/api/cards/" + id, this.card, {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set("Authorization", "Bearer" + this.token)
-        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
+        return this.http.put("/api/cards/" + name, data, {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set("Authorization", "Bearer " + this.token)
+        }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (response) {
+            _this.card = new _models_card__WEBPACK_IMPORTED_MODULE_3__["Card"]();
+            return true;
+        }));
+    };
+    DataService.prototype.checkout = function () {
+        var _this = this;
+        return this.http.post("/api/orders", this.card, {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set("Authorization", "Bearer " + this.token)
+        })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (response) {
             _this.card = new _models_card__WEBPACK_IMPORTED_MODULE_3__["Card"]();
             return true;
         }));
@@ -1080,7 +1105,7 @@ var DataService = /** @class */ (function () {
         return this.http.post("/api/cards", this.card, {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set("Authorization", "Bearer" + this.token)
         })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (data) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (response) {
             _this.card = new _models_card__WEBPACK_IMPORTED_MODULE_3__["Card"]();
             return true;
         }));
@@ -1331,7 +1356,7 @@ var SideNavComponent = /** @class */ (function () {
             this.router.navigate(["login"]);
         }
         else {
-            this.router.navigate(["admin"]);
+            this.router.navigate(["select-card"]);
         }
     };
     SideNavComponent = __decorate([

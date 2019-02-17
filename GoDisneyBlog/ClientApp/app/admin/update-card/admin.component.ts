@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup,  Validators } from '@angular/forms';
 
-import { DataService } from '../services/data.service';
-import { Card, CardContent } from '../models/card';
+import { DataService } from '../../services/data.service';
+import { Card, CardContent } from '../../models/card';
 
 
 @Component({
@@ -17,9 +17,12 @@ export class AdminComponent implements OnInit {
 
     public card: Card; 
 
+ 
+
     constructor(private data: DataService, private route:Router, private actRoute: ActivatedRoute) { }
 
     ngOnInit() {
+        this.card = new Card();
 
         this.data.loadCards()
             .subscribe(success => {
@@ -33,7 +36,7 @@ export class AdminComponent implements OnInit {
     }
 
     
-    thisCardId = new FormControl('', [Validators.required]);
+    
     cardTitle = new FormControl('', [Validators.required]);
     cardImg = new FormControl('', [Validators.required]);
     cardIcon = new FormControl('', [Validators.required]);
@@ -45,9 +48,7 @@ export class AdminComponent implements OnInit {
     paraFour = new FormControl('');
    
 
-    getErrorMessage() {
-        return this.thisCardId.hasError('required') ? 'You must enter a value' : '';
-    }
+   
 
     getErrorMessage2() {
         return this.cardTitle.hasError('required') ? 'You must enter a value' :'';
@@ -55,7 +56,7 @@ export class AdminComponent implements OnInit {
 
 
     setCardId(formValue) {
-        this.data.getMyCardById(formValue)
+        this.data.getCardByName(formValue)
             .subscribe(success => {
 
                 if (success) {
@@ -70,7 +71,9 @@ export class AdminComponent implements OnInit {
                     this.paraThree = new FormControl(this.card.cardContents.map(p => p.paraThree), [Validators.required]);
                     this.paraFour = new FormControl(this.card.cardContents.map(p => p.paraFour), [Validators.required]);
 
-                    return true;
+                   // this.card = new Card();
+
+                    return this.card;
                 } else {
                     console.log('Something went wrong');
                     return false;
@@ -81,11 +84,12 @@ export class AdminComponent implements OnInit {
     }
 
 
-    submitCard(formValue) {
-        this.data.updateCard(formValue)
+    submitCard() {
+        console.log(this.card);
+        this.data.updateCard(this.cardTitle.value, this.card)
             .subscribe(success => {
                 if (success) {
-                    this.card = new Card();
+                    console.log(this.card)
                 } else {
                     console.log('You didn\'t do something right but head');
                 }
