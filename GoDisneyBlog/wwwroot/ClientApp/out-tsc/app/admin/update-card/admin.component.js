@@ -10,15 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
-import { DataService } from '../services/data.service';
-import { Card } from '../models/card';
+import { DataService } from '../../services/data.service';
+import { Card } from '../../models/card';
 var AdminComponent = /** @class */ (function () {
     function AdminComponent(data, route, actRoute) {
         this.data = data;
         this.route = route;
         this.actRoute = actRoute;
         this.cards = [];
-        this.thisCardId = new FormControl('', [Validators.required]);
         this.cardTitle = new FormControl('', [Validators.required]);
         this.cardImg = new FormControl('', [Validators.required]);
         this.cardIcon = new FormControl('', [Validators.required]);
@@ -31,6 +30,7 @@ var AdminComponent = /** @class */ (function () {
     }
     AdminComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.card = new Card();
         this.data.loadCards()
             .subscribe(function (success) {
             if (success) {
@@ -42,15 +42,12 @@ var AdminComponent = /** @class */ (function () {
             }
         });
     };
-    AdminComponent.prototype.getErrorMessage = function () {
-        return this.thisCardId.hasError('required') ? 'You must enter a value' : '';
-    };
     AdminComponent.prototype.getErrorMessage2 = function () {
         return this.cardTitle.hasError('required') ? 'You must enter a value' : '';
     };
     AdminComponent.prototype.setCardId = function (formValue) {
         var _this = this;
-        this.data.getMyCardById(formValue)
+        this.data.getCardByName(formValue)
             .subscribe(function (success) {
             if (success) {
                 _this.card = _this.data.card;
@@ -63,7 +60,8 @@ var AdminComponent = /** @class */ (function () {
                 _this.paraTwo = new FormControl(_this.card.cardContents.map(function (p) { return p.paraTwo; }), [Validators.required]);
                 _this.paraThree = new FormControl(_this.card.cardContents.map(function (p) { return p.paraThree; }), [Validators.required]);
                 _this.paraFour = new FormControl(_this.card.cardContents.map(function (p) { return p.paraFour; }), [Validators.required]);
-                return true;
+                // this.card = new Card();
+                return _this.card;
             }
             else {
                 console.log('Something went wrong');
@@ -72,12 +70,13 @@ var AdminComponent = /** @class */ (function () {
         });
         console.log(formValue);
     };
-    AdminComponent.prototype.submitCard = function (formValue) {
+    AdminComponent.prototype.submitCard = function () {
         var _this = this;
-        this.data.updateCard(formValue)
+        console.log(this.card);
+        this.data.updateCard(this.cardTitle.value, this.card)
             .subscribe(function (success) {
             if (success) {
-                _this.card = new Card();
+                console.log(_this.card);
             }
             else {
                 console.log('You didn\'t do something right but head');

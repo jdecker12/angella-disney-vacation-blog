@@ -46,12 +46,21 @@ export class DataService {
             }));
     }
 
+    getCardByName(name): Observable<boolean> {
+       return this.http.get("/api/cards/" + name)
+            .pipe(
+            map((data: any) => {
+                this.card = data;
+                return true;
+            }));
+    }
+
     public get loginRequired(): boolean {
         return this.token.length == 0 || this.tokenExpiration > new Date();
     }
 
     public login(creds): Observable<boolean> {
-        return this.http.post("/auth/createToken", creds)
+        return this.http.post("/Auth/CreateToken", creds)
             .pipe(
                 map((data: any) => {
                 this.token = data.token;
@@ -60,13 +69,25 @@ export class DataService {
             }));
     }
 
-    public updateCard(id:number): Observable<boolean> {
-        return this.http.put("/api/cards/"+ id, this.card, {
-            headers: new HttpHeaders().set("Authorization", "Bearer" + this.token)
+    public updateCard(name:string, data) {
+        return this.http.put("/api/cards/"+ name, data, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
         }).pipe(
-                map((data: any) => {
+                map((response) => {
                 this.card = new Card();
                 return true;
+                }));
+    }
+
+    public checkout() {
+       
+        return this.http.post("/api/orders", this.card, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+        })
+            .pipe(
+                map((response) => {
+                    this.card = new Card();
+                    return true;
                 }));
     }
 
@@ -75,7 +96,7 @@ export class DataService {
             headers: new HttpHeaders().set("Authorization", "Bearer" + this.token)
         })
          .pipe(
-            map((data: any) => {
+            map((response) => {
                 this.card = new Card();
                 return true;
             }))

@@ -1,0 +1,62 @@
+
+<mat-card class="go-dis-card">
+    <mat-card-header>
+        <mat-card-title>Select Card</mat-card-title>
+    </mat-card-header>
+    <mat-list role="list">
+        <mat-list-item *ngFor="let card of cards" role="listitem">
+            <button mat-button mat-raised-button (click)="selectName(card.cardTitle)" class="primary">{{card.cardTitle}}</button>
+        </mat-list-item>
+    </mat-list>
+
+    <form [formGroup]="updateCardForm" (submit)="saveFormData(updateCardForm.value)">
+
+        <mat-card-content>
+
+            <div class="example-container">
+                <mat-form-field>
+                    <input matInput placeholder="Enter new card title" name="cardTitle" formControlName="cardTitle" id="cardTitle" required>
+                    <!--<mat-error *ngIf="cardTitle.invalid">{{getErrorMessage()}}</mat-error>-->
+                </mat-form-field>
+            </div>
+
+            <div class="example-container">
+                <div *ngIf="selected" class="form-image"><img mat-card-image src="/img/{{card.cardImg}}.jpg" alt="card.Title"></div>
+                <mat-form-field>
+                    <input matInput placeholder="Enter new card image" name="cardImg" formControlName="cardImg" id="cardImg" required>
+                    <!--<mat-error *ngIf="cardTitle.invalid">{{getErrorMessage()}}</mat-error>-->
+                </mat-form-field>
+            </div>
+
+            <div class="example-container">
+                <div *ngIf="selected" class="form-image"><mat-icon>{{card.cardIcon}}</mat-icon></div>
+                <mat-form-field>
+                    <input matInput placeholder="Enter new card link" name="cardIcon" formControlName="cardIcon" id="cardIcon" required>
+
+                    <!--<mat-error *ngIf="cardTitle.invalid">{{getErrorMessage()}}</mat-error>-->
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <input matInput placeholder="Enter new card link" name="cardLink" formControlName="cardLink" id="cardLink" required>
+
+                    <!--<mat-error *ngIf="cardTitle.invalid">{{getErrorMessage()}}</mat-error>-->
+                </mat-form-field>
+            </div>
+
+            <div class="example-container">
+                <mat-form-field>
+                    <input matInput placeholder="Enter new card link name" name="cardLinkName" formControlName="cardLinkName" id="cardLinkName" required>
+
+                    <!--<mat-error *ngIf="cardTitle.invalid">{{getErrorMessage()}}</mat-error>-->
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button mat-raised-button type="submit" class="primary">Submit</button>
+            <button mat-button mat-raised-button (click)="cancel()">Cancel</button>
+        </mat-card-actions>
+    </form>
+
+
+</mat-card>

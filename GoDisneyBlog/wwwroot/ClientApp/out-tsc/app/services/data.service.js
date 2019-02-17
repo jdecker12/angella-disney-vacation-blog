@@ -43,6 +43,14 @@ var DataService = /** @class */ (function () {
             return true;
         }));
     };
+    DataService.prototype.getCardByName = function (name) {
+        var _this = this;
+        return this.http.get("/api/cards/" + name)
+            .pipe(map(function (data) {
+            _this.card = data;
+            return true;
+        }));
+    };
     Object.defineProperty(DataService.prototype, "loginRequired", {
         get: function () {
             return this.token.length == 0 || this.tokenExpiration > new Date();
@@ -52,18 +60,28 @@ var DataService = /** @class */ (function () {
     });
     DataService.prototype.login = function (creds) {
         var _this = this;
-        return this.http.post("/auth/createToken", creds)
+        return this.http.post("/Auth/CreateToken", creds)
             .pipe(map(function (data) {
             _this.token = data.token;
             _this.tokenExpiration = data.expiration;
             return true;
         }));
     };
-    DataService.prototype.updateCard = function (id) {
+    DataService.prototype.updateCard = function (id, data) {
         var _this = this;
-        return this.http.put("/api/cards/" + id, this.card, {
-            headers: new HttpHeaders().set("Authorization", "Bearer" + this.token)
-        }).pipe(map(function (data) {
+        return this.http.put("/api/cards/" + id, data, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+        }).pipe(map(function (response) {
+            _this.card = new Card();
+            return true;
+        }));
+    };
+    DataService.prototype.checkout = function () {
+        var _this = this;
+        return this.http.post("/api/orders", this.card, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+        })
+            .pipe(map(function (response) {
             _this.card = new Card();
             return true;
         }));
@@ -73,7 +91,7 @@ var DataService = /** @class */ (function () {
         return this.http.post("/api/cards", this.card, {
             headers: new HttpHeaders().set("Authorization", "Bearer" + this.token)
         })
-            .pipe(map(function (data) {
+            .pipe(map(function (response) {
             _this.card = new Card();
             return true;
         }));

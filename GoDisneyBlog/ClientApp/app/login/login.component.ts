@@ -26,10 +26,8 @@ export class LoginComponent implements OnInit {
         this.data.login(this.creds)
             .subscribe(success => {
                 if (success) {
-                    this.route.navigate(["admin"]);
-                } else {
-                    this.route.navigate(["login"]);
-                }
+                    this.route.navigate(["select-card"]);
+                } 
             }, err => this.errMessage = "Failed to login")
     }
 

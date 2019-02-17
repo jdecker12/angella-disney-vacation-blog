@@ -132,15 +132,15 @@ namespace GoDisneyBlog.Controllers
 
         }
 
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> Put(int id, [FromBody]CardViewModel model)
+        [HttpPut("{name}")]
+        public async Task<IActionResult> Put(string name, [FromBody]CardViewModel model)
         {
             try
             {
                 // if(ModelState.IsValid)
                 // {
-                 var oldCard = _repository.GetCardById(id);
-                    if (oldCard == null) return NotFound($"Could not find a card with an id of {id}");
+                 var oldCard = _repository.GetCardByName(name);
+                    if (oldCard == null) return NotFound($"Could not find a card with a name of {name}");
                     _mapper.Map(model, oldCard);
 
                     if (await _repository.SaveAllAsync())
