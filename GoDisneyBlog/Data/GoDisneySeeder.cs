@@ -46,7 +46,7 @@ namespace GoDisneyBlog.Data
 
                
 
-                var result = await _userManager.CreateAsync(user, "P@ssw0rd!");
+                var result = await _userManager.CreateAsync(user, "P@ssw0rd");
                 if (result != IdentityResult.Success)
                 {
                     throw new InvalidOperationException("Could not create new user in seeder.");

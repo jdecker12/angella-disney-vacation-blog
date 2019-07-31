@@ -4,7 +4,13 @@
     margin-bottom: 2rem;
     min-width: 75%;
     border-radius: 0 !important;
-
+    .select-card {
+        .mat-list-item {
+            .mat-list-item-content {
+                float: right;
+            }
+        }
+    }
     .mat-card-header, .mat-card-subtitle, .mat-list-item-content {
         color: $p-dark;
     }

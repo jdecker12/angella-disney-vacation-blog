@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Card } from '../models/card';
+import { Card, CardContent } from '../models/card';
 
 @Injectable()
 export class DataService {
@@ -16,6 +16,7 @@ export class DataService {
     public card: Card = new Card();
 
     public cards: Card[] = [];
+    public cardContents:CardContent[] = [];
 
     public  httpOptions = {
         headers: new HttpHeaders({
@@ -73,7 +74,7 @@ export class DataService {
         return this.http.put("/api/cards/"+ name, data, {
             headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
         }).pipe(
-                map((response) => {
+            map((response) => {
                 this.card = new Card();
                 return true;
                 }));

@@ -24,6 +24,7 @@ import { ContactComponent } from './contact/contact.component';
 import { FullCardComponent } from './cards/full-card/full-card.component';
 import { LoginComponent } from './login/login.component';
 import { SelectCardComponent } from './admin/select-card/select-card.component';
+import { GaugestestComponent } from './gaugestest/gaugestest.component';
 
 
 const routes: Routes = [
@@ -54,7 +55,8 @@ const routes: Routes = [
       ContactComponent,
       FullCardComponent,
       LoginComponent,
-      SelectCardComponent
+      SelectCardComponent,
+      GaugestestComponent
   ],
   imports: [
       BrowserModule,
