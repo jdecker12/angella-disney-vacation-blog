@@ -17,18 +17,15 @@ export class SelectCardComponent implements OnInit {
     
     constructor(private data: DataService, private router: Router) { }
     public cards: Card[] = [];
-   // public cardContents: CardContent[] = [];
     public card: Card;
-    public cardContent: CardContent;
     public name: any;
     public formValue: any;
     public selected: boolean = false;
     public result: any;
-
-    
+    public crdCntns: any;
 
     updateCardForm: FormGroup;
-    cardContents: FormArray;
+    cardContents: FormGroup;
     cardTitle: FormControl;
     cardIcon: FormControl;
     cardImg: FormControl;
@@ -43,7 +40,6 @@ export class SelectCardComponent implements OnInit {
     ngOnInit() {
      
         this.card = new Card();
-        //this.cardContents
         this.data.loadCards()
             .subscribe(success => {
                 if (success) {
@@ -62,7 +58,6 @@ export class SelectCardComponent implements OnInit {
         let paraTwo = new FormControl('');
         let paraThree = new FormControl('');
         let paraFour = new FormControl('');
-       // let cardId = new FormControl('');
         
         this.updateCardForm = new FormGroup({
             cardTitle: cardTitle,
@@ -75,13 +70,9 @@ export class SelectCardComponent implements OnInit {
                 paraTwo: paraTwo,
                 paraThree: paraThree,
                 paraFour: paraFour,
-               // cardId: cardId
                 })
            
         });
-
-
-
     }/////end of onInit
 
     getErrorMessage() {
@@ -89,20 +80,15 @@ export class SelectCardComponent implements OnInit {
     }
 
     saveFormData(formValue) {
+        formValue.cardContents = [formValue.cardContents];
         this.data.updateCard(this.card.cardTitle, formValue)
             .subscribe(success => {
                 if (success) {
                     this.card = new Card();
-
-                   /// this.cardContent = new CardContent();
-                    console.log(this.card);
-                 
                     this.router.navigate(['/']);
                     return true;
                 }
             });
-        
-        console.log(formValue);
     }
 
  
@@ -110,14 +96,8 @@ export class SelectCardComponent implements OnInit {
         this.data.getCardByName(formValue)
             .subscribe(success => {
                 if (success) {
-                    this.card = this.data.card;
-                    //this.cardContents = this.data.card.cardContents[0];
-                    console.log(this.card);
-
-                    let cardContents = [];
-                  
+                    this.card = this.data.card;  
                     this.selected = true;
-
                     var shortHand = this.card.cardContents[0];
 
                     this.cardTitle = new FormControl(this.card.cardTitle);
@@ -129,9 +109,7 @@ export class SelectCardComponent implements OnInit {
                     this.paraTwo = new FormControl(shortHand.paraTwo);
                     this.paraThree = new FormControl(shortHand.paraThree);
                     this.paraFour = new FormControl(shortHand.paraFour);
-                    ///this.cardId = new FormControl(this.card.thisCardId); 
                    
-
                     this.updateCardForm = new FormGroup({
                         cardTitle: this.cardTitle,
                         cardIcon: this.cardIcon,
@@ -143,16 +121,8 @@ export class SelectCardComponent implements OnInit {
                             paraTwo: this.paraTwo,
                             paraThree: this.paraThree,
                             paraFour: this.paraFour,
-                           // cardId: this.cardId
                         })
                     });
-
-                    //this.updateCardContent = new FormGroup({
-                    //    paraOne: this.paras['paraOne'],
-                    //    paraTwo: this.card.cardContents['paraTwo'],
-                    //    paraThree: this.card.cardContents['paraThree'],
-                    //    paraFour: this.card.cardContents['paraFour']
-                    //})
                 }
             })
         }
