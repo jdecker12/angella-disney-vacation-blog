@@ -87,13 +87,23 @@ var DataService = /** @class */ (function () {
             return true;
         }));
     };
-    DataService.prototype.admin = function () {
+    DataService.prototype.admin = function (data) {
         var _this = this;
-        return this.http.post("/api/cards", this.card, {
-            headers: new HttpHeaders().set("Authorization", "Bearer" + this.token)
+        return this.http.post("/api/cards", data, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
         })
             .pipe(map(function (response) {
             _this.card = new Card();
+            return true;
+        }));
+    };
+    DataService.prototype.deleteCard = function (name) {
+        var _this = this;
+        return this.http.delete("/api/cards/" + name, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+        })
+            .pipe(map(function (response) {
+            _this.card = null;
             return true;
         }));
     };

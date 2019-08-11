@@ -3,7 +3,7 @@
 #gdb-footer {
     min-height: 250px;
     width: 100%;
-    background-color: $primary;
+    background-color: $as-light;
     box-shadow: $shadow-footer;
     z-index: 5;
     position: relative;
@@ -30,7 +30,7 @@
         }
     }
 
-    .gdb-copyright > p {
+    p.gdb-copyright {
         color: #fff;
     }
 }

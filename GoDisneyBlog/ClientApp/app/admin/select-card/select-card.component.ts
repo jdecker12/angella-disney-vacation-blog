@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
-import { Card, CardContent } from 'ClientApp/app/models/card';
-import { FormControl, Validators, FormGroup, FormArray } from '@angular/forms';
+import { Card} from 'ClientApp/app/models/card';
+import { FormControl, Validators, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
-import { map } from 'rxjs/operators';
-import { CardComponent } from 'ClientApp/app/cards/card/card.component';
+
 
 @Component({
   selector: 'app-select-card',
@@ -23,9 +21,13 @@ export class SelectCardComponent implements OnInit {
     public selected: boolean = false;
     public result: any;
     public crdCntns: any;
+    public isChecked: boolean;
 
     updateCardForm: FormGroup;
     cardContents: FormGroup;
+    radioGroup: FormControl;
+    new: FormControl;
+    update: FormControl;
     cardTitle: FormControl;
     cardIcon: FormControl;
     cardImg: FormControl;
@@ -48,7 +50,7 @@ export class SelectCardComponent implements OnInit {
                    
                 }
             })
-
+        let radioGroup = new FormControl('new');
         let cardTitle = new FormControl('');
         let cardIcon = new FormControl('');
         let cardImg = new FormControl('');
@@ -60,6 +62,7 @@ export class SelectCardComponent implements OnInit {
         let paraFour = new FormControl('');
         
         this.updateCardForm = new FormGroup({
+            radioGroup: radioGroup,
             cardTitle: cardTitle,
             cardIcon: cardIcon,
             cardImg: cardImg,
@@ -75,11 +78,17 @@ export class SelectCardComponent implements OnInit {
         });
     }/////end of onInit
 
+    clearForm() {
+        this.updateCardForm.reset();
+        this.card.cardImg = '';
+        this.card.cardIcon = '';
+    }
+
     getErrorMessage() {
         return this.cardTitle.hasError('required') ? 'You must enter a value' : '';
     }
 
-    saveFormData(formValue) {
+    updateFormData(formValue) {
         formValue.cardContents = [formValue.cardContents];
         this.data.updateCard(this.card.cardTitle, formValue)
             .subscribe(success => {
@@ -91,6 +100,35 @@ export class SelectCardComponent implements OnInit {
             });
     }
 
+    saveFormData(formValue) {
+        formValue.cardContents = [formValue.cardContents];
+        this.data.admin(formValue)
+            .subscribe(success => {
+                if (success) {
+                    this.card = new Card();
+                    this.router.navigate(['/']);
+                    return true;
+                }
+                
+            });
+
+    }
+
+    getRadioVal() {
+        this.isChecked = this.updateCardForm.get('radioGroup').value
+    }
+
+    deleteSelectCard() {
+        var name = this.updateCardForm.get('cardTitle').value;
+        this.data.deleteCard(name)
+            .subscribe(success => {
+                if (success) {
+                    alert('deleted' + name);
+                }
+               
+            });
+        this.router.navigate(['/']);
+    }
  
     selectName(formValue) {
         this.data.getCardByName(formValue)
@@ -100,6 +138,7 @@ export class SelectCardComponent implements OnInit {
                     this.selected = true;
                     var shortHand = this.card.cardContents[0];
 
+                    this.radioGroup = new FormControl('update');
                     this.cardTitle = new FormControl(this.card.cardTitle);
                     this.cardIcon = new FormControl(this.card.cardIcon);
                     this.cardImg = new FormControl(this.card.cardImg);
@@ -111,6 +150,7 @@ export class SelectCardComponent implements OnInit {
                     this.paraFour = new FormControl(shortHand.paraFour);
                    
                     this.updateCardForm = new FormGroup({
+                        radioGroup: this.radioGroup,
                         cardTitle: this.cardTitle,
                         cardIcon: this.cardIcon,
                         cardImg: this.cardImg,
@@ -128,7 +168,7 @@ export class SelectCardComponent implements OnInit {
         }
 
     cancel() {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/card"]);
     }
        
    

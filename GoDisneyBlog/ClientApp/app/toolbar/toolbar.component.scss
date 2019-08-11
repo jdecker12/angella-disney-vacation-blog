@@ -5,11 +5,11 @@
     left: 0;
     box-shadow: $shadow;
     z-index: 5;
-    background-color: $primary;
+    background-color: $purple-p;
     color: #fff;
 
     .mat-fab {
-        //background-color: #fff;
+        background-color: $as-light;
         color: #fff;
         font-weight: bold;
         margin-right: 0.5rem;
@@ -23,9 +23,16 @@
             font-weight: bold;
         }
     }
+
+    .mat-menu-content {
+        background-color: $a-light;
+        color: #000000;
+    }
+
     .gdb-hambuger {
         display: none;
     }
+
     .example-icon {
         padding: 0 14px;
     }
@@ -39,13 +46,18 @@
     }
 
     .toggle-sidebar {
-        display:none;
+        display: none;
     }
 
-    @media(max-width: '720px'){
+    .two-rems {
+        margin-left: 2rem;
+    }
+
+    @media(max-width: '720px') {
         .sidebar-toggle {
             display: flex;
-        } 
+        }
+
         .gdb-hamburger {
             display: flex;
         }
@@ -54,5 +66,4 @@
             display: none;
         }
     }
-
 }

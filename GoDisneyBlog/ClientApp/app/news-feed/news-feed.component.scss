@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=UnifrakturCook:700&display=swap');
+@import'../_variables.scss';
+
+div#news-feed {
+    display: flex;
+    h2 {
+        margin-left: 1.75rem;
+        font-size: 1.5rem;
+        color: #fff;
+        font-family: 'UnifrakturCook', cursive;
+        text-shadow: 2px 2px #555;
+    }
+
+
+    .mat-accordion {
+        background-color: #aa00c7;
+        color: #fff;
+        .mat-expansion-panel {
+            background-color: #aa00c7;
+            color: #fff !important;
+            .mat-content {
+                color: #fff;
+            }
+        }
+    }
+}

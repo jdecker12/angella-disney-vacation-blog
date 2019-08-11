@@ -1,0 +1,32 @@
+@import'../_variables.scss';
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+
+
+
+.mat-card {
+    border-bottom: 3px solid $a-dark;
+    border-radius: 3px;
+    width: 100%;
+    min-width: 775px;
+}
+
+.example-container > * {
+    width: 100%;
+}
+
+h1 {
+    color: $a-dark;
+}
+
+.mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    width: 100%;
+}

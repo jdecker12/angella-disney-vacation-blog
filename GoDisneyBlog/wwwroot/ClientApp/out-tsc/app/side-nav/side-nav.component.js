@@ -23,15 +23,11 @@ var SideNavComponent = /** @class */ (function () {
         });
     }
     SideNavComponent.prototype.isScreenSmall = function () {
+        this.navTrue = false;
         return this.mediaMatcher.matches;
     };
     SideNavComponent.prototype.onAdmin = function () {
-        if (this.data.loginRequired) {
-            this.router.navigate(["login"]);
-        }
-        else {
-            this.router.navigate(["select-card"]);
-        }
+        this.data.loginRequired ? this.router.navigate(['login']) : this.router.navigate(['select-card']);
     };
     SideNavComponent = __decorate([
         Component({

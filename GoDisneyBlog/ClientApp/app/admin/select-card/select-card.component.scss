@@ -1,16 +1,28 @@
 @import'../../_variables.scss';
-
+.mat-card {
+    min-width: 775px;
+}
 .go-dis-card {
     margin-bottom: 2rem;
-    min-width: 75%;
     border-radius: 0 !important;
+
     .select-card {
         .mat-list-item {
-            .mat-list-item-content {
-                float: right;
-            }
+            width: auto;
+            float: right;
+            align-items: flex-start;
         }
     }
+
+    .mat-radio-button {
+        margin-right: 1rem;
+    }
+
+    .mat-card-title {
+        color: $a-dark;
+        font-size: 1.75rem;
+    }
+
     .mat-card-header, .mat-card-subtitle, .mat-list-item-content {
         color: $p-dark;
     }
@@ -90,8 +102,4 @@
         margin: 10px 0;
         display: inline-block;
     }
-
- 
-
-   
 }

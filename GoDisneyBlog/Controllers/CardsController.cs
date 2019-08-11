@@ -112,8 +112,8 @@ namespace GoDisneyBlog.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                    newCard.User = user;
+                    //var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                    //newCard.User = user;
 
                     _repository.AddEntity(newCard);
                     if (await _repository.SaveAllAsync())
@@ -158,13 +158,13 @@ namespace GoDisneyBlog.Controllers
             return BadRequest($"Failed to update card.");
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("{name}")]
+        public async Task<IActionResult> Delete(string name)
         {
             try
             {
-                var oldCard = _repository.GetCardById(id);
-                if (oldCard == null) return NotFound($"Could not find Card with an id of {id}");
+                var oldCard = _repository.GetCardByName(name);
+                if (oldCard == null) return NotFound($"Could not find Card with an id of {name}");
 
                 _repository.DeleteEntity(oldCard);
 

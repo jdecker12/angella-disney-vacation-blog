@@ -8,20 +8,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-var SideBarComponent = /** @class */ (function () {
-    function SideBarComponent() {
+var NewsFeedComponent = /** @class */ (function () {
+    function NewsFeedComponent() {
+        this.panelOpenState = false;
     }
-    SideBarComponent.prototype.ngOnInit = function () {
-    }; //end onInit
-    SideBarComponent = __decorate([
+    NewsFeedComponent.prototype.ngOnInit = function () {
+    };
+    NewsFeedComponent = __decorate([
         Component({
-            selector: 'app-side-bar',
-            templateUrl: './side-bar.component.html',
-            styleUrls: ['./side-bar.component.scss']
+            selector: 'app-news-feed',
+            templateUrl: './news-feed.component.html',
+            styleUrls: ['./news-feed.component.scss']
         }),
         __metadata("design:paramtypes", [])
-    ], SideBarComponent);
-    return SideBarComponent;
+    ], NewsFeedComponent);
+    return NewsFeedComponent;
 }());
-export { SideBarComponent };
-//# sourceMappingURL=side-bar.component.js.map
+export { NewsFeedComponent };
+//# sourceMappingURL=news-feed.component.js.map

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 var FooterComponent = /** @class */ (function () {
     function FooterComponent() {
+        this.copyDate = new Date().getFullYear();
     }
     FooterComponent.prototype.sayHello = function () {
         alert('Hello');

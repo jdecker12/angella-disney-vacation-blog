@@ -92,15 +92,27 @@ export class DataService {
                 }));
     }
 
-    public admin(): Observable<boolean> {
-        return this.http.post("/api/cards", this.card, {
-            headers: new HttpHeaders().set("Authorization", "Bearer" + this.token)
+    public admin(data): Observable<boolean> {
+        return this.http.post("/api/cards", data, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
         })
          .pipe(
             map((response) => {
                 this.card = new Card();
                 return true;
             }))
+    }
+
+    public deleteCard(name:string) {
+        return this.http.delete("/api/cards/"+ name, {
+            headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+        })
+            .pipe(
+                map((response) => {
+                this.card = null;
+                return true;
+                })
+            );
     }
     
 

@@ -22,7 +22,6 @@ var SelectCardComponent = /** @class */ (function () {
     SelectCardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.card = new Card();
-        //this.cardContents
         this.data.loadCards()
             .subscribe(function (success) {
             if (success) {
@@ -30,6 +29,7 @@ var SelectCardComponent = /** @class */ (function () {
                 console.log(_this.cards);
             }
         });
+        var radioGroup = new FormControl('new');
         var cardTitle = new FormControl('');
         var cardIcon = new FormControl('');
         var cardImg = new FormControl('');
@@ -39,8 +39,8 @@ var SelectCardComponent = /** @class */ (function () {
         var paraTwo = new FormControl('');
         var paraThree = new FormControl('');
         var paraFour = new FormControl('');
-        // let cardId = new FormControl('');
         this.updateCardForm = new FormGroup({
+            radioGroup: radioGroup,
             cardTitle: cardTitle,
             cardIcon: cardIcon,
             cardImg: cardImg,
@@ -54,22 +54,50 @@ var SelectCardComponent = /** @class */ (function () {
             })
         });
     }; /////end of onInit
+    SelectCardComponent.prototype.clearForm = function () {
+        this.updateCardForm.reset();
+        this.card.cardImg = '';
+        this.card.cardIcon = '';
+    };
     SelectCardComponent.prototype.getErrorMessage = function () {
         return this.cardTitle.hasError('required') ? 'You must enter a value' : '';
     };
-    SelectCardComponent.prototype.saveFormData = function (formValue) {
+    SelectCardComponent.prototype.updateFormData = function (formValue) {
         var _this = this;
+        formValue.cardContents = [formValue.cardContents];
         this.data.updateCard(this.card.cardTitle, formValue)
             .subscribe(function (success) {
             if (success) {
                 _this.card = new Card();
-                /// this.cardContent = new CardContent();
-                console.log(_this.card);
                 _this.router.navigate(['/']);
                 return true;
             }
         });
-        console.log(formValue);
+    };
+    SelectCardComponent.prototype.saveFormData = function (formValue) {
+        var _this = this;
+        formValue.cardContents = [formValue.cardContents];
+        this.data.admin(formValue)
+            .subscribe(function (success) {
+            if (success) {
+                _this.card = new Card();
+                _this.router.navigate(['/']);
+                return true;
+            }
+        });
+    };
+    SelectCardComponent.prototype.getRadioVal = function () {
+        this.isChecked = this.updateCardForm.get('radioGroup').value;
+    };
+    SelectCardComponent.prototype.deleteSelectCard = function () {
+        var name = this.updateCardForm.get('cardTitle').value;
+        this.data.deleteCard(name)
+            .subscribe(function (success) {
+            if (success) {
+                alert('deleted' + name);
+            }
+        });
+        this.router.navigate(['/']);
     };
     SelectCardComponent.prototype.selectName = function (formValue) {
         var _this = this;
@@ -77,11 +105,9 @@ var SelectCardComponent = /** @class */ (function () {
             .subscribe(function (success) {
             if (success) {
                 _this.card = _this.data.card;
-                //this.cardContents = this.data.card.cardContents[0];
-                console.log(_this.card);
-                var cardContents = [];
                 _this.selected = true;
                 var shortHand = _this.card.cardContents[0];
+                _this.radioGroup = new FormControl('update');
                 _this.cardTitle = new FormControl(_this.card.cardTitle);
                 _this.cardIcon = new FormControl(_this.card.cardIcon);
                 _this.cardImg = new FormControl(_this.card.cardImg);
@@ -91,8 +117,8 @@ var SelectCardComponent = /** @class */ (function () {
                 _this.paraTwo = new FormControl(shortHand.paraTwo);
                 _this.paraThree = new FormControl(shortHand.paraThree);
                 _this.paraFour = new FormControl(shortHand.paraFour);
-                ///this.cardId = new FormControl(this.card.thisCardId); 
                 _this.updateCardForm = new FormGroup({
+                    radioGroup: _this.radioGroup,
                     cardTitle: _this.cardTitle,
                     cardIcon: _this.cardIcon,
                     cardImg: _this.cardImg,
@@ -105,17 +131,11 @@ var SelectCardComponent = /** @class */ (function () {
                         paraFour: _this.paraFour,
                     })
                 });
-                //this.updateCardContent = new FormGroup({
-                //    paraOne: this.paras['paraOne'],
-                //    paraTwo: this.card.cardContents['paraTwo'],
-                //    paraThree: this.card.cardContents['paraThree'],
-                //    paraFour: this.card.cardContents['paraFour']
-                //})
             }
         });
     };
     SelectCardComponent.prototype.cancel = function () {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/card"]);
     };
     SelectCardComponent = __decorate([
         Component({

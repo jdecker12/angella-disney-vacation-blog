@@ -10,7 +10,7 @@ namespace GoDisneyBlog.ViewModels
     public class CardViewModel
     {
         public int thisCardId { get; set; }
-        [Required]
+        
         public string cardCategory { get; set; }
         [Required]
         public string cardTitle { get; set; }

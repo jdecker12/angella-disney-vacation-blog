@@ -3,7 +3,17 @@
 .example-container {
     display: flex;
     flex-direction: column;
-    min-width: 375px;
+    width: 100%
+   
+}
+
+
+
+.mat-card {
+    border-bottom:3px solid $a-dark;
+    border-radius: 3px;
+    width: 100%;
+    min-width: 775px;
 }
 
 .example-container > * {
@@ -11,7 +21,7 @@
 }
 
 h1 {
-   color: $p-dark;
+   color: $a-dark;
 }
 
 .mat-form-field-infix {
@@ -19,5 +29,5 @@ h1 {
     position: relative;
     flex: auto;
     min-width: 0;
-    width: 375px;
+    width: 100%;
 }

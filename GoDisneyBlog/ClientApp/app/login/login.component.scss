@@ -1,14 +1,14 @@
 @import'../_variables.scss';
 
 #main-content {
-    // margin: $gutters-main;
-    float: right;
-
+   
     h1 {
-        color: $p-dark;
+        color: $a-dark;
     }
 }
-
+.mat-card {
+    min-width: 775px;
+}
 #aside-container {
     width: 350px;
     // background-color: #673ab7;
@@ -17,18 +17,24 @@
 }
 .go-dis-card {
     margin-bottom: 2rem;
-   width: 100%;
+    width: 100%;
     border-radius: 0 !important;
+    border-bottom: 3px solid $a-dark;
+    border-radius: 3px;
 
     .mat-card-header {
         color: $p-dark;
+    }
+    .a-button {
+        background-color: $a-dark;
+        color: #fff;
     }
 
     .mat-fab {
         float: right;
         top: -59px;
         right: 3rem;
-        background-color: $p-dark;
+        background-color: $a-dark;
         color: #fff;
     }
 

@@ -9,6 +9,12 @@ export class FooterComponent implements OnInit {
 
     constructor() { }
 
+
+    copyDate: number = new Date().getFullYear();
+
+
+
+
     sayHello(): void {
         alert('Hello');
     }

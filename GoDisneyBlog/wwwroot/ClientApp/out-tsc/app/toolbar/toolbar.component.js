@@ -7,24 +7,44 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 var ToolbarComponent = /** @class */ (function () {
-    function ToolbarComponent() {
+    function ToolbarComponent(data, router) {
+        this.data = data;
+        this.router = router;
         this.toggleSidenav = new EventEmitter();
+        this.goToAdmin = new EventEmitter();
+        this.buttonText();
     }
+    ToolbarComponent.prototype.onAdmin = function () {
+        this.data.loginRequired ? this.router.navigate(['login']) : this.router.navigate(['select-card']);
+    };
+    ToolbarComponent.prototype.buttonText = function () {
+        this.data.loginRequired ? this.update = 'login' : this.update = 'Create Content';
+    };
     ToolbarComponent.prototype.ngOnInit = function () {
     };
     __decorate([
         Output(),
         __metadata("design:type", Object)
     ], ToolbarComponent.prototype, "toggleSidenav", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", Object)
+    ], ToolbarComponent.prototype, "goToAdmin", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], ToolbarComponent.prototype, "navTrue", void 0);
     ToolbarComponent = __decorate([
         Component({
             selector: 'app-toolbar',
             templateUrl: './toolbar.component.html',
             styleUrls: ['./toolbar.component.scss']
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [DataService, Router])
     ], ToolbarComponent);
     return ToolbarComponent;
 }());

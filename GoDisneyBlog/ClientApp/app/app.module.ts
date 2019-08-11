@@ -25,18 +25,19 @@ import { FullCardComponent } from './cards/full-card/full-card.component';
 import { LoginComponent } from './login/login.component';
 import { SelectCardComponent } from './admin/select-card/select-card.component';
 import { GaugestestComponent } from './gaugestest/gaugestest.component';
+import { NewsFeedComponent } from './news-feed/news-feed.component';
 
 
 const routes: Routes = [
         
-    { path: 'main', component: MainContentComponent },
+    { path: 'card', component: CardComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'login', component: LoginComponent },
     { path: 'select-card', component: SelectCardComponent },
     { path: ':id', component: FullCardComponent }, 
     
-    { path: '**', redirectTo: 'main' }
+    { path: '**', redirectTo: 'card' }
 ]
 
 @NgModule({
@@ -56,7 +57,8 @@ const routes: Routes = [
       FullCardComponent,
       LoginComponent,
       SelectCardComponent,
-      GaugestestComponent
+      GaugestestComponent,
+      NewsFeedComponent
   ],
   imports: [
       BrowserModule,

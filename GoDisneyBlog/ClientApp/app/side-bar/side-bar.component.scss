@@ -1,5 +1,10 @@
 @import'../_variables.scss';
+
+.mat-card {
+    border-bottom: 3px solid $a-dark;
+}
 .sidebar-card {
+   
     .mat-card-header {
         background-image: url('/img/showtime.jpg');
         background-repeat: no-repeat;

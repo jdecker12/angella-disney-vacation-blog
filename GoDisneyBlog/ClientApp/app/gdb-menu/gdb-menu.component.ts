@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GdbMenuComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
+
+    opened: boolean;
 
   ngOnInit() {
   }

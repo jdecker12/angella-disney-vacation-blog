@@ -1,6 +1,7 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
+import { visitSiblingRenderNodes } from '@angular/core/src/view/util';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -10,6 +11,9 @@ const SMALL_WIDTH_BREAKPOINT = 720;
     styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent {
+
+    navActive: boolean;
+
     private mediaMatcher: MediaQueryList = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px`);
 
     constructor(zone: NgZone, private data: DataService, private router: Router) {
@@ -18,16 +22,16 @@ export class SideNavComponent {
     }
     events: string[] = [];
     opened: boolean;
+    navTrue: boolean;
 
     isScreenSmall(): boolean {
+        this.navTrue = false;
         return this.mediaMatcher.matches;
     }
 
+
+
     onAdmin(): void {
-        if (this.data.loginRequired) {
-            this.router.navigate(["login"])
-        } else {
-            this.router.navigate(["select-card"]);
-        }
+        this.data.loginRequired ? this.router.navigate(['login']) : this.router.navigate(['select-card']);
     }
 }

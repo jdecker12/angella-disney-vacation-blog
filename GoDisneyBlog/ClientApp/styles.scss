@@ -1,5 +1,6 @@
 ﻿@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~@angular/cdk/overlay-prebuilt.css';
+@import 'app/_variables.scss';
 
 html, body {
     height: 100%;
@@ -9,17 +10,22 @@ html, body {
     .flex-container {
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-around;
+        justify-content: space-evenly;
     }
 
     .flex-container-col {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-evenly;
     }
 
     .half-spacer {
         flex: .25 1 auto;
+    }
+
+
+    .sm-spacer {
+        flex: $sm-spacer;
     }
 
     #sidebar-card {
@@ -43,8 +49,36 @@ html, body {
         }
     }
 
+    .mat-fab.mat-accent {
+        background-color: $as-dark;
+    }
+
+    .matdrawer-content.mat-sidenav-content {
+        &:after {
+            position: absolute;
+            top: 297px;
+            display: block;
+            left: 0;
+            width: 100%;
+            height: 340px;
+            background-color: $purple;
+            z-index: -10;
+            content: "mother bitch";
+        }
+    }
+
+    .mat-input-element {
+        font-size: .85rem;
+        color: $dark-gray;
+    }
+
     .mat-form-field.mat-focused .mat-form-field-ripple {
         background-color: #007ac1;
+    }
+
+    .a-button {
+        background-color: $a-dark;
+        color: #fff;
     }
 
     a:link {
@@ -61,6 +95,65 @@ html, body {
         height: inherit;
         display: inline;
         color: #007ac1;
+    }
+
+    button.mat-mini-fab.mat-accent {
+        background-color: $as-light;
+        color: #fff;
+    }
+
+    .mat-drawer {
+        color: #fff;
+    }
+
+    .mat-menu-content {
+        background-color: $a-light;
+        color: #000000;
+    }
+
+    .mat-expansion-panel-header-title {
+        color: #fff;
+    }
+
+    .mat-expansion-indicator::after {
+        border-style: solid;
+        border-width: 0 2px 2px 0;
+        content: '';
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(45deg);
+        vertical-align: middle;
+        color: #fff;
+    }
+
+    .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+        background-color: $as-light;
+    }
+
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+        border-color: $as-light;
+    }
+
+    .mat-accordion {
+        background-color: #aa00c7;
+        color: #fff;
+
+        .mat-expansion-panel {
+            background-color: #aa00c7;
+            color: #fff !important;
+
+            .mat-expansion-panel-header-title {
+                color: #fff;
+            }
+
+            span.mat-content {
+                color: #fff;
+
+                .mat-panel-title {
+                    color: #fff;
+                }
+            }
+        }
     }
 }
 

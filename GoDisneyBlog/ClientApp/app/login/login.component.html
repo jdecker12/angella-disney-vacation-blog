@@ -1,7 +1,7 @@
 
-<div class="flex-container">
+<div class="flex-container form-width">
     <div id="main-content" class="flex-container-col">
-        <mat-card class="go-dis-card">
+        <mat-card class="go-dis-card mat-elevation-z13">
             <mat-card-header>
                 <mat-card-title><h1>Login</h1></mat-card-title>
                 <span *ngIf="errMessage">{{errMessage}}</span>
@@ -22,13 +22,11 @@
 
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-button mat-raised-button class="primary">Submit</button>
+                    <button mat-button mat-raised-button class="a-button">Submit</button>
                     <button mat-button mat-raised-button (click)="cancel()">Cancel</button>
                 </mat-card-actions>
             </form>
         </mat-card>
     </div>
-    <aside id="aside-container" class="flex-container-col">
-        <app-side-bar></app-side-bar>
-    </aside>
+   
 </div>
