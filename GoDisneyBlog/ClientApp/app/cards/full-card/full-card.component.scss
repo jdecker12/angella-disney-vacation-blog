@@ -20,18 +20,24 @@
 .go-dis-card {
     margin-bottom: 2rem;
     max-width: 710px;
-    border-radius: 0 !important;
+    border-bottom: 3px solid $a-dark;
+    border-radius: 3px;
 
     .mat-card-header {
-        color: $p-dark;
+        color: $a-dark;
+    }
+
+    .mat-card-content a {
+        color: $a-dark;
+        text-decoration: underline;
     }
 
     .mat-fab {
         float: right;
         top: -59px;
         right: 3rem;
-        background-color: $p-dark;
-        color: #fff;
+        background-color: $a-light;
+        color: #000000;
     }
- }
+}
 

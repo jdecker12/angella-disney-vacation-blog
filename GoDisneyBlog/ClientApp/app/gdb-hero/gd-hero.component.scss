@@ -117,6 +117,10 @@ div#gdb-hero {
                     color: #fff;
                 }
             }
+
+            a.active {
+                    text-decoration: underline;
+            }
         }
     }
 }

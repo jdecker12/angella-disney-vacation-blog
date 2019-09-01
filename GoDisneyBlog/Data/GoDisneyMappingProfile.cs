@@ -26,7 +26,7 @@ namespace GoDisneyBlog.Data
             CreateMap<CardContent, CardContentsViewModel>()
                 .ForMember(c => c.paraOne, ex => ex.MapFrom(c => c.ParaOne))
                 .ForMember(c => c.paraTwo, ex => ex.MapFrom(c => c.ParaTwo))
-                .ForMember(c => c.paraThree, ex => ex.MapFrom(c => c.ParaFour))
+                .ForMember(c => c.paraThree, ex => ex.MapFrom(c => c.ParaThree))
                 .ForMember(c => c.paraFour, ex => ex.MapFrom(c => c.ParaFour))
                 .ReverseMap();
         }
