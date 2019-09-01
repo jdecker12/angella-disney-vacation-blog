@@ -15,8 +15,12 @@
         <app-gdb-hero></app-gdb-hero>
        
         <div id="main-content" class="flex-container">
-            <router-outlet></router-outlet>
-            <aside id="aside-container" class="flex-container">
+           <mat-spinner *ngIf="!cardData"></mat-spinner>
+           <div id="main-wrapper" *ngIf="cardData">
+               <router-outlet></router-outlet>
+           </div>
+          
+            <aside id="aside-container" class="flex-container fade-in">
                 <app-side-bar></app-side-bar>
             </aside>
         </div>

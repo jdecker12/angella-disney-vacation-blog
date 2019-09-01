@@ -6,10 +6,13 @@
         <span class="sm-spacer"></span>
         <button mat-button (change)="buttonText()" mat-stroked-button [matMenuTriggerFor]="menu">Menu</button>
         <mat-menu #menu="matMenu">
-            <button  mat-menu-item (click)="goToAdmin.emit()">{{update}}</button>
+            <button mat-menu-item (click)="goToAdmin.emit()">{{update}}</button>
         </mat-menu>
         <!--<span class="gdb-flex-menu"><app-gdb-menu ></app-gdb-menu></span>-->
-
+        <span class="half-spacer"></span>
+        <span class="half-spacer"></span>
+        <span class="half-spacer"></span>
+        <span class="toolbar-font">Go Disney Blog!</span>
 
         <span class="example-spacer"></span>
         <mat-icon class="gdb-hamburger" (click)="toggleSidenav.emit()">menu</mat-icon>

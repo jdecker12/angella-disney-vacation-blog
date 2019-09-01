@@ -8,10 +8,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { DataService } from '../services/data.service';
 var GdHeroComponent = /** @class */ (function () {
-    function GdHeroComponent() {
+    function GdHeroComponent(data) {
+        this.data = data;
     }
     GdHeroComponent.prototype.ngOnInit = function () {
+        this.cards$ = this.data.loadCards();
+    };
+    GdHeroComponent.prototype.truncEight = function (x) {
+        return x.slice(x.indexOf('-') + 1);
     };
     GdHeroComponent = __decorate([
         Component({
@@ -19,7 +25,7 @@ var GdHeroComponent = /** @class */ (function () {
             templateUrl: './gd-hero.component.html',
             styleUrls: ['./gd-hero.component.scss']
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [DataService])
     ], GdHeroComponent);
     return GdHeroComponent;
 }());

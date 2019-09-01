@@ -41,11 +41,11 @@ namespace GoDisneyBlog.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var cards = _repository.GetCard();
+                var cards = await _repository.GetCard();
                 return Ok(_mapper.Map<IEnumerable<Card>, IEnumerable<CardViewModel>>(cards));
             }
             catch(Exception ex)
@@ -56,11 +56,11 @@ namespace GoDisneyBlog.Controllers
         }
         [AllowAnonymous]
         [HttpGet("{id:int}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var card = _repository.GetCardById(id);
+                var card = await _repository.GetCardById(id);
                 if (card != null)
                 {
                     return Ok(_mapper.Map<Card, CardViewModel>(card));
@@ -79,11 +79,11 @@ namespace GoDisneyBlog.Controllers
 
         [HttpGet("{name}")]
         [AllowAnonymous]
-        public IActionResult Get(string name)
+        public async  Task<IActionResult> Get(string name)
         {
             try
             {
-                var card = _repository.GetCardByName(name);
+                var card = await  _repository.GetCardByName(name);
                 if (card != null)
                 {
                     return Ok(_mapper.Map<Card, CardViewModel>(card));
@@ -128,7 +128,7 @@ namespace GoDisneyBlog.Controllers
                 _logger.LogError($"Failed to save card info. {ex}");
                
             }
-            return BadRequest("Failed to save card info.");
+            return BadRequest(ModelState);
 
         }
 
@@ -139,7 +139,7 @@ namespace GoDisneyBlog.Controllers
             {
                 // if(ModelState.IsValid)
                 // {
-                 var oldCard = _repository.GetCardByName(name);
+                 var oldCard = await _repository.GetCardByName(name);
                     if (oldCard == null) return NotFound($"Could not find a card with a name of {name}");
                     _mapper.Map(model, oldCard);
 

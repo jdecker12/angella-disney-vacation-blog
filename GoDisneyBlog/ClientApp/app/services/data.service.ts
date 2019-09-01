@@ -25,17 +25,17 @@ export class DataService {
         })
     };
 
-    loadCards(): Observable<boolean> {
+    loadCards(): any {
         return this.http.get("/api/cards")
             .pipe(
             map((data:any[]) => {
                 this.cards = data;
-                return true;
+                return this.cards;
             }));
     }
 
-    getCardById(id: number) {
-        return this.cards.find(x => x.thisCardId == id);
+    getCardById(id: string) {
+        return this.cards.find(x => x.cardTitle == id);
     }
 
     getMyCardById(id: number): Observable<boolean> {
@@ -98,7 +98,7 @@ export class DataService {
         })
          .pipe(
             map((response) => {
-                this.card = new Card();
+             this.card = new Card();
                 return true;
             }))
     }

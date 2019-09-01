@@ -31,13 +31,13 @@ namespace GoDisneyBlog.Data
             _context.Remove(model);
         }
 
-        public IEnumerable<Card> GetCard()
+        public async Task<IEnumerable<Card>> GetCard()
         {
             try
             {
-                return _context.Cards
+                return  await _context.Cards
                     .Include(c => c.CardContents)
-                    .ToList();
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
@@ -46,14 +46,14 @@ namespace GoDisneyBlog.Data
             }
         }
 
-        public Card GetCardById(int id)
+        public async Task<Card> GetCardById(int id)
         {
             try
             {
-                return _context.Cards
+                return await _context.Cards
                         .Include(c => c.CardContents)
                         .Where(i => i.Id == id)
-                        .FirstOrDefault();
+                        .FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
@@ -62,14 +62,14 @@ namespace GoDisneyBlog.Data
             }
         }
 
-        public Card GetCardByName(string name)
+        public async Task<Card> GetCardByName(string name)
         {
             try
             {
-                return _context.Cards
+                return await  _context.Cards
                         .Include(c => c.CardContents)
                         .Where(n => n.CardTitle == name)
-                        .FirstOrDefault();
+                        .FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {

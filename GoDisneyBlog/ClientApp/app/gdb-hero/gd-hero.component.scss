@@ -2,7 +2,7 @@
 
 div#gdb-hero {
     height: 340px;
-    background-color: #007ac1;
+    background-color: $a-dark;
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     display: flex;
     color: #fff;
@@ -19,6 +19,8 @@ div#gdb-hero {
     box-shadow: 0 16px 21px 9px rgba(0, 0, 0, 0.2);
     border-bottom: solid 3px $purple-d;
 
+
+
     &:after {
         position: absolute;
         top: 0;
@@ -30,5 +32,91 @@ div#gdb-hero {
         display: block;
         content: " ";
         color: aliceblue;
+        animation: herobackground .95s ease-out forwards;
+        animation-delay: 2s;
+
+        @keyframes herobackground {
+            from {
+                opacity: 0.55;
+            }
+
+            to {
+                opacity: 0.65;
+            }
+        }
+    }
+
+    img {
+        filter: blur(5px);
+    }
+
+    ul {
+        position: relative;
+        z-index: 3;
+        height: 50px;
+        display: flex;
+        animation: heronav 1.75s ease-out forwards;
+        animation-delay: 2s;
+
+        @keyframes heronav {
+            0% {
+                top: 0px;
+                opacity: 0;
+            }
+
+            25% {
+                top: 0px;
+                opacity: .25;
+            }
+
+            50% {
+                top: 0px;
+                opacity: 0.75;
+            }
+
+            75% {
+                top: 160px;
+                opacity: .25;
+            }
+
+            100% {
+                top: 155px;
+                opacity: 100;
+            }
+        }
+
+        li {
+            line-height: 1.5rem;
+            list-style-type: none;
+            display: inline;
+            padding: 0 1rem;
+            filter: drop-shadow(2px 4px 6px #111);
+
+
+            span#clr-change1 > .mat-icon {
+                color: $icon-yellow;
+            }
+
+            span#clr-change2 > .mat-icon {
+                color: $icon-red;
+            }
+
+            span#clr-change3 > .mat-icon {
+                color: $icon-green;
+            }
+
+            span#clr-change4 > .mat-icon {
+                color: $icon-blue;
+            }
+
+            > a {
+                font-size: 1rem;
+                color: #fff;
+
+                :visited {
+                    color: #fff;
+                }
+            }
+        }
     }
 }

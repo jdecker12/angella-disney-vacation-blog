@@ -26,7 +26,6 @@ var SelectCardComponent = /** @class */ (function () {
             .subscribe(function (success) {
             if (success) {
                 _this.cards = _this.data.cards;
-                console.log(_this.cards);
             }
         });
         var radioGroup = new FormControl('new');
@@ -94,7 +93,7 @@ var SelectCardComponent = /** @class */ (function () {
         this.data.deleteCard(name)
             .subscribe(function (success) {
             if (success) {
-                alert('deleted' + name);
+                return true;
             }
         });
         this.router.navigate(['/']);
@@ -107,7 +106,7 @@ var SelectCardComponent = /** @class */ (function () {
                 _this.card = _this.data.card;
                 _this.selected = true;
                 var shortHand = _this.card.cardContents[0];
-                _this.radioGroup = new FormControl('update');
+                (_this.isChecked == 'update') ? _this.radioGroup = new FormControl('update') : _this.radioGroup = new FormControl('delete');
                 _this.cardTitle = new FormControl(_this.card.cardTitle);
                 _this.cardIcon = new FormControl(_this.card.cardIcon);
                 _this.cardImg = new FormControl(_this.card.cardImg);

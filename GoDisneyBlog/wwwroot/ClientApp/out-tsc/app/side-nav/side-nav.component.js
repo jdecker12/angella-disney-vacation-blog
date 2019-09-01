@@ -22,6 +22,18 @@ var SideNavComponent = /** @class */ (function () {
             return zone.run(function () { return _this.mediaMatcher = matchMedia("(max-width: " + SMALL_WIDTH_BREAKPOINT + "px)"); });
         });
     }
+    SideNavComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.data.loadCards()
+            .subscribe(function (success) {
+            if (success) {
+                _this.cardData = _this.data.cards;
+                console.log(_this.cardData);
+                return true;
+            }
+            return false;
+        });
+    };
     SideNavComponent.prototype.isScreenSmall = function () {
         this.navTrue = false;
         return this.mediaMatcher.matches;

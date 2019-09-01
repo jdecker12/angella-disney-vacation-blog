@@ -30,11 +30,11 @@ var DataService = /** @class */ (function () {
         return this.http.get("/api/cards")
             .pipe(map(function (data) {
             _this.cards = data;
-            return true;
+            return _this.cards;
         }));
     };
     DataService.prototype.getCardById = function (id) {
-        return this.cards.find(function (x) { return x.thisCardId == id; });
+        return this.cards.find(function (x) { return x.cardTitle == id; });
     };
     DataService.prototype.getMyCardById = function (id) {
         var _this = this;

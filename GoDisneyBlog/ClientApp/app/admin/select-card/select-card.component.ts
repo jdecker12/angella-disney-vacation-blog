@@ -21,7 +21,7 @@ export class SelectCardComponent implements OnInit {
     public selected: boolean = false;
     public result: any;
     public crdCntns: any;
-    public isChecked: boolean;
+    public isChecked: string;
 
     updateCardForm: FormGroup;
     cardContents: FormGroup;
@@ -46,7 +46,6 @@ export class SelectCardComponent implements OnInit {
             .subscribe(success => {
                 if (success) {
                     this.cards = this.data.cards;
-                    console.log(this.cards);
                    
                 }
             })
@@ -109,6 +108,8 @@ export class SelectCardComponent implements OnInit {
                     this.router.navigate(['/']);
                     return true;
                 }
+
+
                 
             });
 
@@ -123,7 +124,7 @@ export class SelectCardComponent implements OnInit {
         this.data.deleteCard(name)
             .subscribe(success => {
                 if (success) {
-                    alert('deleted' + name);
+                    return true;
                 }
                
             });
@@ -137,8 +138,8 @@ export class SelectCardComponent implements OnInit {
                     this.card = this.data.card;  
                     this.selected = true;
                     var shortHand = this.card.cardContents[0];
-
-                    this.radioGroup = new FormControl('update');
+                    
+                    (this.isChecked == 'update') ? this.radioGroup = new FormControl('update'): this.radioGroup = new FormControl('delete');
                     this.cardTitle = new FormControl(this.card.cardTitle);
                     this.cardIcon = new FormControl(this.card.cardIcon);
                     this.cardImg = new FormControl(this.card.cardImg);

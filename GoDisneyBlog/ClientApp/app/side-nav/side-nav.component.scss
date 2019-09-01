@@ -7,6 +7,10 @@
     position: absolute;
 }
 
+#main-wrapper {
+    min-width: 800px;
+}
+
 .mat-drawer {
     color: #fff;
 }
@@ -21,14 +25,12 @@
         background-color: $a-light;
         z-index: -10;
         content: "Disney is Fun!";
-        border-bottom: 1px solid #007ac1;
-        //opacity: 0.5;
+        box-shadow: $shadow;
     }
 }
 .navigation {
     margin-top: 3rem;
     margin-left: 1rem;
-
     margin-bottom: 6.5rem;
 
     a.mat-stroked-button {
@@ -37,6 +39,7 @@
 
     a.mat-stroked-button.active {
         background-color: $a-light;
+        filter: drop-shadow(0px 1px 0.75px #604);
         color: #000000;
     }
 }

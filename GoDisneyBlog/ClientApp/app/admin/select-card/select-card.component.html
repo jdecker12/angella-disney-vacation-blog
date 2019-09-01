@@ -2,7 +2,7 @@
 
     <mat-card class="go-dis-card mat-elevation-z13">
         <mat-card-header>
-            <mat-card-title>Content Maker</mat-card-title>
+            <mat-card-title>Content Builder</mat-card-title>
         </mat-card-header>
 
         <form  [formGroup]="updateCardForm" (submit)="(isChecked == 'update') ? updateFormData(updateCardForm.value) : saveFormData(updateCardForm.value)">
@@ -16,15 +16,15 @@
 
                     </mat-radio-group>
 
-                    <div *ngIf="isChecked == 'update' || isChecked == 'delete'" class="flex-container">
+                    <div *ngIf="isChecked == 'update' || isChecked == 'delete'">
                         <h4>Select a Card to Update</h4>
-                        <mat-list role="list" class="select-card">
+                        <mat-list role="list" class="select-card flex-container">
                             <mat-list-item *ngFor="let card of cards" role="listitem">
-                                <a mat-button mat-raised-button (click)="selectName(card.cardTitle)" class="a-button">{{card.cardTitle}}</a>
+                                <a mat-button mat-raised-button (click)="selectName(card.cardTitle)" class="a-button fade-in">{{card.cardTitle}}</a>
                             </mat-list-item>
                         </mat-list>
-                        <div *ngIf="isChecked == 'delete'">
-                            <a mat-button mat-raised-button class="a-button" (click)="deleteSelectCard()">Delete</a>
+                        <div *ngIf="isChecked == 'delete' && selected" class="flex-container delete-button">
+                            <a mat-button mat-raised-button class="a-button fade-in" (click)="deleteSelectCard()">Delete Card</a>
                         </div>
                     </div>
 
@@ -34,7 +34,7 @@
                         </mat-form-field>
                     </div>
                     <div class="example-container">
-                        <div *ngIf="selected" class="form-image"><img mat-card-image src="/img/{{card.cardImg}}.jpg" alt="Card Image"></div>
+                        <div *ngIf="selected" class="form-image"><img mat-card-image src="/img/{{card.cardImg}}.jpg"></div>
                         <mat-form-field>
                             <input matInput placeholder="Enter new card image" name="cardImg" formControlName="cardImg" id="cardImg" required>
                         </mat-form-field>
