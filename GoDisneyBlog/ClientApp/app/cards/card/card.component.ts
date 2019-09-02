@@ -14,13 +14,12 @@ export class CardComponent implements OnInit {
     public cards: Card[] = [];
 
     ngOnInit(): void  {
-        this.data.loadCards()
+        this.data.loadCardsByCategory('Main')
             .subscribe(success => {
                 if (success) {
                     this.cards = this.data.cards;
                     return true;
                 }
-
             });
     }
 }

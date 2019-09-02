@@ -78,6 +78,22 @@ namespace GoDisneyBlog.Data
             }
         }
 
+        public async Task<IEnumerable<Card>> GetCardsByCat(string cat)
+        {
+            try
+            {
+                return await _context.Cards
+                        .Include(c => c.CardContents)
+                        .Where(n => n.Category == cat)
+                        .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get card by name {ex}");
+                return null;
+            }
+        }
+
         public async Task<bool> SaveAllAsync()
         {
             try

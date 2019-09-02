@@ -16,7 +16,7 @@ var CardComponent = /** @class */ (function () {
     }
     CardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.data.loadCards()
+        this.data.loadCardsByCategory('Main')
             .subscribe(function (success) {
             if (success) {
                 _this.cards = _this.data.cards;

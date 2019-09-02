@@ -16,6 +16,7 @@ namespace GoDisneyBlog.Data
             CreateMap<Card, CardViewModel>()
                 //.ForMember(c => c.thisCardId, ex => ex.MapFrom(c => c.Id))
                 .ForMember(c => c.cardTitle, ex => ex.MapFrom(c => c.CardTitle))
+                .ForMember(c => c.cardCategory, ex => ex.MapFrom(c => c.Category))
                 .ForMember(c => c.cardImg, ex => ex.MapFrom(c => c.CardImg))
                 .ForMember(c => c.cardContents, ex => ex.MapFrom(c => c.CardContents))
                 .ForMember(c => c.cardIcon, ex => ex.MapFrom(c => c.CardIcon))

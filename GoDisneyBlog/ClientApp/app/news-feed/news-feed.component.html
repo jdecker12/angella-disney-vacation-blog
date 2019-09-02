@@ -1,59 +1,17 @@
 <div id="news-feed" class="flex-container">
     <h2>The News</h2>
     <hr />
-    <mat-accordion>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Hollywood Studios
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>Galaxies Edge Opening Day!</p>
-        </mat-expansion-panel>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Epcot
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>This Years Food and Wine Festival</p>
-        </mat-expansion-panel>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Animal Kingdom
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>This Years Food and Wine Festival</p>
-        </mat-expansion-panel>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Magic Kingdom
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>This Years Food and Wine Festival</p>
-        </mat-expansion-panel>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Disney Golf
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>This Years Food and Wine Festival</p>
-        </mat-expansion-panel>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Disney Water Parks
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>This Years Food and Wine Festival</p>
-        </mat-expansion-panel>
+    <mat-accordion *ngIf="cards$ | async as cards">
+        <span *ngFor="let c of cards">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{c.cardTitle}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                    <img src="/img/{{c.cardImg}}.jpg" />
+               <p>Galaxies Edge Opening Day!</p>
+            </mat-expansion-panel>
+        </span>
     </mat-accordion>
 </div>

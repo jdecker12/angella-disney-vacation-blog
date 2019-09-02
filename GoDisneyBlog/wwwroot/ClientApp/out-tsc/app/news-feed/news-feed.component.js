@@ -8,11 +8,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { DataService } from '../services/data.service';
 var NewsFeedComponent = /** @class */ (function () {
-    function NewsFeedComponent() {
+    function NewsFeedComponent(data) {
+        this.data = data;
         this.panelOpenState = false;
     }
     NewsFeedComponent.prototype.ngOnInit = function () {
+        this.cards$ = this.data.loadCardsByCategory('News');
     };
     NewsFeedComponent = __decorate([
         Component({
@@ -20,7 +23,7 @@ var NewsFeedComponent = /** @class */ (function () {
             templateUrl: './news-feed.component.html',
             styleUrls: ['./news-feed.component.scss']
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [DataService])
     ], NewsFeedComponent);
     return NewsFeedComponent;
 }());

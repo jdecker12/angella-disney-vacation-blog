@@ -26,8 +26,7 @@ export class SelectCardComponent implements OnInit {
     updateCardForm: FormGroup;
     cardContents: FormGroup;
     radioGroup: FormControl;
-    new: FormControl;
-    update: FormControl;
+    cardCategory: FormControl;
     cardTitle: FormControl;
     cardIcon: FormControl;
     cardImg: FormControl;
@@ -50,7 +49,8 @@ export class SelectCardComponent implements OnInit {
                 }
             })
         let radioGroup = new FormControl('new');
-        let cardTitle = new FormControl('');
+        let cardTitle = new FormControl();
+        let cardCategory = new FormControl('Main');
         let cardIcon = new FormControl('');
         let cardImg = new FormControl('');
         let cardLink = new FormControl('');
@@ -63,6 +63,7 @@ export class SelectCardComponent implements OnInit {
         this.updateCardForm = new FormGroup({
             radioGroup: radioGroup,
             cardTitle: cardTitle,
+            cardCategory: cardCategory,
             cardIcon: cardIcon,
             cardImg: cardImg,
             cardLink: cardLink,
@@ -141,6 +142,7 @@ export class SelectCardComponent implements OnInit {
                     
                     (this.isChecked == 'update') ? this.radioGroup = new FormControl('update'): this.radioGroup = new FormControl('delete');
                     this.cardTitle = new FormControl(this.card.cardTitle);
+                    this.cardCategory = new FormControl(this.card.cardCategory);
                     this.cardIcon = new FormControl(this.card.cardIcon);
                     this.cardImg = new FormControl(this.card.cardImg);
                     this.cardLink = new FormControl(this.card.cardLink);
@@ -153,6 +155,7 @@ export class SelectCardComponent implements OnInit {
                     this.updateCardForm = new FormGroup({
                         radioGroup: this.radioGroup,
                         cardTitle: this.cardTitle,
+                        cardCategory: this.cardCategory,
                         cardIcon: this.cardIcon,
                         cardImg: this.cardImg,
                         cardLink: this.cardLink,

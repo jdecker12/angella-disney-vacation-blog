@@ -29,7 +29,8 @@ var SelectCardComponent = /** @class */ (function () {
             }
         });
         var radioGroup = new FormControl('new');
-        var cardTitle = new FormControl('');
+        var cardTitle = new FormControl();
+        var cardCategory = new FormControl('Main');
         var cardIcon = new FormControl('');
         var cardImg = new FormControl('');
         var cardLink = new FormControl('');
@@ -41,6 +42,7 @@ var SelectCardComponent = /** @class */ (function () {
         this.updateCardForm = new FormGroup({
             radioGroup: radioGroup,
             cardTitle: cardTitle,
+            cardCategory: cardCategory,
             cardIcon: cardIcon,
             cardImg: cardImg,
             cardLink: cardLink,
@@ -108,6 +110,7 @@ var SelectCardComponent = /** @class */ (function () {
                 var shortHand = _this.card.cardContents[0];
                 (_this.isChecked == 'update') ? _this.radioGroup = new FormControl('update') : _this.radioGroup = new FormControl('delete');
                 _this.cardTitle = new FormControl(_this.card.cardTitle);
+                _this.cardCategory = new FormControl(_this.card.cardCategory);
                 _this.cardIcon = new FormControl(_this.card.cardIcon);
                 _this.cardImg = new FormControl(_this.card.cardImg);
                 _this.cardLink = new FormControl(_this.card.cardLink);
@@ -119,6 +122,7 @@ var SelectCardComponent = /** @class */ (function () {
                 _this.updateCardForm = new FormGroup({
                     radioGroup: _this.radioGroup,
                     cardTitle: _this.cardTitle,
+                    cardCategory: _this.cardCategory,
                     cardIcon: _this.cardIcon,
                     cardImg: _this.cardImg,
                     cardLink: _this.cardLink,

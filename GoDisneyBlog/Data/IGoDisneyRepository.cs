@@ -12,6 +12,7 @@ namespace GoDisneyBlog.Data
         Task<bool> SaveAllAsync();
         void AddEntity(object model);
         void DeleteEntity(object model);
-       Task<Card> GetCardByName(string name);
+        Task<Card> GetCardByName(string name);
+        Task<IEnumerable<Card>> GetCardsByCat(string cat);
     }
 }

@@ -27,7 +27,15 @@ var DataService = /** @class */ (function () {
     }
     DataService.prototype.loadCards = function () {
         var _this = this;
-        return this.http.get("/api/cards")
+        return this.http.get("/api/cards/GetAllCards")
+            .pipe(map(function (data) {
+            _this.cards = data;
+            return _this.cards;
+        }));
+    };
+    DataService.prototype.loadCardsByCategory = function (cat) {
+        var _this = this;
+        return this.http.get("/api/cards/GetByCategory/" + cat)
             .pipe(map(function (data) {
             _this.cards = data;
             return _this.cards;
@@ -38,7 +46,7 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.getMyCardById = function (id) {
         var _this = this;
-        return this.http.get("/api/cards/" + id)
+        return this.http.get("/api/cards/GetCardById/" + id)
             .pipe(map(function (data) {
             _this.card = data;
             return true;
@@ -46,7 +54,7 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.getCardByName = function (name) {
         var _this = this;
-        return this.http.get("/api/cards/" + name)
+        return this.http.get("/api/cards/GetCardByName/" + name)
             .pipe(map(function (data) {
             _this.card = data;
             return true;

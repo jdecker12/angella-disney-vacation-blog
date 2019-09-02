@@ -26,7 +26,7 @@ export class DataService {
     };
 
     loadCards(): any {
-        return this.http.get("/api/cards")
+        return this.http.get("/api/cards/GetAllCards")
             .pipe(
             map((data:any[]) => {
                 this.cards = data;
@@ -34,12 +34,21 @@ export class DataService {
             }));
     }
 
+    loadCardsByCategory(cat: string): any {
+        return this.http.get("/api/cards/GetByCategory/" + cat)
+            .pipe(
+                map((data: any[]) => {
+                    this.cards = data;
+                    return this.cards;
+                }));
+    }
+
     getCardById(id: string) {
         return this.cards.find(x => x.cardTitle == id);
     }
 
     getMyCardById(id: number): Observable<boolean> {
-        return this.http.get("/api/cards/" + id)
+        return this.http.get("/api/cards/GetCardById/" + id)
             .pipe(
             map((data: any) => {
                 this.card = data;
@@ -48,7 +57,7 @@ export class DataService {
     }
 
     getCardByName(name): Observable<boolean> {
-       return this.http.get("/api/cards/" + name)
+       return this.http.get("/api/cards/GetCardByName/" + name)
             .pipe(
             map((data: any) => {
                 this.card = data;

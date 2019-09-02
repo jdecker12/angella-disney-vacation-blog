@@ -40,8 +40,9 @@ namespace GoDisneyBlog.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllCards")]
         [AllowAnonymous]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAllCards()
         {
             try
             {
@@ -55,8 +56,9 @@ namespace GoDisneyBlog.Controllers
             }
         }
         [AllowAnonymous]
+        [Route("GetCardById/{id:int}")]
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetCardById(int id)
         {
             try
             {
@@ -78,8 +80,9 @@ namespace GoDisneyBlog.Controllers
         }
 
         [HttpGet("{name}")]
+        [Route("GetCardByName/{name}")]
         [AllowAnonymous]
-        public async  Task<IActionResult> Get(string name)
+        public async Task<IActionResult> GetCardByName(string name)
         {
             try
             {
@@ -99,6 +102,33 @@ namespace GoDisneyBlog.Controllers
                 return BadRequest($"Failed to get card data by id {ex}");
             }
         }
+
+
+
+        [HttpGet("{category}")]
+        [Route("GetByCategory/{category}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetByCategory(string category)
+        {
+            try
+            {
+                var cards = await _repository.GetCardsByCat(category);
+                if (cards != null)
+                {
+                    return Ok(_mapper.Map<IEnumerable<Card>, IEnumerable<CardViewModel>>(cards));
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to get card data by category");
+                return BadRequest($"Failed to get card data by category {ex}");
+            }
+        }
+
 
 
         [HttpPost]
