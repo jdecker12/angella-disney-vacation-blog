@@ -17,7 +17,7 @@ export class GdHeroComponent implements OnInit {
     cards$: Observable<Card[]>[];
 
     ngOnInit() {
-        this.cards$ = this.data.loadCards();
+        this.cards$ = this.data.loadCardsByCategory('Main');
     }
 
     truncEight(x): string {
