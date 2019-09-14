@@ -28,7 +28,11 @@
     .toolbar-font {
         font-family: 'Nothing You Could Do', cursive;
         font-size: 1.5rem;
-    }
+        display: flex;
+        justify-content: space-around;
+        margin-left: 5%;
+    
+}
 
     .mat-menu-content {
         background-color: $a-light;

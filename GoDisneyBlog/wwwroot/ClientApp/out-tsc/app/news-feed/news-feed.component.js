@@ -13,7 +13,17 @@ var NewsFeedComponent = /** @class */ (function () {
     function NewsFeedComponent(data) {
         this.data = data;
         this.panelOpenState = false;
+        this.step = 1;
     }
+    NewsFeedComponent.prototype.setStep = function (index) {
+        this.step = index;
+    };
+    NewsFeedComponent.prototype.nextStep = function () {
+        this.step++;
+    };
+    NewsFeedComponent.prototype.prevStep = function () {
+        this.step--;
+    };
     NewsFeedComponent.prototype.ngOnInit = function () {
         this.cards$ = this.data.loadCardsByCategory('News');
     };

@@ -16,8 +16,25 @@ export class NewsFeedComponent implements OnInit {
 
     constructor(private data: DataService) { }
 
+    step:number;
+
     ngOnInit() {
-      this.cards$ = this.data.loadCardsByCategory('News');
+        this.cards$ = this.data.loadCardsByCategory('News');
     }
+
+
+    setStep() {
+        var n = document.getElementsByClassName('panel');
+   
+  }
+
+  nextStep() {
+      this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
 
 }

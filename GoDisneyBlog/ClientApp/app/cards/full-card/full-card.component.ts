@@ -15,15 +15,6 @@ export class FullCardComponent implements OnInit {
     public card: Card;
 
     ngOnInit() {
-        //this.data.loadCards()
-        //    .subscribe(success => {
-        //        if (success) {
-        //            this.cards = this.data.cards;
-        //            return true;
-        //        }
-
-        //    });
-
         this.route.params.subscribe(params => {
             let id = params['id'];
             this.card = this.data.getCardById(id);

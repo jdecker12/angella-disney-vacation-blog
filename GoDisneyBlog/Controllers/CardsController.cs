@@ -140,10 +140,6 @@ namespace GoDisneyBlog.Controllers
            
             try
             {
-                if (ModelState.IsValid)
-                {
-                    //var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                    //newCard.User = user;
 
                     _repository.AddEntity(newCard);
                     if (await _repository.SaveAllAsync())
@@ -151,7 +147,6 @@ namespace GoDisneyBlog.Controllers
 
                         return Created($"/api/cards/{newCard.Id}", _mapper.Map<Card, CardViewModel>(newCard));
                     }
-                }
             }
             catch(Exception ex)
             {
@@ -193,7 +188,7 @@ namespace GoDisneyBlog.Controllers
         {
             try
             {
-                var oldCard = _repository.GetCardByName(name);
+                var oldCard = await _repository.GetCardByName(name);
                 if (oldCard == null) return NotFound($"Could not find Card with an id of {name}");
 
                 _repository.DeleteEntity(oldCard);

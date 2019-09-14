@@ -8,14 +8,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { DataService } from '../services/data.service';
 var FooterComponent = /** @class */ (function () {
-    function FooterComponent() {
+    function FooterComponent(data) {
+        this.data = data;
         this.copyDate = new Date().getFullYear();
     }
     FooterComponent.prototype.sayHello = function () {
         alert('Hello');
     };
     FooterComponent.prototype.ngOnInit = function () {
+        this.card$ = this.data.loadCardsByCategory('Main');
     };
     FooterComponent = __decorate([
         Component({
@@ -23,7 +26,7 @@ var FooterComponent = /** @class */ (function () {
             templateUrl: './footer.component.html',
             styleUrls: ['./footer.component.scss']
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [DataService])
     ], FooterComponent);
     return FooterComponent;
 }());

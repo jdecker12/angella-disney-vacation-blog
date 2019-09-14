@@ -2,27 +2,30 @@
     <div class="flex-container">
         <div class="div1">
             <mat-list role="list">
-                <mat-list-item role="listitem">Item 1</mat-list-item>
-                <mat-list-item role="listitem">Item 2</mat-list-item>
-                <mat-list-item role="listitem">Item 3</mat-list-item>
+                <h3><mat-icon>explore</mat-icon> Navigation</h3>
+                <div *ngIf="card$ | async as card">
+                    <mat-list-item role="listitem" *ngFor="let c of card"><mat-icon>{{c.cardIcon}}</mat-icon><a [routerLink]="['/', c.cardTitle]" routerLinkActive="active"> {{c.cardTitle}}</a></mat-list-item>
+                </div>
             </mat-list>
         </div>
         <div class="div1">
             <mat-list role="list">
-                <mat-list-item role="listitem">Item 1</mat-list-item>
-                <mat-list-item role="listitem">Item 2</mat-list-item>
-                <mat-list-item role="listitem">Item3</mat-list-item>
+                <h3><mat-icon>policy</mat-icon> Policy</h3>
+                <mat-list-item role="listitem"><mat-icon>map</mat-icon> Site Map</mat-list-item>
+                <mat-list-item role="listitem"><mat-icon>share</mat-icon> Privacy Policy</mat-list-item>
+                <mat-list-item role="listitem"><mat-icon>gavel</mat-icon> Terms of Use</mat-list-item>
             </mat-list>
         </div>
         <div class="div1">
             <mat-list role="list">
-                <mat-list-item role="listitem">Item 1</mat-list-item>
-                <mat-list-item role="listitem">Item 2</mat-list-item>
-                <mat-list-item role="listitem">Item 3</mat-list-item>
+                <h3><mat-icon>public</mat-icon> Our Mission</h3>
+                <mat-list-item role="listitem"><img class="footer-logo" src="../img/a-glasses.png" /></mat-list-item>
+                <mat-list-item role="listitem" class="footer-logo-font">Go Disney Blog!</mat-list-item>
+                <mat-list-item role="listitem">Mission Statement goes here</mat-list-item>
             </mat-list>
         </div>
     </div>
     <div class="flex-container">
-        <p class="gdb-copyright">&copy;{{copyDate}} godisneyblog.com all rights reserved</p>
+        <p class="gdb-copyright">&copy;{{copyDate}} godisneyblog.com all rights reserved.</p>
     </div>
 </footer>

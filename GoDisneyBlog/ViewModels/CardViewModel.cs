@@ -9,7 +9,7 @@ namespace GoDisneyBlog.ViewModels
 {
     public class CardViewModel
     {
-        public int thisCardId { get; set; }
+       // public int thisCardId { get; set; }
       
         public string cardCategory { get; set; }
         [Required(ErrorMessage = "{0} is required")]

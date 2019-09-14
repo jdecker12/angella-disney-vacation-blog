@@ -9,6 +9,29 @@
     position: relative;
     padding: 2rem 0;
 
+    h3 {
+        color: #ff79ff;
+        text-align: left;
+        text-decoration: double underline;
+        /* filter: drop-shadow(4px 6px 8px black); */
+        text-rendering: optimizeLegibility;
+    }
+
+    .footer-logo {
+        width: 130px;
+        transform: rotate(-4deg);
+    }
+
+    .footer-logo-font {
+        font-family: 'Nothing You Could Do', cursive;
+        margin-left: 33px;
+        margin-top: -5px;
+    }
+
+    .mat-icon {
+        margin-right: 10px;
+    }
+
     .gdb-stripe {
         z-index: 0;
         background-color: $p-dark;
@@ -27,10 +50,20 @@
 
         .mat-list-item {
             color: #fff;
+            font-size: small;
+
+            a {
+                color: #fff;
+            }
+
+            a.active {
+                text-decoration: underline;
+            }
         }
     }
 
     p.gdb-copyright {
-        color: #fff;
+        color: #000;
+        font-weight: 100;
     }
 }

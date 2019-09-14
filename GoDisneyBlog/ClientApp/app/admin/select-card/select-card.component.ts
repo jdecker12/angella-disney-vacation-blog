@@ -39,7 +39,9 @@ export class SelectCardComponent implements OnInit {
 
 
     ngOnInit() {
-     
+        if (this.data.loginRequired) {
+            this.router.navigate(['/login']);
+        }
         this.card = new Card();
         this.data.loadCards()
             .subscribe(success => {

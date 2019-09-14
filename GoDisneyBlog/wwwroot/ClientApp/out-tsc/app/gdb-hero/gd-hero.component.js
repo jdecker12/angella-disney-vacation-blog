@@ -14,7 +14,7 @@ var GdHeroComponent = /** @class */ (function () {
         this.data = data;
     }
     GdHeroComponent.prototype.ngOnInit = function () {
-        this.cards$ = this.data.loadCards();
+        this.cards$ = this.data.loadCardsByCategory('Main');
     };
     GdHeroComponent.prototype.truncEight = function (x) {
         return x.slice(x.indexOf('-') + 1);

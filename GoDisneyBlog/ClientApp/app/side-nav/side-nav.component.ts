@@ -28,7 +28,6 @@ export class SideNavComponent implements OnInit {
             .subscribe(success => {
                 if (success) {
                     this.cardData = this.data.cards;
-                    console.log(this.cardData);
                     return true;
                 }
                 return false;          

@@ -4,10 +4,8 @@
 
 
         <span class="sm-spacer"></span>
-        <button mat-button (change)="buttonText()" mat-stroked-button [matMenuTriggerFor]="menu">Menu</button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="goToAdmin.emit()">{{update}}</button>
-        </mat-menu>
+        <mat-icon class="gdb-hamburger" (click)="toggleSidenav.emit()">menu</mat-icon>
+
         <!--<span class="gdb-flex-menu"><app-gdb-menu ></app-gdb-menu></span>-->
         <span class="half-spacer"></span>
         <span class="half-spacer"></span>
@@ -15,7 +13,10 @@
         <span class="toolbar-font">Go Disney Blog!</span>
 
         <span class="example-spacer"></span>
-        <mat-icon class="gdb-hamburger" (click)="toggleSidenav.emit()">menu</mat-icon>
+        <button mat-button (change)="buttonText()" mat-stroked-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="goToAdmin.emit()">{{update}}</button>
+        </mat-menu>
         <span class="two-rems"></span>
         <span id="goofy-icon">Ceritfied Awesome</span><mat-icon class="example-icon">verified_user</mat-icon>
     </mat-toolbar-row>
