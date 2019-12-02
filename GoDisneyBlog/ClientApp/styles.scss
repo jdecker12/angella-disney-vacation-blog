@@ -286,5 +286,9 @@ html, body {
         background: radial-gradient(ellipse at center, rgba(255,225,168,1) 0%,rgba(234,213,91,1) 17%,rgba(255,194,81,1) 50%,rgba(234,213,96,1) 84%,rgba(239,229,160,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe1a8', endColorstr='#efe5a0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     }
+
+    .mat-spinner {
+        color: #9ea7aa;
+    }
 }
 
