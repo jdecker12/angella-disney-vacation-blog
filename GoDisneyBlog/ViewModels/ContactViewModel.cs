@@ -16,7 +16,7 @@ namespace GoDisneyBlog.ViewModels
         public string Email { get; set; }
         [MinLength(5)]
         public string Subject { get; set; }
-        [MaxLength()]
+        [MaxLength(250)]
         public string Message { get; set; }
     }
 }

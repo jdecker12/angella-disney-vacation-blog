@@ -21,6 +21,9 @@ var SelectCardComponent = /** @class */ (function () {
     }
     SelectCardComponent.prototype.ngOnInit = function () {
         var _this = this;
+        if (this.data.loginRequired) {
+            this.router.navigate(['/login']);
+        }
         this.card = new Card();
         this.data.loadCards()
             .subscribe(function (success) {

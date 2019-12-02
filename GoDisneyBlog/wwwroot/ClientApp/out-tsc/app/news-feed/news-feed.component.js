@@ -13,19 +13,18 @@ var NewsFeedComponent = /** @class */ (function () {
     function NewsFeedComponent(data) {
         this.data = data;
         this.panelOpenState = false;
-        this.step = 1;
     }
-    NewsFeedComponent.prototype.setStep = function (index) {
-        this.step = index;
+    NewsFeedComponent.prototype.ngOnInit = function () {
+        this.cards$ = this.data.loadCardsByCategory('News');
+    };
+    NewsFeedComponent.prototype.setStep = function () {
+        var n = document.getElementsByClassName('panel');
     };
     NewsFeedComponent.prototype.nextStep = function () {
         this.step++;
     };
     NewsFeedComponent.prototype.prevStep = function () {
         this.step--;
-    };
-    NewsFeedComponent.prototype.ngOnInit = function () {
-        this.cards$ = this.data.loadCardsByCategory('News');
     };
     NewsFeedComponent = __decorate([
         Component({

@@ -17,7 +17,8 @@ export class FooterComponent implements OnInit {
 
     copyDate: number = new Date().getFullYear();
 
-
+    public privacy: any;
+    public terms: any;
 
 
     sayHello(): void {
@@ -25,7 +26,9 @@ export class FooterComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.card$ = this.data.loadCardsByCategory('Main');
-  }
+        this.card$ = this.data.loadCardsByCategory('Main');
+        this.privacy = document.getElementById('privacy');
+        this.terms = document.getElementById('terms');
+    }
 
 }

@@ -16,14 +16,7 @@ var FullCardComponent = /** @class */ (function () {
         this.route = route;
     }
     FullCardComponent.prototype.ngOnInit = function () {
-        //this.data.loadCards()
-        //    .subscribe(success => {
-        //        if (success) {
-        //            this.cards = this.data.cards;
-        //            return true;
-        //        }
         var _this = this;
-        //    });
         this.route.params.subscribe(function (params) {
             var id = params['id'];
             _this.card = _this.data.getCardById(id);

@@ -28,19 +28,21 @@ div#news-feed {
 
 
     .mat-accordion {
-        background-color: #aa00c7;
+        background-color: $ds-secondary;
         color: #fff;
 
         .mat-expansion-panel {
-            background-color: #aa00c7;
+            background-color: $d-dark;
             color: #fff !important;
             max-width: 250px;
             overflow: hidden;
         }
+
     }
+
     .mat-expansion-panel-body {
         padding: 0 24px 16px;
-        background-color: #ff79ff;
+        background-color: $ds-dark;
 
         img {
             max-width: 210px;

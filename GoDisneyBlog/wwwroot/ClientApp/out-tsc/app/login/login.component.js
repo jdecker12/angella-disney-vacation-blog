@@ -10,30 +10,96 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
+import { UserKey } from '../models/userKey';
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(route, data) {
         this.route = route;
         this.data = data;
         this.hide = true;
-        this.errMessage = "";
+        this.storeCred = [];
+        this.keyArr = [];
+        this.errMessage = '';
         this.creds = {
-            username: "",
-            password: ""
+            username: '',
+            password: ''
         };
+        this.checked = false;
+        this.uncheck();
+        console.log(this.data.loginRequired);
     }
-    LoginComponent.prototype.cancel = function () {
-        this.route.navigate(["/"]);
-    };
     LoginComponent.prototype.onLogin = function () {
         var _this = this;
         this.data.login(this.creds)
             .subscribe(function (success) {
             if (success) {
                 _this.route.navigate(["select-card"]);
+                if (_this.checked == true) {
+                    var myLocal = JSON.stringify(_this.creds);
+                    var encCreds = btoa(myLocal);
+                    localStorage.setItem('exp', encCreds);
+                }
+                _this.enc(_this.creds);
             }
         }, function (err) { return _this.errMessage = "Failed to login"; });
     };
     LoginComponent.prototype.ngOnInit = function () {
+        var credentials = localStorage.getItem('exp');
+        if (credentials != undefined) {
+            var dec = JSON.parse(atob(credentials));
+            this.creds.username = dec.username;
+            this.creds.password = dec.password;
+            this.checked = true;
+        }
+        this.dec();
+    };
+    LoginComponent.prototype.uncheck = function () {
+        if (this.checked == true) {
+            localStorage.removeItem('exp');
+            this.checked != this.checked;
+            this.creds.username = '';
+            this.creds.password = '';
+        }
+    };
+    LoginComponent.prototype.enc = function (str) {
+        var _this = this;
+        var uName = str.username;
+        var uPass = str.password;
+        var dumStr = 'jhbkfjbkjbfavf';
+        var concat = uName + dumStr + uPass;
+        for (var i = 0; i < concat.length; i++) {
+            var keyNum = Math.random() * 10;
+            var ascVal = concat.charCodeAt(i);
+            keyNum = Math.floor(keyNum);
+            var newVal = ascVal + keyNum;
+            var curr = String.fromCharCode(newVal);
+            this.keyArr.push(keyNum); // needs to be saved to db
+            this.storeCred.push(curr);
+        }
+        var encCred = this.storeCred.join("");
+        var encKey = this.keyArr.join("");
+        console.log(encKey);
+        //var userKey = JSON.stringify(encKey); 
+        this.data.saveUserKey(this.userKey)
+            .subscribe(function (success) {
+            _this.userKey = new UserKey();
+        });
+        localStorage.setItem('xyzz', encCred);
+        return encCred;
+    };
+    LoginComponent.prototype.dec = function () {
+        var encCred = localStorage.getItem('xyzz');
+        console.log(encCred);
+        for (var i = 0; i < encCred.length; i++) {
+            var ascVal = encCred.charCodeAt(i);
+            console.log(this.keyArr[i]);
+            ascVal -= this.keyArr[i];
+            var decSt = String.fromCharCode(ascVal[i]);
+            console.log(decSt);
+        }
+        return;
+    };
+    LoginComponent.prototype.cancel = function () {
+        this.route.navigate(["/"]);
     };
     LoginComponent = __decorate([
         Component({

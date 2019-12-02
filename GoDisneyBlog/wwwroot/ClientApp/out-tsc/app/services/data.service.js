@@ -11,6 +11,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Card } from '../models/card';
+import { UserKey } from '../models/userKey';
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
@@ -73,6 +74,17 @@ var DataService = /** @class */ (function () {
             .pipe(map(function (data) {
             _this.token = data.token;
             _this.tokenExpiration = data.expiration;
+            return true;
+        }));
+    };
+    DataService.prototype.saveUserKey = function (key) {
+        var _this = this;
+        return this.http.post("/Auth/StoreKey", key, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json')
+        })
+            .pipe(map(function (response) {
+            console.log(response);
+            _this.userKey = new UserKey();
             return true;
         }));
     };

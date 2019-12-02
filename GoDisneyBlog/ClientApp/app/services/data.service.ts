@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Card, CardContent } from '../models/card';
+import { UserKey } from '../models/userKey';
 
 @Injectable()
 export class DataService {
@@ -16,7 +17,9 @@ export class DataService {
     public card: Card = new Card();
 
     public cards: Card[] = [];
-    public cardContents:CardContent[] = [];
+    public cardContents: CardContent[] = [];
+
+    private userKey: UserKey;
 
     public  httpOptions = {
         headers: new HttpHeaders({
@@ -79,6 +82,19 @@ export class DataService {
             }));
     }
 
+    public saveUserKey(key): Observable<boolean> {
+        return this.http.post("/Auth/StoreKey", key, {
+            headers: new HttpHeaders().set('Content-Type','application/json')
+        })
+            .pipe(
+            map((response) => {
+                console.log(response);
+                this.userKey = new UserKey();
+                return true;
+            })
+            );
+    } 
+
     public updateCard(name:string, data) {
         return this.http.put("/api/cards/"+ name, data, {
             headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
@@ -123,6 +139,7 @@ export class DataService {
                 })
             );
     }
+
     
 
     

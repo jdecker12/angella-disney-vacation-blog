@@ -28,7 +28,6 @@ var SideNavComponent = /** @class */ (function () {
             .subscribe(function (success) {
             if (success) {
                 _this.cardData = _this.data.cards;
-                console.log(_this.cardData);
                 return true;
             }
             return false;

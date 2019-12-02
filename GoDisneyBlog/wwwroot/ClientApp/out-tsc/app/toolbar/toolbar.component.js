@@ -7,22 +7,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ChangeDetectorRef } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 var ToolbarComponent = /** @class */ (function () {
-    function ToolbarComponent(data, router) {
+    function ToolbarComponent(data, router, cd) {
         this.data = data;
         this.router = router;
+        this.cd = cd;
+        this.update = 'login';
         this.toggleSidenav = new EventEmitter();
         this.goToAdmin = new EventEmitter();
-        this.buttonText();
     }
+    Object.defineProperty(ToolbarComponent.prototype, "_loggedIn", {
+        get: function () { return this.data.loginRequired; },
+        enumerable: true,
+        configurable: true
+    });
+    ;
     ToolbarComponent.prototype.onAdmin = function () {
-        this.data.loginRequired ? this.router.navigate(['login']) : this.router.navigate(['select-card']);
+        this.data.loginRequired == true ? this.router.navigate(['login']) : this.router.navigate(['select-card']);
     };
     ToolbarComponent.prototype.buttonText = function () {
-        this.data.loginRequired ? this.update = 'login' : this.update = 'Create Content';
+        this.data.loginRequired == true ? this.update = 'login' : this.update = 'Create Content';
     };
     ToolbarComponent.prototype.ngOnInit = function () {
     };
@@ -44,7 +51,7 @@ var ToolbarComponent = /** @class */ (function () {
             templateUrl: './toolbar.component.html',
             styleUrls: ['./toolbar.component.scss']
         }),
-        __metadata("design:paramtypes", [DataService, Router])
+        __metadata("design:paramtypes", [DataService, Router, ChangeDetectorRef])
     ], ToolbarComponent);
     return ToolbarComponent;
 }());

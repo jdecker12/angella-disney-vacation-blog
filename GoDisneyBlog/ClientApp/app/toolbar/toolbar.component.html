@@ -1,7 +1,6 @@
 <mat-toolbar class="go-toolbar">
     <mat-toolbar-row>
-        <span><button mat-fab>GDB</button></span><span id="brand"> go<span class="unique-logo">Disney</span>blog</span>
-
+        <span><button mat-fab></button></span><span id="brand"> go<span class="unique-logo">Disney</span>blog</span>
 
         <span class="sm-spacer"></span>
         <mat-icon class="gdb-hamburger" (click)="toggleSidenav.emit()">menu</mat-icon>
@@ -13,12 +12,12 @@
         <span class="toolbar-font">Go Disney Blog!</span>
 
         <span class="example-spacer"></span>
-        <button mat-button (change)="buttonText()" mat-stroked-button [matMenuTriggerFor]="menu">Menu</button>
+        <button mat-button (click)="buttonText()" mat-stroked-button [matMenuTriggerFor]="menu">Menu</button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="goToAdmin.emit()">{{update}}</button>
         </mat-menu>
         <span class="two-rems"></span>
-        <span id="goofy-icon">Ceritfied Awesome</span><mat-icon class="example-icon">verified_user</mat-icon>
+        <span id="goofy-icon">Not affiliated just a fan</span><mat-icon class="example-icon">verified_user</mat-icon>
     </mat-toolbar-row>
 </mat-toolbar>
  

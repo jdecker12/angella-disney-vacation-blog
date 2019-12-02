@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.Extensions.Logging;
-
+using GoDisneyBlog.Data;
 
 namespace GoDisneyBlog.Controllers
 {
@@ -23,13 +23,15 @@ namespace GoDisneyBlog.Controllers
         private SignInManager<StoreUser> _signInManager;
         private UserManager<StoreUser> _userManager;
         private IConfiguration _config;
+        private IGoDisneyRepository _repository;
 
-        public AuthController(ILogger<AuthController> logger, SignInManager<StoreUser> signInManager, UserManager<StoreUser> userManager, IConfiguration config)
+        public AuthController(ILogger<AuthController> logger, SignInManager<StoreUser> signInManager, UserManager<StoreUser> userManager, IConfiguration config, IGoDisneyRepository repository)
         {
             _logger = logger;
             _signInManager = signInManager;
             _userManager = userManager;
             _config = config;
+            _repository = repository;
 
         }
 
@@ -88,6 +90,32 @@ namespace GoDisneyBlog.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> StoreKey([FromBody] RememberMe model)
+        {
+
+            var newKey = model;
+
+
+            try
+            {
+
+                _repository.AddEntity(newKey);
+                if (await _repository.SaveAllAsync())
+                {
+
+                    return Created($"/Auth/StoreKey/{newKey.Id}", newKey);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save new key. {ex}");
+
+            }
+            return BadRequest(ModelState);
+
         }
 
     }

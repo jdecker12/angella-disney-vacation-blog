@@ -104,6 +104,23 @@ namespace GoDisneyBlog.Migrations
                     b.ToTable("CardLists");
                 });
 
+            modelBuilder.Entity("GoDisneyBlog.Data.Entities.RememberMe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("UserKey");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("DecryptionKeys");
+                });
+
             modelBuilder.Entity("GoDisneyBlog.Data.Entities.StoreUser", b =>
                 {
                     b.Property<string>("Id")
@@ -281,6 +298,13 @@ namespace GoDisneyBlog.Migrations
                     b.HasOne("GoDisneyBlog.Data.Entities.Card", "Card")
                         .WithMany("CardContents")
                         .HasForeignKey("CardId");
+                });
+
+            modelBuilder.Entity("GoDisneyBlog.Data.Entities.RememberMe", b =>
+                {
+                    b.HasOne("GoDisneyBlog.Data.Entities.StoreUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

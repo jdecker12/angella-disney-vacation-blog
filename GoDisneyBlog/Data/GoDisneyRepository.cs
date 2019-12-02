@@ -85,6 +85,7 @@ namespace GoDisneyBlog.Data
                 return await _context.Cards
                         .Include(c => c.CardContents)
                         .Where(n => n.Category == cat)
+                        .OrderByDescending(c => c.Id)
                         .ToListAsync();
             }
             catch (Exception ex)

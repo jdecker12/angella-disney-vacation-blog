@@ -42,8 +42,6 @@ export class SideNavComponent implements OnInit {
         return this.mediaMatcher.matches;
     }
 
-
-
     onAdmin(): void {
         this.data.loginRequired ? this.router.navigate(['login']) : this.router.navigate(['select-card']);
     }

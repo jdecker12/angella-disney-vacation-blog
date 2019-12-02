@@ -16,5 +16,6 @@ namespace GoDisneyBlog.Data
 
        public DbSet<Card> Cards { get; set; }
        public DbSet<CardList> CardLists { get; set; }
+       public DbSet<RememberMe> DecryptionKeys { get; set; }
     }
 }

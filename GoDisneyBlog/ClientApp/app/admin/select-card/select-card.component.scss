@@ -19,7 +19,7 @@
 
     .card-list {
         margin-bottom: 35px;
-        width: 50%;
+        width: 45%;
         height: 110px;
         overflow: hidden;
         overflow-y: scroll;
@@ -48,13 +48,13 @@
 
 
     .mat-card-title {
-        color: $a-dark;
+        color: $d-dark;
         font-size: 1.75rem;
     }
 
     h3 {
         margin-left: 20px;
-        color: $a-dark;
+        color: $d-dark;
     }
 
     .mat-card-header, .mat-card-subtitle, .mat-list-item-content {
@@ -113,7 +113,7 @@
     }
 
     .primary {
-        background-color: $primary;
+        background-color: $d-primary;
         color: #fff;
     }
 

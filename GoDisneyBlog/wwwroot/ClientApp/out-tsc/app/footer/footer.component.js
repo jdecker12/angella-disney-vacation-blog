@@ -19,6 +19,8 @@ var FooterComponent = /** @class */ (function () {
     };
     FooterComponent.prototype.ngOnInit = function () {
         this.card$ = this.data.loadCardsByCategory('Main');
+        this.privacy = document.getElementById('privacy');
+        this.terms = document.getElementById('terms');
     };
     FooterComponent = __decorate([
         Component({

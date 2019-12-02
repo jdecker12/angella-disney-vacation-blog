@@ -2,7 +2,7 @@
 
 div#gdb-hero {
     height: 340px;
-    background-color: $a-dark;
+    background-color: $d-dark;
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     display: flex;
     color: #fff;
@@ -17,7 +17,7 @@ div#gdb-hero {
     background-size: cover;
     background-position: center;
     box-shadow: 0 16px 21px 9px rgba(0, 0, 0, 0.2);
-    border-bottom: solid 3px $purple-d;
+    border-bottom: solid 3px $d-dark;
 
 
 
@@ -27,7 +27,7 @@ div#gdb-hero {
         left: 0;
         width: 100%;
         height: 340px;
-        background-color: $purple-d;
+        background-color: $d-dark;
         opacity: 0.575;
         display: block;
         content: " ";
@@ -53,6 +53,7 @@ div#gdb-hero {
     ul {
         position: relative;
         z-index: 3;
+        top: -40px;
         height: 50px;
         display: flex;
         animation: heronav 1.75s ease-out forwards;
@@ -61,17 +62,17 @@ div#gdb-hero {
 
         @keyframes heronav {
             0% {
-                top: 0px;
+                top: -40px;
                 opacity: 0;
             }
 
             25% {
-                top: 0px;
+                top: -40px;
                 opacity: .25;
             }
 
             50% {
-                top: 0px;
+                top: -40px;
                 opacity: 0.75;
             }
 
@@ -91,23 +92,25 @@ div#gdb-hero {
             list-style-type: none;
             display: inline;
             padding: 0 1rem;
-            filter: drop-shadow(2px 4px 6px #111);
+            //filter: drop-shadow(2px 4px 6px #111);
 
-
-            span#clr-change1 > .mat-icon {
-                color: $icon-yellow;
+            .mat-mini-fab {
+                color: #fff;
+            }
+            span#clr-change1 > .mat-mini-fab {
+                background-color: $icon-yellow;
             }
 
-            span#clr-change2 > .mat-icon {
-                color: $icon-red;
+            span#clr-change2 > .mat-mini-fab {
+                background-color: $icon-red;
             }
 
-            span#clr-change3 > .mat-icon {
-                color: $icon-green;
+            span#clr-change3 > .mat-mini-fab {
+                background-color: $icon-green;
             }
 
-            span#clr-change4 > .mat-icon {
-                color: $icon-blue;
+            span#clr-change4 > .mat-mini-fab {
+                background-color: $icon-blue;
             }
 
             > a {

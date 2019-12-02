@@ -3,7 +3,7 @@
 #main-content {
    
     h1 {
-        color: $a-dark;
+        color: $d-dark;
     }
 }
 .mat-card {
@@ -19,7 +19,7 @@
     margin-bottom: 2rem;
     width: 100%;
     border-radius: 0 !important;
-    border-bottom: 3px solid $a-dark;
+    border-bottom: 3px solid $d-dark;
     border-radius: 3px;
 
     .mat-card-header {
@@ -27,7 +27,7 @@
     }
 
     .a-button {
-        background-color: $a-dark;
+        background-color: $d-dark;
         color: #fff;
     }
 
@@ -35,7 +35,7 @@
         float: right;
         top: -59px;
         right: 3rem;
-        background-color: $a-dark;
+        background-color: $d-dark;
         color: #fff;
     }
 
@@ -63,11 +63,11 @@
     }
 
     .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-        background-color: $a-light;
+        background-color: $d-light;
     }
 
     .primary {
-        background-color: $primary;
+        background-color: $d-primary;
         color: #fff;
     }
 }

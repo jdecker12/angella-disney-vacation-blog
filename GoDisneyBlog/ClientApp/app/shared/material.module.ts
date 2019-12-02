@@ -33,7 +33,9 @@ import {
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatBottomSheetModule
+
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -72,7 +74,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
-        CdkTableModule
+        CdkTableModule,
+        MatBottomSheetModule
     ],
     exports: [
         MatAutocompleteModule,

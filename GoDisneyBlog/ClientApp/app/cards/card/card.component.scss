@@ -2,25 +2,56 @@
 
 .go-dis-card {
     margin-bottom: 2rem;
-    max-width: 710px;
-    border-bottom: 3px solid $a-dark;
+    max-width: 770px;
+    border-bottom: 3px solid $d-dark;
     border-radius: 3px;
-   // border: 15px solid #fff;
+    position: relative;
+    left: -1036px;
+    // border: 15px solid #fff;
+
 
     .mat-card-header {
-        color: $a-dark;
+        color: $d-dark;
+    }
+
+    .go-dis-card.mat-card {
+        padding: 0px 18px 23px;
     }
 
     .mat-card-content a {
-        color: $a-dark;
-        text-decoration:underline;
+        color: $d-dark;
+        text-decoration: underline;
     }
 
     .mat-fab {
         float: right;
         top: -59px;
         right: 3rem;
-        background-color: $a-light;
+        background-color: $d-light;
         color: #000000;
+    }
+
+    .mat-raised-button {
+        float: right;
+        top: -40px;
+        right: 3rem;
+        background-color: $d-light;
+        color: #fff;
+    }
+
+
+}
+
+.scroll-animation {
+    animation: animateCard 0.5s forwards;
+}
+
+@keyframes animateCard {
+    from {
+        left: -1036px;
+    }
+
+    to {
+        left: 0px;
     }
 }

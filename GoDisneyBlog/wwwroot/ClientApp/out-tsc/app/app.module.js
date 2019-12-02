@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { SelectCardComponent } from './admin/select-card/select-card.component';
 import { GaugestestComponent } from './gaugestest/gaugestest.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { BtmSheetComponent, BottomSheetOverviewExampleSheet } from './btm-sheet/btm-sheet.component';
 var routes = [
     { path: 'card', component: CardComponent },
     { path: 'about', component: AboutComponent },
@@ -61,7 +62,9 @@ var AppModule = /** @class */ (function () {
                 LoginComponent,
                 SelectCardComponent,
                 GaugestestComponent,
-                NewsFeedComponent
+                NewsFeedComponent,
+                BtmSheetComponent,
+                BottomSheetOverviewExampleSheet
             ],
             imports: [
                 BrowserModule,
@@ -74,6 +77,7 @@ var AppModule = /** @class */ (function () {
                 RouterModule.forRoot(routes, { useHash: true })
             ],
             providers: [DataService],
+            entryComponents: [BtmSheetComponent, BottomSheetOverviewExampleSheet],
             bootstrap: [AppComponent]
         })
     ], AppModule);

@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { SelectCardComponent } from './admin/select-card/select-card.component';
 import { GaugestestComponent } from './gaugestest/gaugestest.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { BtmSheetComponent, BottomSheetOverviewExampleSheet } from './btm-sheet/btm-sheet.component';
 
 
 const routes: Routes = [
@@ -58,7 +59,9 @@ const routes: Routes = [
       LoginComponent,
       SelectCardComponent,
       GaugestestComponent,
-      NewsFeedComponent
+      NewsFeedComponent,
+      BtmSheetComponent,
+      BottomSheetOverviewExampleSheet
   ],
   imports: [
       BrowserModule,
@@ -70,7 +73,8 @@ const routes: Routes = [
       ReactiveFormsModule,
       RouterModule.forRoot(routes, {useHash: true})
   ],
-  providers: [DataService],
-  bootstrap: [AppComponent]
+    providers: [DataService],
+    entryComponents: [BtmSheetComponent, BottomSheetOverviewExampleSheet],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

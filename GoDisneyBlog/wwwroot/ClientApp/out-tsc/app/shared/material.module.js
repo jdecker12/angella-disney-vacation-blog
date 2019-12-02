@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { NgModule } from '@angular/core';
-import { MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCheckboxModule, MatToolbarModule, MatTooltipModule, MatCardModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatStepperModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCheckboxModule, MatToolbarModule, MatTooltipModule, MatCardModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatStepperModule, MatBottomSheetModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 var MaterialModule = /** @class */ (function () {
     function MaterialModule() {
@@ -45,7 +45,8 @@ var MaterialModule = /** @class */ (function () {
                 MatTabsModule,
                 MatToolbarModule,
                 MatTooltipModule,
-                CdkTableModule
+                CdkTableModule,
+                MatBottomSheetModule
             ],
             exports: [
                 MatAutocompleteModule,
