@@ -4,6 +4,8 @@ import { DataService } from '../../services/data.service';
 import { Card } from '../../models/card';
 import { window } from 'rxjs/operators';
 
+
+
 @Component({
     selector: 'gdb-card',
     templateUrl: 'card.component.html',
@@ -24,24 +26,35 @@ export class CardComponent implements OnInit {
                     return true;
                 }
             });
+        setTimeout(() => {
+            var cards = document.getElementsByClassName('go-dis-card');
+            var crdArr = Array.from(cards);
+            crdArr[0].classList.add('scroll-animation');
+        },3000);
+
+        
         this.animateOnScroll();
 
     }//end onInit
 
 
 
+
+
     animateOnScroll(): void {
         var myWindow = document.getElementById('mat-sidenav-content');
-        myWindow.onscroll = () => {
-            var myElems = document.getElementsByClassName('go-dis-card');
-            var cardArr = Array.from(myElems);
-            console.log(cardArr);
-            cardArr.forEach((element) => {
-                var myCard = element.getBoundingClientRect();
-                if (myCard.top <= 413) {
-                    element.classList.add('scroll-animation');
-                }
-            });//end foreach
-        }//end onscroll
+        setTimeout(() => {
+            myWindow.onscroll = () => {
+                var myElems = document.getElementsByClassName('go-dis-card');
+                var cardArr = Array.from(myElems);
+                cardArr.forEach((element) => {
+                    var myCard = element.getBoundingClientRect();
+                    if (myCard.top <= 513) {
+                        element.classList.add('scroll-animation');
+                    }
+                });//end foreach
+            }//end onscroll
+        }, 2000);
+
     }//end amimateOnScroll
 }

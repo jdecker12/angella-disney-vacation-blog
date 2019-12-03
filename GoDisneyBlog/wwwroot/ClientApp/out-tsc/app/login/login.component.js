@@ -79,8 +79,9 @@ var LoginComponent = /** @class */ (function () {
         var encKey = this.keyArr.join("");
         console.log(encKey);
         //var userKey = JSON.stringify(encKey); 
-        this.data.saveUserKey(this.userKey)
+        this.data.saveUserKey(encKey)
             .subscribe(function (success) {
+            _this.userKey.userKey = encKey;
             _this.userKey = new UserKey();
         });
         localStorage.setItem('xyzz', encCred);

@@ -33,7 +33,7 @@ div#gdb-hero {
         content: " ";
         color: aliceblue;
         animation: herobackground .95s ease-out forwards;
-        animation-delay: 2s;
+        //animation-delay: 2s;
 
         @keyframes herobackground {
             from {

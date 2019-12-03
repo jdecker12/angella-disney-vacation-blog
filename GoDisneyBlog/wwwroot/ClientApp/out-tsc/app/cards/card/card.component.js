@@ -12,6 +12,7 @@ import { DataService } from '../../services/data.service';
 var CardComponent = /** @class */ (function () {
     function CardComponent(data) {
         this.data = data;
+        this.initAnimation = false;
         this.cards = [];
     }
     CardComponent.prototype.ngOnInit = function () {
@@ -23,7 +24,22 @@ var CardComponent = /** @class */ (function () {
                 return true;
             }
         });
-    };
+        this.animateOnScroll();
+    }; //end onInit
+    CardComponent.prototype.animateOnScroll = function () {
+        var myWindow = document.getElementById('mat-sidenav-content');
+        myWindow.onscroll = function () {
+            var myElems = document.getElementsByClassName('go-dis-card');
+            var cardArr = Array.from(myElems);
+            console.log(cardArr);
+            cardArr.forEach(function (element) {
+                var myCard = element.getBoundingClientRect();
+                if (myCard.top <= 413) {
+                    element.classList.add('scroll-animation');
+                }
+            }); //end foreach
+        }; //end onscroll
+    }; //end amimateOnScroll
     CardComponent = __decorate([
         Component({
             selector: 'gdb-card',
