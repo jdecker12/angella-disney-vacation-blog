@@ -15,7 +15,7 @@ export class CardComponent implements OnInit {
 
     public initAnimation: boolean = false;
 
-    constructor(private data: DataService) {}
+    constructor(private data: DataService) { }
     public cards: Card[] = [];
 
     ngOnInit(): void {
@@ -29,32 +29,28 @@ export class CardComponent implements OnInit {
         setTimeout(() => {
             var cards = document.getElementsByClassName('go-dis-card');
             var crdArr = Array.from(cards);
-            crdArr[0].classList.add('scroll-animation');
-        },3000);
+            crdArr[0].classList.add('first-card');
+        }, 3000);
 
-        
+
         this.animateOnScroll();
 
     }//end onInit
 
 
-
-
-
     animateOnScroll(): void {
         var myWindow = document.getElementById('mat-sidenav-content');
-        setTimeout(() => {
-            myWindow.onscroll = () => {
+        myWindow.onscroll = () => {
+            setTimeout(() => {
                 var myElems = document.getElementsByClassName('go-dis-card');
                 var cardArr = Array.from(myElems);
                 cardArr.forEach((element) => {
                     var myCard = element.getBoundingClientRect();
-                    if (myCard.top <= 513) {
+                    if (myCard.top <= 500 && !element.classList.contains('first-card')) {
                         element.classList.add('scroll-animation');
                     }
                 });//end foreach
-            }//end onscroll
-        }, 2000);
-
+            }, 2000);
+        }//end onscroll
     }//end amimateOnScroll
 }

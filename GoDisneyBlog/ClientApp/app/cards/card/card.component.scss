@@ -7,8 +7,6 @@
     border-radius: 3px;
     position: relative;
     left: -1036px;
-    // border: 15px solid #fff;
-
 
     .mat-card-header {
         color: $d-dark;
@@ -40,6 +38,11 @@
     }
 
 
+}
+
+
+.first-card {
+    left: 0;
 }
 
 .scroll-animation {
