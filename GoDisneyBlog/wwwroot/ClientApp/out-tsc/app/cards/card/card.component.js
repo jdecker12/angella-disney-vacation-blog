@@ -24,20 +24,26 @@ var CardComponent = /** @class */ (function () {
                 return true;
             }
         });
+        setTimeout(function () {
+            var cards = document.getElementsByClassName('go-dis-card');
+            var crdArr = Array.from(cards);
+            crdArr[0].classList.add('first-card');
+        }, 3000);
         this.animateOnScroll();
     }; //end onInit
     CardComponent.prototype.animateOnScroll = function () {
         var myWindow = document.getElementById('mat-sidenav-content');
         myWindow.onscroll = function () {
-            var myElems = document.getElementsByClassName('go-dis-card');
-            var cardArr = Array.from(myElems);
-            console.log(cardArr);
-            cardArr.forEach(function (element) {
-                var myCard = element.getBoundingClientRect();
-                if (myCard.top <= 413) {
-                    element.classList.add('scroll-animation');
-                }
-            }); //end foreach
+            setTimeout(function () {
+                var myElems = document.getElementsByClassName('go-dis-card');
+                var cardArr = Array.from(myElems);
+                cardArr.forEach(function (element) {
+                    var myCard = element.getBoundingClientRect();
+                    if (myCard.top <= 500 && !element.classList.contains('first-card')) {
+                        element.classList.add('scroll-animation');
+                    }
+                }); //end foreach
+            }, 2000);
         }; //end onscroll
     }; //end amimateOnScroll
     CardComponent = __decorate([
